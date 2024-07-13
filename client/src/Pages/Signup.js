@@ -5,6 +5,7 @@ import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
 import countryList from "react-select-country-list";
 import "../style/SignupPage.css";
+import logo from "../images/logo.png";
 
 export default function Signup() {
   const [phone, setPhone] = useState("");
@@ -26,6 +27,7 @@ export default function Signup() {
 
   return (
     <div className="signup-container">
+      <img src={logo} alt="Website Logo" className="logo" />
       <h1>Signup</h1>
       <form className="signup-form">
         <div className="form-row">
