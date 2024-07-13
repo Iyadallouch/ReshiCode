@@ -1,0 +1,289 @@
+this is the style one for user home page 
+css:
+.user-homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+
+.logo {
+  width: 180px;
+}
+
+.website-info {
+  flex: 1;
+  text-align: center;
+}
+
+.website-name,
+.website-description {
+  margin: 0;
+  display: block;
+}
+
+.website-name {
+  font-size: 38px;
+  font-family: "Audiowide";
+  color: rgba(148, 205, 198, 255);
+  margin-bottom: 10px;
+}
+
+.website-description {
+  font-size: 18px;
+  color: rgba(148, 205, 198, 255);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.user-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.user-name {
+  margin: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.profile-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: black;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+}
+
+.profile-button:hover {
+  background-color: #00a88b;
+}
+
+.left-side,
+.right-side {
+  display: flex;
+  width: 80%;
+  padding: 20px;
+}
+
+.left-side {
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* New styles for the form on the left side */
+.programming-area-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 20px;
+  border-radius: 10px;
+
+  color: rgba(148, 205, 198, 255);
+  width: 60%;
+}
+
+.programming-area-form label,
+.programming-area-form p {
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-family: "Audiowide";
+}
+
+.programming-area-form input[type="text"] {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.checkbox-group label {
+  font-size: 18px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.create-button {
+  padding: 10px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: #fff;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+  background-color: #00a88b;
+}
+
+.react-select__control {
+    border: 1px solid var(--input-border-color); /* Use the default border color */
+    border-radius: 5px;
+    padding: 5px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .react-select__control--is-focused {
+    border-color: var(--input-border-color-focus); /* Change border color on focus */
+    box-shadow: none; /* Remove default shadow */
+  }
+  
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .content-container {
+    flex-direction: column;
+  }
+
+  .left-side,
+  .right-side {
+    width: 100%;
+  }
+}
+ ......................................................
+ page : 
+ import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import logo from "../images/logo.png";
+import userImage from "../images/userpic.png"; // Make sure to replace with the actual path to the user's image
+import "../style/UserHomepage.css";
+
+const languageOptions = [
+    { value: "cPlus", label: "C+" },
+    { value: "java", label: "Java" },
+    { value: "python", label: "Python" },
+  ];
+
+export default function UserHomepage() {
+  const [areaName, setAreaName] = useState("");
+  const [languages, setLanguages] = useState({
+    cPlus: false,
+    java: false,
+    python: false,
+  });
+
+  const handleLanguageChange = (language) => {
+    setLanguages({
+      ...languages,
+      [language]: !languages[language],
+    });
+  };
+
+  return (
+    <div>
+      <div className="user-homepage-container">
+        {/* for the top */}
+        <div className="header">
+          <img className="logo" alt="logo" src={logo} />
+          <div className="website-info">
+            <h1 className="website-name">Welcome to Reshi Code website !!</h1>
+            <p className="website-description">
+              Experience Real-Time Collaboration with Expert Programmers
+              <br />
+              Instantly Resolve Code Errors and Enhance Your Projects with Live
+              Assistance
+            </p>
+          </div>
+          <div className="user-info">
+            <img className="user-image" alt="user" src={userImage} />
+            <p className="user-name">User Name</p>
+            <button className="profile-button">Go to Profile</button>
+            <button className="profile-button">Log out</button>
+          </div>
+        </div>
+      </div>
+      <div className="content-container">
+        {/* for the left side */}
+        <div className="left-side">
+          <form className="programming-area-form">
+            <label htmlFor="area-name">Enter programming area name:</label>
+            <input
+              type="text"
+              id="area-name"
+              value={areaName}
+              onChange={(e) => setAreaName(e.target.value)}
+              placeholder="programming area name"
+            />
+
+            <p>Choose programming languages:</p>
+            <div className="checkbox-group">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={languages.cPlus}
+                  value="1"
+                  onChange={() => handleLanguageChange("cPlus")}
+                />
+                C+
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={languages.java}
+                  onChange={() => handleLanguageChange("java")}
+                />
+                Java
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={languages.python}
+                  onChange={() => handleLanguageChange("python")}
+                />
+                Python
+              </label>
+            </div>
+
+            <button type="button" className="create-button">
+              Create programming area
+            </button>
+          </form>
+        </div>
+
+        {/* for the right side */}
+        <div className="right-side">{/* Right side content goes here */}</div>
+      </div>
+    </div>
+  );
+}
+.............................................................................................................

@@ -17,9 +17,12 @@ export default function LoginPage() {
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password" required />
         </div>
-        <button type="submit" className="submit-button">
-          Login
-        </button>
+        <Link to="/userhomepage" className="notLink">
+          <button type="submit" className="submit-button">
+            Login
+          </button>
+        </Link>
+
         <p>
           Don't have an account?{" "}
           <Link to="/signup" className="link">

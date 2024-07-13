@@ -122,13 +122,12 @@ h1 {
   width: 20%;
   text-align: center;
   justify-content: center;
-
   display: flex;
   margin: 0 auto; /* Center the button horizontally */
 }
 
 .submit-button:hover {
-  background-color: rgb(98, 151, 148);
+  background-color: #00a88b;
   transform: scale(1.05);
 }
 

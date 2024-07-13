@@ -13,6 +13,10 @@ p {
   margin-top: 20px;
 }
 
+.notLink {
+  text-decoration: none;
+}
+
 .link {
   padding: 10px;
   color: #0056b3; /* Default link color */
@@ -95,9 +99,10 @@ p {
   justify-content: center;
   align-items: center;
   display: flex;
+  margin: 0 auto;
 }
 
 .login-form .submit-button:hover {
-  background-color: rgb(98, 151, 148);
+  background-color: #00a88b;
   transform: scale(1.05);
 }
