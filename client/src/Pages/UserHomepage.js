@@ -17,7 +17,8 @@ export default function UserHomepage() {
   const selectRef = useRef(null); // Create a ref for the select input
 
   const handleLanguageChange = (selectedOptions) => {
-    setSelectedLanguages(selectedOptions);
+    setSelectedLanguages(selectedOptions.target.value);
+    // setSelectedLanguages(selectedOptions);  this is for react select
     // Blur the select input after selection
     if (selectRef.current) {
       selectRef.current.blur();
@@ -60,7 +61,7 @@ export default function UserHomepage() {
             />
 
             <p>Choose programming languages:</p>
-            <Select
+            {/* <Select
               ref={selectRef} // Attach the ref to the Select component
               options={languageOptions}
               className="react-select"
@@ -69,7 +70,23 @@ export default function UserHomepage() {
               placeholder="Select languages..."
               onFocus={() => setSelectFocused(true)}
               onBlur={() => setSelectFocused(false)}
-            />
+            /> */}
+
+            <select
+              value={selectedLanguages}
+              onChange={handleLanguageChange}
+              onFocus={() => setSelectFocused(true)}
+              onBlur={() => setSelectFocused(false)}
+              ref={selectRef}
+              placeholder="Select languages..."
+            >
+              <option value="" disabled>
+                Select languages...
+              </option>
+              <option value="cPlus">C+</option>
+              <option value="java">Java</option>
+              <option value="python">Python</option>
+            </select>
 
             <button
               type="button"
@@ -79,7 +96,12 @@ export default function UserHomepage() {
             </button>
           </form>
         </div>
-        <div className="right-side">{/* Right side content goes here */}</div>
+        <div className="right-side">
+          <p className="right-side-text">
+            Ask for help from our chatbot  AI
+          </p>
+          <button className="right-side-button">chatbot</button>
+        </div>
       </div>
     </div>
   );

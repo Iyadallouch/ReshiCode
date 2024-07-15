@@ -79,14 +79,28 @@
   background-color: #00a88b;
 }
 
-.left-side,
-.right-side {
-  display: flex;
-  width: 80%;
+.content-container {
+  display: flex; /* Ensure left and right side are next to each other */
+  width: 100%;
   padding: 20px;
 }
 
+.left-side,
+.right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%; /* Make sure both sides take equal width */
+  padding: 20px;
+}
 .left-side {
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-side {
   width: 80%;
   align-items: center;
   justify-content: center;
@@ -100,7 +114,7 @@
   padding: 20px;
   border-radius: 10px;
   color: rgba(148, 205, 198, 255);
-  width: 60%;
+  width: 80%;
 }
 
 .programming-area-form label,
@@ -111,7 +125,7 @@
 }
 
 .programming-area-form input[type="text"] {
-  width: 30%;
+  width: 40%;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -120,10 +134,10 @@
 
 .create-button {
   padding: 10px;
-  margin-top: 30px;
+  margin-top: 10px;
   border: none;
   background-color: rgba(148, 205, 198, 255);
-  color: #fff;
+  color: black;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
@@ -147,6 +161,45 @@
   min-width: 200px;
 }
 
+.programming-area-form select {
+  min-width: 200px; /* Increase min-width */
+  height: 50px; /* Adjust height */
+  font-size: 16px; /* Increase font size */
+  transition: border-color 0.3s ease;
+  padding: 10px 40px 10px 10px; /* Adjust padding for larger appearance */
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  background: white
+    url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>')
+    no-repeat right 10px center;
+  background-size: 30px;
+}
+
+/* New styles for the right side */
+.right-side-text {
+  font-size: 28px;
+  color: rgba(148, 205, 198, 255);
+  margin-bottom: 10px;
+  font-family: "Audiowide";
+}
+
+.right-side-button {
+  padding: 10px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: black;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.right-side-button:hover {
+  background-color: #00a88b;
+}
+
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -154,13 +207,41 @@
   .website-name {
     font-size: 22px;
   }
+  .website-description {
+    font-size: 13px;
+  }
+  label {
+    text-align: center;
+  }
+
+  .programming-area-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 80px;
+  }
+  .programming-area-form input[type="text"] {
+    width: 50%;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+    margin-right: -10px;
+  }
 
   .content-container {
-    flex-direction: column;
+    flex-direction: column; /* Stack left and right side vertically on small screens */
   }
 
   .left-side,
   .right-side {
     width: 100%;
+  }
+  .right-side-button,
+  .right-side-text {
+    margin-right: 80px;
   }
 }
