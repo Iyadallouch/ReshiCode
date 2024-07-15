@@ -3,6 +3,7 @@ import UserChoose from "./Pages/UserChoose";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import UserHomepage from "./Pages/UserHomepage";
+import ProHomepage from "./Pages/ProHomepage";
 import "./global.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/userhomepage" element={<UserHomepage />}></Route>
+          <Route path="/prohomepage" element={<ProHomepage />}></Route>
         </Routes>
       </Router>
     </div>

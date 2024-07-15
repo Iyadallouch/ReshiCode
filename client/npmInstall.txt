@@ -1,0 +1,6 @@
+npm install
+npm install react-select react-select-country-list
+npm install react-phone-input-2 --save
+npm install react-phone-input-2 libphonenumber-js --save
+npm install react-icons
+npm install react-router-dom
