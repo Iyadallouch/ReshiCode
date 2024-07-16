@@ -1,0 +1,82 @@
+.pro-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 97%; /* Ensure full width */
+}
+
+.pro-info {
+  display: flex;
+  flex-direction: row; /* Stack pairs vertically */
+  flex: 1; /* Allow this to take available space */
+  justify-content: space-between;
+}
+
+.info-pair {
+  display: flex; /* Arrange label and value in a row */
+  justify-content: center; /* Space between label and value */
+  margin-bottom: 5px; /* Small margin between pairs */
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  max-width: 200px;
+}
+
+.label {
+  margin-right: 10px; /* Space between label and value */
+  font-family: "Audiowide";
+  color: rgba(148, 205, 198, 255);
+}
+
+.value {
+  flex: 1; /* Allow values to take the remaining space */
+  text-align: right; /* Align values to the right */
+}
+
+.pro-button {
+  padding: 10px 15px;
+  background-color: rgba(148, 205, 198, 255);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+}
+
+.pro-button:hover {
+  background-color: #00a88b;
+}
+@media (max-width: 768px) {
+  .pro-card {
+    width: 90%;
+  }
+
+  .pro-info {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+  }
+
+  .info-pair {
+    width: 50%; /* Each pair takes half the width */
+    box-sizing: border-box; /* Include padding/border in width */
+    margin-bottom: 15px;
+  }
+
+  .label {
+    flex: 0 0 50%; /* Label takes half of the info-pair width */
+  }
+
+  .value {
+    flex: 0 0 50%; /* Value takes half of the info-pair width */
+    text-align: left; /* Align values to the left */
+  }
+  .pro-button {
+    margin-left: 10px;
+  }
+}
