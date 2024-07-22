@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../style/CollaAreaPage.css";
 import userImage from "../images/userpic.png";
-
+import ProRequest from "../components/ProRequest/ProRequest";
 
 export default function CollaArea() {
   const [activeTab, setActiveTab] = useState("members");
@@ -62,7 +62,9 @@ export default function CollaArea() {
               </>
             ) : (
               <div className="request-card">
-                <p>No requests available.</p>
+                <ProRequest userName="User 1" />
+                <ProRequest userName="User 2" />
+                <ProRequest userName="User 3" />
               </div>
             )}
           </div>
