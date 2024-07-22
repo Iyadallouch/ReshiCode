@@ -35,7 +35,7 @@ export default function ProHomepage() {
           <img src={userImage} alt="User Logo" className="user-logo" />
           <h2>Dr. Yazeed</h2>
           <div className="star-rating">
-            Rate :
+            Rate 
             {[...Array(5)].map((star, index) => (
               <FaStar key={index} className="star-icon" />
             ))}

@@ -1,0 +1,186 @@
+.colla-area-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 100vh; /* Fill the entire screen height */
+  box-sizing: border-box;
+}
+
+.colla-left-side {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.buttons-text {
+  margin-right: auto; /* Pushes the text to the left */
+  font-size: 28px;
+  line-height: 40px; /* Aligns with button height */
+  font-family: "Audiowide";
+  color: rgba(148, 205, 198, 255);
+}
+
+.colla-action-button {
+  padding: 5px 10px; /* Smaller buttons */
+  background-color: #94cdc6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px; /* Space between buttons */
+  width: 80px;
+  height: 40px;
+}
+
+.colla-action-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+
+.code-input {
+  height: 65%; /* Adjust height to fill space */
+  width: 100%;
+  min-width: 100%;
+  min-height: 65%;
+  max-width: 70%;
+  max-height: 65%;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.output-label {
+  font-size: 22px;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-family: "Audiowide";
+  color: rgba(148, 205, 198, 255);
+}
+
+.output-card {
+  background-color: #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1; /* Ensure it fills remaining space */
+  width: 98%;
+}
+
+.colla-right-side {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-button {
+  align-self: flex-end;
+  padding: 5px 10px;
+  background-color: #94cdc6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.top-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+
+.tabs-container {
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  min-height: 260px ;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid white;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  background-color: #444;
+  border: none;
+  color: rgba(148, 205, 198, 255);
+  cursor: pointer;
+  font-family: "Audiowide";
+  font-weight: bold;
+}
+
+.tab.active {
+  background-color: white;
+}
+
+.tab-content {
+  padding: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  background-color: #555;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.user-card img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.user-card h2 {
+  color: rgba(148, 205, 198, 255);
+  font-size: 18px;
+  margin: 0;
+}
+
+.feedback-button {
+  padding: 5px 10px;
+  background-color: #94cdc6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.feedback-button:hover {
+  background-color: #00a88b;
+}
+
+.empty-card {
+  background-color: #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  flex: 1; /* Ensure it fills remaining space */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .colla-area-container {
+    flex-direction: column;
+  }
+
+  .colla-left-side,
+  .colla-right-side {
+    width: 100%;
+  }
+}

@@ -1,14 +1,16 @@
 import React, { useState, useRef } from "react";
-import Select from "react-select";
+// import Select from "react-select";
+import { Link } from "react-router-dom";
+
 import logo from "../images/logo.png";
 import userImage from "../images/userpic.png";
 import "../style/UserHomepage.css";
 
-const languageOptions = [
-  { value: "cPlus", label: "C+" },
-  { value: "java", label: "Java" },
-  { value: "python", label: "Python" },
-];
+// const languageOptions = [
+//   { value: "cPlus", label: "C+" },
+//   { value: "java", label: "Java" },
+//   { value: "python", label: "Python" },
+// ];
 
 export default function UserHomepage() {
   const [areaName, setAreaName] = useState("");
@@ -87,13 +89,14 @@ export default function UserHomepage() {
               <option value="java">Java</option>
               <option value="python">Python</option>
             </select>
-
+            <Link to="/collaarea" className="notLink">
             <button
               type="button"
               className={`create-button ${isSelectFocused ? "active" : ""}`}
             >
               Create programming area
             </button>
+            </Link>
           </form>
         </div>
         <div className="right-side">

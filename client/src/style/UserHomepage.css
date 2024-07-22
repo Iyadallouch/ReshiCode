@@ -183,6 +183,7 @@
   color: rgba(148, 205, 198, 255);
   margin-bottom: 10px;
   font-family: "Audiowide";
+  margin-left: -60px;
 }
 
 .right-side-button {
@@ -193,6 +194,8 @@
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: -60px;
+
   transition: background-color 0.3s ease;
 }
 
@@ -242,6 +245,6 @@
   }
   .right-side-button,
   .right-side-text {
-    margin-right: 80px;
+    margin-right: 20px;
   }
 }
