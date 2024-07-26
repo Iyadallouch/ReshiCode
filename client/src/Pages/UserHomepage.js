@@ -45,7 +45,9 @@ export default function UserHomepage() {
           <div className="user-info">
             <img className="user-image" alt="user" src={userImage} />
             <p className="user-name">User Name</p>
-            <button className="profile-button">Go to Profile</button>
+            <Link to="/userprofile" className="notLink">
+              <button className="profile-button">Go to Profile</button>
+            </Link>
             <button className="profile-button">Log out</button>
           </div>
         </div>
@@ -90,19 +92,17 @@ export default function UserHomepage() {
               <option value="python">Python</option>
             </select>
             <Link to="/collaarea" className="notLink">
-            <button
-              type="button"
-              className={`create-button ${isSelectFocused ? "active" : ""}`}
-            >
-              Create programming area
-            </button>
+              <button
+                type="button"
+                className={`create-button ${isSelectFocused ? "active" : ""}`}
+              >
+                Create programming area
+              </button>
             </Link>
           </form>
         </div>
         <div className="right-side">
-          <p className="right-side-text">
-            Ask for help from our chatbot  AI
-          </p>
+          <p className="right-side-text">Ask for help from our chatbot AI</p>
           <button className="right-side-button">chatbot</button>
         </div>
       </div>

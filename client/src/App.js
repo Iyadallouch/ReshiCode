@@ -5,6 +5,7 @@ import Login from "./Pages/Login";
 import UserHomepage from "./Pages/UserHomepage";
 import ProHomepage from "./Pages/ProHomepage";
 import CollaArea from "./Pages/CollaArea";
+import UserProfile from "./Pages/UserProfile";
 import "./global.css";
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
           <Route path="/userhomepage" element={<UserHomepage />}></Route>
           <Route path="/prohomepage" element={<ProHomepage />}></Route>
           <Route path="/collaarea" element={<CollaArea />}></Route>
+          <Route path="/userprofile" element={<UserProfile />}></Route>
+
 
         </Routes>
       </Router>

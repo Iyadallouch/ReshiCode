@@ -1,0 +1,157 @@
+/* Container for the entire profile page */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
+}
+.userpro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the top */
+  min-height: 100vh;
+  padding-top: 20px; /* Add some space from the top */
+}
+
+/* Card containing the profile details */
+.userpro-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  text-align: left; /* Align text to the left */
+
+  box-sizing: border-box;
+}
+
+/* Profile picture styling */
+.userpro-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+/* File input for profile image */
+.userpro-file-input {
+  margin-top: 10px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Container for user details */
+.userpro-details {
+  margin-top: 20px;
+}
+
+/* Flex container for each detail item */
+.userpro-detail {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Label styling for detail items */
+.userpro-detail-label {
+  font-size: 22px;
+  margin-right: 10px; /* Adjust the margin between label and text */
+}
+
+/* Text styling for detail items */
+.userpro-detail-text {
+ 
+  font-size: 22px;
+  display: flex;
+  align-items: center; /* Align label and input horizontally */
+  justify-content: flex-start; /* Align items to the top */
+}
+
+/* Styling for input fields */
+.userpro-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+  width: 100%; /* Ensure the input takes full width */
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Styling for phone input component */
+.userpro-phone-input {
+  width: 100%; /* Match width with other inputs */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Styling for Select component */
+.userpro-select .react-select__control {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 18px;
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Styling for focused state of Select component */
+.userpro-select .react-select__control--is-focused {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: none; /* Remove default shadow */
+}
+
+/* Container for buttons */
+.userpro-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Styling for buttons */
+.userpro-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Specific styling for Save button */
+.userpro-save-button {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Specific styling for Cancel button */
+.userpro-cancel-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Specific styling for Edit button */
+.userpro-edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Specific styling for Delete button */
+.userpro-delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Hover effects for buttons */
+.userpro-button:hover {
+  opacity: 0.9;
+}
