@@ -5,6 +5,8 @@ import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import userImage from "../images/userpic.png";
 import "../style/UserProfilePage.css";
+import OldCode from "../components/OldCode/OldCode";
+
 
 export default function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -37,6 +39,7 @@ export default function UserProfile() {
     <div className="userpro-container">
       <div className="userpro-card">
         <img src={profileImage} alt="User" className="userpro-picture" />
+        <hr />
         {isEditing && (
           <>
             <input
@@ -124,6 +127,14 @@ export default function UserProfile() {
             </>
           )}
         </div>
+      </div>
+      <h1 className="userpro-old-code">Old Code</h1>
+      <div className="oldcode-container">
+        <OldCode />
+        <OldCode />
+        <OldCode />
+        <OldCode />
+        <OldCode />     
       </div>
     </div>
   );

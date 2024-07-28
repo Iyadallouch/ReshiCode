@@ -1,0 +1,67 @@
+/* Container for the entire old code card */
+.oldcode-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Ensure items wrap to the next line */
+    gap: 20px; /* Add some space between the cards */
+    margin-top: 20px;
+  }
+  
+  /* Card styling */
+  .oldcode-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 45%; /* Ensure the card takes 45% of the container's width */
+    box-sizing: border-box;
+    text-align: center; /* Center content */
+  }
+  
+  /* Date styling */
+  .oldcode-date {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center; /* Center the date text */
+  }
+  
+  
+  
+  /* Button styling */
+  .oldcode-copy-button {
+    display: block; /* Ensure button is treated as a block element */
+    margin: 10px auto; /* Center the button horizontally */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgba(148, 205, 198, 255);
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* Hover effect for the button */
+  .oldcode-copy-button:hover {
+    background-color: #00a88b;
+    transform: scale(1.05);
+  }
+  
+  /* Paragraph styling */
+  .oldcode-paragraph {
+    font-size: 16px;
+    color: #666;
+    margin-top: 10px;
+    text-align: left; /* Align the paragraph text to the left */
+  }
+  
+  /* Media query to stack cards vertically on smaller screens */
+  @media (max-width: 768px) {
+    .oldcode-card {
+      max-width: 100%; /* Ensure the card takes full width on smaller screens */
+    }
+  }
+  

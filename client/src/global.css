@@ -12,3 +12,8 @@ body {
     left: 0;
   }
   
+hr{
+  margin: 10px 0;
+    border: none;
+    border-top: 5px dotted  rgba(148, 205, 198, 255);
+}

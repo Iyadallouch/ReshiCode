@@ -67,7 +67,6 @@ html {
 
 /* Text styling for detail items */
 .userpro-detail-text {
- 
   font-size: 22px;
   display: flex;
   align-items: center; /* Align label and input horizontally */
@@ -154,4 +153,14 @@ html {
 /* Hover effects for buttons */
 .userpro-button:hover {
   opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* Styling for the Old Code text */
+.userpro-old-code {
+  font-size: 42px; /* Set a larger font size */
+  text-align: center; /* Center the text */
+  margin-top: 70px; /* Add some space above the text */
+  color: rgba(148, 205, 198, 255); /* Set a color for the text */
+  font-family: "Audiowide";
 }

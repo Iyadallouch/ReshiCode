@@ -77,6 +77,8 @@
 
 .profile-button:hover {
   background-color: #00a88b;
+  transform: scale(1.05);
+
 }
 
 .content-container {
@@ -151,6 +153,8 @@
 
 .create-button:hover {
   background-color: #00a88b;
+  transform: scale(1.05);
+
 }
 
 .react-select__control {
@@ -201,6 +205,8 @@
 
 .right-side-button:hover {
   background-color: #00a88b;
+  transform: scale(1.05);
+
 }
 
 @media (max-width: 768px) {
