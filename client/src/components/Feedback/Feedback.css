@@ -1,0 +1,49 @@
+/* Container for the feedback card */
+/* Container for Feedback components */
+.feedback-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Ensure items wrap to the next line */
+    gap: 20px; /* Add some space between the cards */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .feedback-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    margin: 20px;
+  }
+  
+  /* Paragraph styling */
+  .feedback-paragraph {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  /* Styling for author section */
+  .feedback-author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Date styling */
+  .feedback-date {
+    font-size: 14px;
+    color: #999;
+  }
+  
+   /* Media query to stack cards vertically on smaller screens */
+   @media (max-width: 768px) {
+    .feedback-card {
+      max-width: 100%; /* Ensure the card takes full width on smaller screens */
+    }
+  }

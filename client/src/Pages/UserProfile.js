@@ -12,6 +12,7 @@ export default function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [userName, setUserName] = useState("User Name");
   const [email, setEmail] = useState("user.email@example.com");
+  const [password, setPassword] = useState("password");
   const [phone, setPhone] = useState("+1234567890");
   const [region, setRegion] = useState({ value: 'Region', label: 'Region' });
   const [profileImage, setProfileImage] = useState(userImage);
@@ -71,6 +72,15 @@ export default function UserProfile() {
                   className="userpro-input"
                 />
               </div>
+              <div className="pro-prof-detail">
+                <label className="pro-prof-detail-label"><strong>Password:</strong></label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="pro-prof-input"
+                />
+              </div>
               <div className="userpro-detail">
                 <label className="userpro-detail-label"><strong>Phone:</strong></label>
                 <PhoneInput
@@ -102,6 +112,10 @@ export default function UserProfile() {
               <div className="userpro-detail">
                 <span className="userpro-detail-label"><strong>Email:</strong></span>
                 <span className="userpro-detail-text">{email}</span>
+              </div>
+              <div className="pro-prof-detail">
+                <span className="pro-prof-detail-label"><strong>Password:</strong></span>
+                <span className="pro-prof-detail-text">********</span>
               </div>
               <div className="userpro-detail">
                 <span className="userpro-detail-label"><strong>Phone:</strong></span>

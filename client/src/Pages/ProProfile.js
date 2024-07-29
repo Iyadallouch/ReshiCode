@@ -5,11 +5,14 @@ import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import userImage from "../images/userpic.png";
 import "../style/ProProfilePage.css";
+import Feedback from "../components/Feedback/Feedback";
+
 
 export default function ProProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [userName, setUserName] = useState("User Name");
   const [email, setEmail] = useState("user.email@example.com");
+  const [password, setPassword] = useState("password");
   const [phone, setPhone] = useState("+1234567890");
   const [region, setRegion] = useState({ value: 'Region', label: 'Region' });
   const [profileImage, setProfileImage] = useState(userImage);
@@ -70,6 +73,15 @@ export default function ProProfile() {
                 />
               </div>
               <div className="pro-prof-detail">
+                <label className="pro-prof-detail-label"><strong>Password:</strong></label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="pro-prof-input"
+                />
+              </div>
+              <div className="pro-prof-detail">
                 <label className="pro-prof-detail-label"><strong>Phone:</strong></label>
                 <PhoneInput
                   country={'ae'}
@@ -102,6 +114,10 @@ export default function ProProfile() {
                 <span className="pro-prof-detail-text">{email}</span>
               </div>
               <div className="pro-prof-detail">
+                <span className="pro-prof-detail-label"><strong>Password:</strong></span>
+                <span className="pro-prof-detail-text">********</span>
+              </div>
+              <div className="pro-prof-detail">
                 <span className="pro-prof-detail-label"><strong>Phone:</strong></span>
                 <span className="pro-prof-detail-text">{phone}</span>
               </div>
@@ -127,6 +143,13 @@ export default function ProProfile() {
         </div>
       </div>
       <h1 className="pro-prof-feedback">Feedback</h1>
+      <div className="feedback-container">
+        <Feedback />
+        <Feedback />
+        <Feedback />
+        <Feedback />
+        <Feedback />
+      </div>
     </div>
   );
 }

@@ -18,6 +18,7 @@
     max-width: 45%; /* Ensure the card takes 45% of the container's width */
     box-sizing: border-box;
     text-align: center; /* Center content */
+    margin: 20px;
   }
   
   /* Date styling */

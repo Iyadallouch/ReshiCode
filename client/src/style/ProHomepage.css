@@ -61,6 +61,7 @@
 
 .proHome-search-button:hover {
   background-color: #00a88b;
+  transform: scale(1.05);
 }
 
 .proHome-gray-card {
@@ -116,6 +117,7 @@
 
 .proHome-profile-button:hover {
   background-color: #00a88b;
+  transform: scale(1.05);
 }
 
 /* Responsive adjustments */

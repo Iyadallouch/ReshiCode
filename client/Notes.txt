@@ -287,3 +287,173 @@ export default function UserHomepage() {
   );
 }
 .............................................................................................................
+this for pro profile input 
+/* Container for the entire profile page */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
+}
+
+.pro-prof-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the top */
+  min-height: 100vh;
+  padding-top: 20px; /* Add some space from the top */
+}
+
+/* Card containing the profile details */
+.pro-prof-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 95%;
+  max-width: 600px;
+  text-align: left; /* Align text to the left */
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+/* Profile picture styling */
+.pro-prof-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+/* File input for profile image */
+.pro-prof-file-input {
+  margin-top: 10px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Container for user details */
+.pro-prof-details {
+  margin-top: 20px;
+}
+
+/* Flex container for each detail item */
+.pro-prof-detail {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Label styling for detail items */
+.pro-prof-detail-label {
+  font-size: 22px;
+  margin-right: 10px; /* Adjust the margin between label and text */
+  width: 120px; /* Set a fixed width for labels to align inputs */
+  flex-shrink: 0; /* Prevent label from shrinking */
+}
+
+/* Text styling for detail items */
+.pro-prof-detail-text {
+  font-size: 22px;
+  display: flex;
+  align-items: center; /* Align label and input horizontally */
+  justify-content: flex-start; /* Align items to the top */
+}
+
+/* Styling for input fields */
+.pro-prof-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+  width: calc(100% - 130px); /* Adjust width to account for label width and margin */
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Styling for phone input component */
+.pro-prof-phone-input {
+  width: 100%; /* Match width with other inputs */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Styling for Select component */
+.pro-prof-select .react-select__control {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 18px;
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Styling for focused state of Select component */
+.pro-prof-select .react-select__control--is-focused {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: none; /* Remove default shadow */
+}
+
+/* Container for buttons */
+.pro-prof-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Styling for buttons */
+.pro-prof-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Specific styling for Save button */
+.pro-prof-save-button {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Specific styling for Cancel button */
+.pro-prof-cancel-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Specific styling for Edit button */
+.pro-prof-edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Specific styling for Delete button */
+.pro-prof-delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Hover effects for buttons */
+.pro-prof-button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* Feedback text */
+.pro-prof-feedback {
+  font-size: 42px; /* Set a larger font size */
+  text-align: center; /* Center the text */
+  margin-top: 70px; /* Add some space above the text */
+  color: rgba(148, 205, 198, 255); /* Set a color for the text */
+  font-family: "Audiowide";
+}
