@@ -8,7 +8,8 @@ html {
   overflow-x: hidden; /* Prevent horizontal scrolling */
   overflow-y: auto; /* Allow vertical scrolling */
 }
-.userpro-container {
+
+.pro-prof-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +19,7 @@ html {
 }
 
 /* Card containing the profile details */
-.userpro-card {
+.pro-prof-card {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -30,7 +31,7 @@ html {
 }
 
 /* Profile picture styling */
-.userpro-picture {
+.pro-prof-picture {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -40,32 +41,32 @@ html {
 }
 
 /* File input for profile image */
-.userpro-file-input {
+.pro-prof-file-input {
   margin-top: 10px;
   display: block;
   margin: 10px auto;
 }
 
 /* Container for user details */
-.userpro-details {
+.pro-prof-details {
   margin-top: 20px;
 }
 
 /* Flex container for each detail item */
-.userpro-detail {
+.pro-prof-detail {
   margin: 20px 0;
   display: flex;
   align-items: center;
 }
 
 /* Label styling for detail items */
-.userpro-detail-label {
+.pro-prof-detail-label {
   font-size: 22px;
   margin-right: 10px; /* Adjust the margin between label and text */
 }
 
 /* Text styling for detail items */
-.userpro-detail-text {
+.pro-prof-detail-text {
   font-size: 22px;
   display: flex;
   align-items: center; /* Align label and input horizontally */
@@ -73,7 +74,7 @@ html {
 }
 
 /* Styling for input fields */
-.userpro-input {
+.pro-prof-input {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -83,7 +84,7 @@ html {
 }
 
 /* Styling for phone input component */
-.userpro-phone-input {
+.pro-prof-phone-input {
   width: 100%; /* Match width with other inputs */
   padding: 10px;
   border: 1px solid #ddd;
@@ -93,7 +94,7 @@ html {
 }
 
 /* Styling for Select component */
-.userpro-select .react-select__control {
+.pro-prof-select .react-select__control {
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -103,20 +104,20 @@ html {
 }
 
 /* Styling for focused state of Select component */
-.userpro-select .react-select__control--is-focused {
+.pro-prof-select .react-select__control--is-focused {
   border-color: #007bff; /* Change border color on focus */
   box-shadow: none; /* Remove default shadow */
 }
 
 /* Container for buttons */
-.userpro-buttons {
+.pro-prof-buttons {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
 }
 
 /* Styling for buttons */
-.userpro-button {
+.pro-prof-button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -126,37 +127,37 @@ html {
 }
 
 /* Specific styling for Save button */
-.userpro-save-button {
+.pro-prof-save-button {
   background-color: #28a745;
   color: white;
 }
 
 /* Specific styling for Cancel button */
-.userpro-cancel-button {
+.pro-prof-cancel-button {
   background-color: #dc3545;
   color: white;
 }
 
 /* Specific styling for Edit button */
-.userpro-edit-button {
+.pro-prof-edit-button {
   background-color: #007bff;
   color: white;
 }
 
 /* Specific styling for Delete button */
-.userpro-delete-button {
-  background-color: #dc3545;
-  color: white;
+.pro-prof-delete-button {
+    background-color: #dc3545;
+    color: white;
 }
 
 /* Hover effects for buttons */
-.userpro-button:hover {
+.pro-prof-button:hover {
   opacity: 0.9;
   transform: scale(1.05);
 }
 
-/* Styling for the Old Code text */
-.userpro-old-code {
+/* Feedback text */
+.pro-prof-feedback {
   font-size: 42px; /* Set a larger font size */
   text-align: center; /* Center the text */
   margin-top: 70px; /* Add some space above the text */

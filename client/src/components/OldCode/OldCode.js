@@ -1,21 +1,40 @@
-import React from 'react'
+import React, { useState, useRef  } from 'react'
 import "../OldCode/OldCode.css";
+import { FaCheck } from 'react-icons/fa';
+
 
 export default function OldCode() {
-   const copyToClipboard = () => {
-    const paragraph = document.getElementById('oldcode-paragraph').innerText;
-    navigator.clipboard.writeText(paragraph);
-    alert('Code copied to clipboard!');
+  const [isCopied, setIsCopied] = useState(false);
+  const paragraphRef = useRef(null);
+
+  const handleCopy = () => {
+    if (paragraphRef.current) {
+      const textToCopy = paragraphRef.current.innerText;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        setIsCopied(true);
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 3000); // Reset after 2 seconds
+      });
+    }
   };
 
   return (
     <div className="oldcode-card">
       <div className="oldcode-date">July 28, 2024</div>
       <hr className="oldcode-hr" />
-      <button className="oldcode-copy-button" onClick={copyToClipboard}>Copy Code</button>
-      <p id="oldcode-paragraph" className="oldcode-paragraph">
-        This is a small paragraph under the date, providing some additional information.
-      </p>
+      <button className="oldcode-copy-button" onClick={handleCopy}>
+        {isCopied ? (
+          <>
+            Copied <FaCheck style={{ marginLeft: '8px' }} />
+          </>
+        ) : (
+          "Copy Code"
+        )}
+      </button>
+      <p ref={paragraphRef} className="oldcode-paragraph">This is a small paragraph under the date iyad test hellooo.</p>
     </div>
   );
 };
+
+

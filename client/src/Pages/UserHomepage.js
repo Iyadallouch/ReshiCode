@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 // import Select from "react-select";
 import { Link } from "react-router-dom";
-
 import logo from "../images/logo.png";
 import userImage from "../images/userpic.png";
 import "../style/UserHomepage.css";

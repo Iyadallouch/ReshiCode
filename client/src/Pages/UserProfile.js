@@ -122,8 +122,8 @@ export default function UserProfile() {
             </>
           ) : (
             <>
-              <button className="userpro-button userpro-edit-button" onClick={handleEdit}>Edit</button>
-              <button className="userpro-button userpro-delete-button">Delete</button>
+              <button className="userpro-button userpro-edit-button" onClick={handleEdit}>Edit Account</button>
+              <button className="userpro-button userpro-delete-button">Delete Account</button>
             </>
           )}
         </div>

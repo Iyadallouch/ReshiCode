@@ -5,6 +5,7 @@
     flex-wrap: wrap; /* Ensure items wrap to the next line */
     gap: 20px; /* Add some space between the cards */
     margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   /* Card styling */
@@ -42,6 +43,11 @@
     background-color: rgba(148, 205, 198, 255);
     color: white;
     transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+
   }
   
   /* Hover effect for the button */
