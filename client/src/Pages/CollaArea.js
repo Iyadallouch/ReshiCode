@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../style/CollaAreaPage.css";
 import userImage from "../images/userpic.png";
 import ProRequest from "../components/ProRequest/ProRequest";
+import { Link } from "react-router-dom";
 
 export default function CollaArea() {
   const [activeTab, setActiveTab] = useState("members");
@@ -24,7 +25,11 @@ export default function CollaArea() {
         </div>
       </div>
       <div className="colla-right-side">
-        <button className="top-button">End Session</button>
+        <div className="top-button-container">
+          <Link to="/evaluations">
+            <button className="top-button">End Session</button>
+          </Link>
+        </div>
         <div className="tabs-container">
           <div className="tabs">
             <button

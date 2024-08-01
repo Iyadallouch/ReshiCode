@@ -82,8 +82,12 @@
   flex-direction: column;
 }
 
+.top-button-container {
+  display: flex;
+  justify-content: flex-end; /* Align the button container to the right */
+}
+
 .top-button {
-  align-self: flex-end;
   padding: 5px 10px;
   background-color: #94cdc6;
   border: none;
@@ -101,7 +105,7 @@
   background-color: white;
   border-radius: 10px;
   margin-bottom: 10px;
-  min-height: 260px ;
+  min-height: 260px;
 }
 
 .tabs {
@@ -182,5 +186,9 @@
   .colla-left-side,
   .colla-right-side {
     width: 100%;
+  }
+
+  .top-button-container {
+    justify-content: center; /* Center the button on smaller screens */
   }
 }

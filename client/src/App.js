@@ -7,6 +7,7 @@ import ProHomepage from "./Pages/ProHomepage";
 import CollaArea from "./Pages/CollaArea";
 import UserProfile from "./Pages/UserProfile";
 import ProProfile from "./Pages/ProProfile";
+import Evaluations from './Pages/Evaluations';
 import "./global.css";
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
           <Route path="/collaarea" element={<CollaArea />}></Route>
           <Route path="/userprofile" element={<UserProfile />}></Route>
           <Route path="/proprofile" element={<ProProfile />}></Route>
-
+          <Route path="/evaluations" element={<Evaluations />}></Route>
         </Routes>
       </Router>
     </div>

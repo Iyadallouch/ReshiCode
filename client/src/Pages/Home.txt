@@ -1,0 +1,37 @@
+4 cards :
+1)   Chat (title)
+Our advanced website features live chat to clarify and facilitate programming issues, enhancing the user experience and enabling immediate problem resolution. This service provides effective and flexible technical support, speeding up task completion and increasing customer satisfaction. Thanks to live chat, users receive accurate and prompt answers to their inquiries, improving work efficiency and reducing wasted time.
+
+2)   Chatbot (title)
+Our intelligent chatbot serves as an additional resource for students, allowing them to delve deeply into their questions and gain a thorough understanding of the content. It offers detailed explanations and support, complementing the direct interaction with programmers. This ensures that students receive comprehensive assistance and can effectively address their programming challenges.
+
+3)   Live (title)  اختصرها اذا بدك
+We make our website live for several reasons. Firstly, to resolve programming issues as quickly as possible. Secondly, to provide the opportunity for swift understanding and direct communication with programmers, facilitating discussions and problem-solving. Additionally, we include a chatbot as a supplementary feature to support students in deeply understanding the content. Our website also offers three different languages for students to choose from, allowing them to select according to their preferences without being restricted to a specific language.
+
+Furthermore, the site allows users to rate and leave comments about programmers, helping them make informed decisions about whether to accept or reject a programmer based on others' experiences. This feature enhances transparency and enables new users to immediately connect with suitable programmers, providing an interactive and personalized experience that effectively meets their needs. Additionally, direct interaction with programmers and intelligent chatbots allows students to benefit from customized solutions and immediate guidance, thereby enhancing the learning experience and accelerating task completion.
+
+4) Test 
+test test 
+.......................................................................................................................
+
+4 paragraphs :
+
+1)   Welcome  (title)
+Welcome to ReshiCode, where we’re redefining how developers handle coding problems. Our Real-time Collaboration System is planned to bridge the gap between coding errors and solutions through immediate, collaborative support. 
+
+We understand that coding can be complicated and sometimes, having a second set of eyes or a fresh viewpoint can make all the difference. That’s why we’ve created a platform where users can connect with experienced programmers to get real-time help. By creating specialized programming rooms, our users can discuss, debug, and find solutions of coding issues efficiently. 
+
+Our website not only smooths problem-solving but also promotes growth and recognition among the developer society. Programmers can acquire valuable ratings and feedback from peers, helping them build their reputation and improve their skills. 
+
+At ReshiCode, our core task is to encourage a collaborative environment where knowledge is shared, and coding problems are met with collective skillfulness. Join us today and be part of a vibrant community that values collaboration, innovation, and solid learning.
+
+
+2)   About us  (title)
+We are students in Software Engineering, and we have encountered many difficulties in understanding and solving the required codes in our academic assignments. One of the biggest challenges was finding adequate and appropriate resources that meet our needs and provide accurate solutions in the required programming languages, as most of these resources required monthly subscriptions. In light of these difficulties, our supervisor, Dr. Yazid Ghadi, proposed the idea of creating a website that helps solve programming problems quickly and efficiently without the need for a subscription or payment. This website will be a valuable tool for us and our colleagues in improving our understanding and programming skills, contributing to our academic success and helping us overcome the challenges we face in our studies. We hope that this project will be a great support for students in their educational journey and provide them with the resources they need to achieve success.
+
+
+3)     mission  (title)
+We were inspired by the idea of creating our website from our struggle to find quick and effective solutions without a monthly subscription or the need to pay some money to get the required answers. That is why we designed this platform to make it easier for students to ask questions and receive answers quickly. The website allows users to communicate directly with programmers to explain their problems while providing a smart chatbot that they can use for immediate assistance. And many other features to provide a smooth and integrated experience that helps students overcome programming challenges efficiently, quickly, and without paying, which contributes to their academic and professional success.
+
+4) Test 
+test test

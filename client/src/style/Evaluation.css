@@ -1,0 +1,81 @@
+.evaluations-container {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.evaluations-upper-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc; /* Optional: adds a separator line */
+  margin: 10px;
+}
+
+.evaluations-logo {
+  width: 180px;
+  margin-left: 20px;
+}
+
+.evaluations-header-text {
+  text-align: center;
+  flex-grow: 1; /* Ensure the text section takes up the remaining space */
+}
+
+.evaluations-website-name {
+  font-size: 32px;
+  margin: 0;
+  color: rgba(148, 205, 198, 1);
+  font-family: "Audiowide";
+}
+
+.evaluations-instructions {
+  font-size: 22px;
+  color: rgba(148, 205, 198, 1);
+  margin-top: 10px;
+  font-family: "Audiowide";
+}
+
+.evaluations-next-page-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: black;
+  font-size: 16px;
+  border-radius: 5px;
+  float: right;
+  margin: 20px;
+}
+
+.evaluations-next-page-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+
+.evaluations-bottom-section {
+  margin-top: 20px;
+}
+
+.evacard-programmers-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .evaluations-upper-section {
+    flex-direction: column; /* Stack logo and text vertically */
+    align-items: center; /* Center-align both logo and text */
+  }
+
+  .evaluations-logo {
+    margin-left: 0; /* Remove left margin */
+    margin-bottom: 20px; /* Add margin below the logo */
+  }
+
+  .evaluations-header-text {
+    flex-grow: unset; /* Reset the flex-grow property */
+  }
+}
