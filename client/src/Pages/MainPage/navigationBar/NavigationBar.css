@@ -1,0 +1,191 @@
+
+
+/* Navigation Bar Styles */
+.navbar {
+    display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(158deg, rgb(58, 149, 246) 20%, rgb(122, 20, 255) 100%);
+    color: white;
+    offset: 3;
+
+    /* Add moving background effect */
+    animation: moveBackground 3s linear infinite;
+    background-size: 200% 100%;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/* Optional: Add a smooth scroll animation */
+@keyframes smoothScroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 200% 100%;
+    }
+
+    50% {
+        background-position: 150% 100%;
+    }
+
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+
+
+    0% {
+        background-position: 0% 100%;
+    }
+}
+
+.logo {
+    display: inline-block; /* Ensures the logo is displayed inline with other navbar items */
+    padding: 10px; /* Adds some space around the logo */
+  }
+  
+  .logo img {
+    max-width: 60px;
+    /* Sets the maximum height of the logo */
+    vertical-align: middle; /* Vertically aligns the logo within the navbar */
+  }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+
+
+}
+
+.nav-links li {
+    margin-right: 20px;
+
+
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: rgb(58, 149, 246);
+        /* Change color on hover */
+    }
+}
+
+.hamburger {
+    display: none;
+    /* Hide the hamburger menu on larger screens */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        background-color: #333;
+        width: 100%;
+        top: 60px;
+        left: 0;
+        z-index: 1;
+
+        li {
+            margin: 0;
+            padding: 10px 20px;
+            text-align: center;
+            border-bottom: 1px solid white;
+
+            a {
+                color: white;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: rgb(58, 149, 246);
+                    /* Change color on hover */
+                }
+            }
+        }
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    
+        .bar {
+            width: 25px;
+            height: 4px;
+            background-color: white;
+            margin: 4px 0;
+            transition: transform 0.3s ease; /* Added transition */
+        }
+    
+        
+    
+        /* Rotate the bars when the hamburger is active */
+        &.active .bar {
+            transform: rotate(90deg) translate(1px, -11px);
+            margin: 0;
+        }
+    
+        &.active .bar-2 {
+            transform: rotate(90deg) translate(-3px, -1px);
+            margin: 0;
+        }
+        &.active .bar-3 {
+            transform: rotate(90deg) translate(-7px, 9px);
+            margin: 0;
+        }
+    }
+    
+
+    .nav-active {
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            background-color: #333;
+            width: 100%;
+            top: 70px;
+            left: 0;
+            z-index: 1;
+        }
+        
+    }
+    .nav-links li {
+        border-bottom: none; /* Remove the border between columns */
+    }
+    
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        transition: color 0.3s ease;
+    
+        &:hover {
+            color: rgb(58, 149, 246);
+            /* Change color on hover */
+        }}
+        .logo {
+            padding: 5px; /* Reduce padding for smaller screens */
+          }
+        
+          .logo img {
+            max-width: 100px; /* Reduce logo size for smaller screens */
+          }
+             
+}
