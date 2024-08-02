@@ -17,7 +17,7 @@ const Services = () => {
                 <div className='services-card'>
     <div className='counting-number'>
     <div className='opacity'>
-    <FontAwesomeIcon className='icon' icon={faComments} size="3x" />
+    <FontAwesomeIcon className='icon' icon={faComments} size="5x" />
 
         <p className='font-multiColor'>Chat</p>
         </div>

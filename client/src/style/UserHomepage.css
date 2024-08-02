@@ -1,4 +1,4 @@
-.user-homepage-container {
+.userhome-user-homepage-container{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +6,7 @@
   padding: 20px;
 }
 
-.header {
+.userhome-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,55 +15,55 @@
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
-.logo {
+.userhome-logo {
   width: 180px;
 }
 
-.website-info {
+.userhome-website-info {
   flex: 1;
   text-align: center;
 }
 
-.website-name,
-.website-description {
+.userhome-website-name,
+.userhome-website-description {
   margin: 0;
   display: block;
 }
 
-.website-name {
+.userhome-website-name {
   font-size: 38px;
   font-family: "Audiowide";
   color: rgba(148, 205, 198, 255);
   margin-bottom: 10px;
 }
 
-.website-description {
+.userhome-website-description {
   font-size: 18px;
   color: rgba(148, 205, 198, 255);
 }
 
-.user-info {
+.userhome-user-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-right: 40px;
 }
 
-.user-image {
+.userhome-user-image {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   margin-bottom: 5px;
 }
 
-.user-name {
+.userhome-user-name {
   margin: 5px;
   font-size: 16px;
   font-weight: bold;
   color: white;
 }
 
-.profile-button {
+.userhome-profile-button {
   padding: 5px 10px;
   border: none;
   background-color: rgba(148, 205, 198, 255);
@@ -75,20 +75,19 @@
   margin: 5px;
 }
 
-.profile-button:hover {
+.userhome-profile-button:hover {
   background-color: #00a88b;
   transform: scale(1.05);
-
 }
 
-.content-container {
+.userhome-content-container {
   display: flex; /* Ensure left and right side are next to each other */
   width: 100%;
   padding: 20px;
 }
 
-.left-side,
-.right-side {
+.userhome-left-side,
+.userhome-right-side {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,20 +95,21 @@
   width: 50%; /* Make sure both sides take equal width */
   padding: 20px;
 }
-.left-side {
+
+.userhome-left-side {
   width: 80%;
   align-items: center;
   justify-content: center;
 }
 
-.right-side {
+.userhome-right-side {
   width: 80%;
   align-items: center;
   justify-content: center;
 }
 
 /* New styles for the form on the left side */
-.programming-area-form {
+.userhome-programming-area-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -119,14 +119,14 @@
   width: 80%;
 }
 
-.programming-area-form label,
-.programming-area-form p {
+.userhome-programming-area-form .userhome-label,
+.userhome-programming-area-form p {
   font-size: 30px;
   margin-bottom: 10px;
   font-family: "Audiowide";
 }
 
-.programming-area-form input[type="text"] {
+.userhome-programming-area-form input[type="text"] {
   width: 40%;
   padding: 10px;
   margin-bottom: 20px;
@@ -134,7 +134,7 @@
   border: 1px solid #ccc;
 }
 
-.create-button {
+.userhome-create-button {
   padding: 10px;
   margin-top: 10px;
   border: none;
@@ -147,17 +147,16 @@
   transform: translateY(0); /* Default position */
 }
 
-.create-button.active {
+.userhome-create-button.active {
   transform: translateY(60px); /* Move down when active */
 }
 
-.create-button:hover {
+.userhome-create-button:hover {
   background-color: #00a88b;
   transform: scale(1.05);
-
 }
 
-.react-select__control {
+.userhome-react-select__control {
   border: 1px solid var(--input-border-color); /* Use the default border color */
   border-radius: 5px;
   padding: 5px;
@@ -165,7 +164,7 @@
   min-width: 200px;
 }
 
-.programming-area-form select {
+.userhome-programming-area-form select {
   min-width: 200px; /* Increase min-width */
   height: 50px; /* Adjust height */
   font-size: 16px; /* Increase font size */
@@ -182,7 +181,7 @@
 }
 
 /* New styles for the right side */
-.right-side-text {
+.userhome-right-side-text {
   font-size: 28px;
   color: rgba(148, 205, 198, 255);
   margin-bottom: 10px;
@@ -190,7 +189,7 @@
   margin-left: -60px;
 }
 
-.right-side-button {
+.userhome-right-side-button {
   padding: 10px;
   border: none;
   background-color: rgba(148, 205, 198, 255);
@@ -199,41 +198,39 @@
   border-radius: 5px;
   cursor: pointer;
   margin-left: -60px;
-
   transition: background-color 0.3s ease;
 }
 
-.right-side-button:hover {
+.userhome-right-side-button:hover {
   background-color: #00a88b;
   transform: scale(1.05);
-
 }
 
 @media (max-width: 768px) {
-  .header {
+  .userhome-header {
     flex-direction: column;
   }
-  .website-name {
+  .userhome-website-name {
     font-size: 22px;
   }
-  .website-description {
+  .userhome-website-description {
     font-size: 13px;
   }
-  label {
+  .userhome-label {
     text-align: center;
   }
 
-  .programming-area-form {
+  .userhome-programming-area-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-right: 80px;
   }
-  .programming-area-form input[type="text"] {
+  .userhome-programming-area-form input[type="text"] {
     width: 50%;
   }
 
-  .user-info {
+  .userhome-user-info {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -241,16 +238,16 @@
     margin-right: -10px;
   }
 
-  .content-container {
+  .userhome-content-container {
     flex-direction: column; /* Stack left and right side vertically on small screens */
   }
 
-  .left-side,
-  .right-side {
+  .userhome-left-side,
+  .userhome-right-side {
     width: 100%;
   }
-  .right-side-button,
-  .right-side-text {
+  .userhome-right-side-button,
+  .userhome-right-side-text {
     margin-right: 20px;
   }
 }

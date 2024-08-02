@@ -1,6 +1,5 @@
 /* Container for the entire profile page */
-body,
-html {
+body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;

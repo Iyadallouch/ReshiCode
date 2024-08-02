@@ -1,5 +1,3 @@
-
-
 /* Navigation Bar Styles */
 .navbar {
     display: flex;
@@ -12,12 +10,13 @@
     padding: 20px;
     background: linear-gradient(158deg, rgb(58, 149, 246) 20%, rgb(122, 20, 255) 100%);
     color: white;
-    offset: 3;
+    height: 50px;
 
     /* Add moving background effect */
     animation: moveBackground 3s linear infinite;
     background-size: 200% 100%;
 }
+
 html {
     scroll-behavior: smooth;
 }
@@ -41,12 +40,9 @@ html {
         background-position: 150% 100%;
     }
 
-
     50% {
         background-position: 100% 100%;
     }
-
-
 
     0% {
         background-position: 0% 100%;
@@ -54,43 +50,57 @@ html {
 }
 
 .logo {
-    display: inline-block; /* Ensures the logo is displayed inline with other navbar items */
-    padding: 10px; /* Adds some space around the logo */
-  }
-  
-  .logo img {
-    max-width: 60px;
-    /* Sets the maximum height of the logo */
-    vertical-align: middle; /* Vertically aligns the logo within the navbar */
-  }
+    display: inline-block;
+    padding: 10px;
+}
+
+.logo img {
+    max-width: 90px;
+    vertical-align: middle;
+}
 
 .nav-links {
     list-style: none;
     display: flex;
-
-
+    margin-right: auto;
 }
 
 .nav-links li {
     margin-right: 20px;
-
-
 }
 
 .nav-links a {
     text-decoration: none;
     color: white;
     transition: color 0.3s ease;
+}
 
-    &:hover {
-        color: rgb(58, 149, 246);
-        /* Change color on hover */
-    }
+.nav-links a:hover {
+    color: rgb(58, 149, 246);
 }
 
 .hamburger {
     display: none;
-    /* Hide the hamburger menu on larger screens */
+}
+
+.nav-login-links {
+    list-style: none;
+    display: flex;
+    margin-right: 30px;
+}
+
+.nav-login-links li {
+    margin-left: 20px;
+}
+
+.nav-login-links a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.nav-login-links a:hover {
+    color: rgb(58, 149, 246);
 }
 
 /* Responsive Styles */
@@ -114,11 +124,6 @@ html {
             a {
                 color: white;
                 transition: color 0.3s ease;
-
-                &:hover {
-                    color: rgb(58, 149, 246);
-                    /* Change color on hover */
-                }
             }
         }
     }
@@ -126,66 +131,58 @@ html {
     .hamburger {
         display: block;
         cursor: pointer;
-    
-        .bar {
-            width: 25px;
-            height: 4px;
-            background-color: white;
-            margin: 4px 0;
-            transition: transform 0.3s ease; /* Added transition */
-        }
-    
-        
-    
-        /* Rotate the bars when the hamburger is active */
-        &.active .bar {
-            transform: rotate(90deg) translate(1px, -11px);
-            margin: 0;
-        }
-    
-        &.active .bar-2 {
-            transform: rotate(90deg) translate(-3px, -1px);
-            margin: 0;
-        }
-        &.active .bar-3 {
-            transform: rotate(90deg) translate(-7px, 9px);
-            margin: 0;
-        }
+        margin-right: 10px;
     }
-    
 
-    .nav-active {
-        .nav-links {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            background-color: #333;
-            width: 100%;
-            top: 70px;
-            left: 0;
-            z-index: 1;
-        }
-        
+    .hamburger .bar {
+        width: 25px;
+        height: 4px;
+        background-color: white;
+        margin: 4px 0;
+        transition: transform 0.3s ease;
     }
+
+    .hamburger.active .bar {
+        transform: rotate(90deg) translate(1px, -11px);
+        margin: 0;
+    }
+
+    .hamburger.active .bar-2 {
+        transform: rotate(90deg) translate(-3px, -1px);
+        margin: 0;
+    }
+
+    .hamburger.active .bar-3 {
+        transform: rotate(90deg) translate(-7px, 9px);
+        margin: 0;
+    }
+
+    .nav-active .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        background-color: #333;
+        width: 100%;
+        top: 70px;
+        left: 0;
+        z-index: 1;
+    }
+
     .nav-links li {
-        border-bottom: none; /* Remove the border between columns */
+        border-bottom: none;
     }
-    
+
     .nav-links a {
         text-decoration: none;
         color: white;
         transition: color 0.3s ease;
-    
-        &:hover {
-            color: rgb(58, 149, 246);
-            /* Change color on hover */
-        }}
-        .logo {
-            padding: 5px; /* Reduce padding for smaller screens */
-          }
-        
-          .logo img {
-            max-width: 100px; /* Reduce logo size for smaller screens */
-          }
-             
+    }
+
+    .logo {
+        padding: 5px;
+    }
+
+    .logo img {
+        max-width: 100px;
+    }
 }

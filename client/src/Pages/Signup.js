@@ -27,25 +27,25 @@ export default function Signup() {
 
   return (
     <div className="signup-container">
-      <img src={logo} alt="Website Logo" className="logo" />
-      <h1>Signup</h1>
+      <img src={logo} alt="Website Logo" className="signup-logo" />
+      <h1 className="signup-h1">Signup</h1>
       <form className="signup-form">
-        <div className="form-row">
-          <div className="form-group">
+        <div className="signup-form-row">
+          <div className="signup-form-group">
             <label htmlFor="username">Username</label>
             <input type="text" id="username" name="username" required />
           </div>
-          <div className="form-group">
+          <div className="signup-form-group">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" name="email" required />
           </div>
         </div>
-        <div className="form-row">
-          <div className="form-group">
+        <div className="signup-form-row">
+          <div className="signup-form-group">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" name="password" required />
           </div>
-          <div className="form-group">
+          <div className="signup-form-group">
             <label htmlFor="phone">Phone Number</label>
             <PhoneInput
               country={"ae"}
@@ -58,8 +58,8 @@ export default function Signup() {
             />
           </div>
         </div>
-        <div className="form-row">
-          <div className="form-group">
+        <div className="signup-form-row">
+          <div className="signup-form-group">
             <label htmlFor="region">Region</label>
             <Select
               options={countryOptions}
@@ -70,7 +70,7 @@ export default function Signup() {
               name="region"
             />
           </div>
-          <div className="form-group">
+          <div className="signup-form-group">
             <label htmlFor="language">Preferred Programming Language</label>
             <Select
               options={languageOptions}
@@ -82,7 +82,7 @@ export default function Signup() {
             />
           </div>
         </div>
-        <div className="form-group">
+        <div className="signup-form-group">
           <label htmlFor="user">Create account as</label>
           <Select
             options={UserOption}
@@ -93,12 +93,12 @@ export default function Signup() {
             name="user"
           />
         </div>
-        <button type="submit" className="submit-button">
+        <button type="submit" className="signup-submit-button">
           Sign Up
         </button>
-        <p>
+        <p className="signup-p">
           Already have account
-          <Link to="/login" className="link">
+          <Link to="/login" className="signup-link ">
             Login
           </Link>{" "}
           now

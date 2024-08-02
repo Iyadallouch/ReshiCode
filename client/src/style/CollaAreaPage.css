@@ -4,6 +4,7 @@
   padding: 20px;
   height: 100vh; /* Fill the entire screen height */
   box-sizing: border-box;
+  overflow: auto; /* Allow scrolling */
 }
 
 .colla-left-side {
@@ -13,14 +14,14 @@
   align-items: flex-start;
 }
 
-.buttons-container {
+.colla-buttons-container {
   display: flex;
   justify-content: flex-end;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.buttons-text {
+.colla-buttons-text {
   margin-right: auto; /* Pushes the text to the left */
   font-size: 28px;
   line-height: 40px; /* Aligns with button height */
@@ -45,7 +46,7 @@
   transform: scale(1.05);
 }
 
-.code-input {
+.colla-code-input {
   height: 65%; /* Adjust height to fill space */
   width: 100%;
   min-width: 100%;
@@ -60,7 +61,7 @@
   margin-bottom: 10px;
 }
 
-.output-label {
+.colla-output-label {
   font-size: 22px;
   color: #ffffff;
   margin-bottom: 10px;
@@ -68,7 +69,7 @@
   color: rgba(148, 205, 198, 255);
 }
 
-.output-card {
+.colla-output-card {
   background-color: #ccc;
   padding: 20px;
   border-radius: 10px;
@@ -82,12 +83,12 @@
   flex-direction: column;
 }
 
-.top-button-container {
+.colla-top-button-container {
   display: flex;
   justify-content: flex-end; /* Align the button container to the right */
 }
 
-.top-button {
+.colla-top-button {
   padding: 5px 10px;
   background-color: #94cdc6;
   border: none;
@@ -96,25 +97,25 @@
   margin-bottom: 10px;
 }
 
-.top-button:hover {
+.colla-top-button:hover {
   background-color: #00a88b;
   transform: scale(1.05);
 }
 
-.tabs-container {
+.colla-tabs-container {
   background-color: white;
   border-radius: 10px;
   margin-bottom: 10px;
   min-height: 260px;
 }
 
-.tabs {
+.colla-tabs {
   display: flex;
   justify-content: space-around;
   border-bottom: 1px solid white;
 }
 
-.tab {
+.colla-tab {
   flex: 1;
   padding: 10px;
   background-color: #444;
@@ -125,17 +126,17 @@
   font-weight: bold;
 }
 
-.tab.active {
+.colla-tab.active {
   background-color: white;
 }
 
-.tab-content {
+.colla-tab-content {
   padding: 10px;
   max-height: 200px;
   overflow-y: auto;
 }
 
-.user-card {
+.colla-user-card {
   display: flex;
   align-items: center;
   background-color: #555;
@@ -144,20 +145,20 @@
   margin-bottom: 10px;
 }
 
-.user-card img {
+.colla-user-card img {
   border-radius: 50%;
   width: 40px;
   height: 40px;
   margin-right: 10px;
 }
 
-.user-card h2 {
+.colla-user-card h2 {
   color: rgba(148, 205, 198, 255);
   font-size: 18px;
   margin: 0;
 }
 
-.feedback-button {
+.colla-feedback-button {
   padding: 5px 10px;
   background-color: #94cdc6;
   border: none;
@@ -165,11 +166,11 @@
   cursor: pointer;
 }
 
-.feedback-button:hover {
+.colla-feedback-button:hover {
   background-color: #00a88b;
 }
 
-.empty-card {
+.colla-empty-card {
   background-color: #ccc;
   padding: 20px;
   border-radius: 10px;
@@ -188,7 +189,7 @@
     width: 100%;
   }
 
-  .top-button-container {
+  .colla-top-button-container {
     justify-content: center; /* Center the button on smaller screens */
   }
 }

@@ -17,7 +17,7 @@
   justify-content: space-between;
 }
 
-.info-pair {
+.pro-info-pair {
   display: flex; /* Arrange label and value in a row */
   justify-content: center; /* Space between label and value */
   margin-bottom: 5px; /* Small margin between pairs */
@@ -27,13 +27,13 @@
   max-width: 200px;
 }
 
-.label {
+.pro-label {
   margin-right: 10px; /* Space between label and value */
   font-family: "Audiowide";
   color: rgba(148, 205, 198, 255);
 }
 
-.value {
+.pro-value {
   flex: 1; /* Allow values to take the remaining space */
   text-align: right; /* Align values to the right */
 }
@@ -62,17 +62,17 @@
     flex-wrap: wrap; /* Allow wrapping */
   }
 
-  .info-pair {
+  .pro-info-pair {
     width: 50%; /* Each pair takes half the width */
     box-sizing: border-box; /* Include padding/border in width */
     margin-bottom: 15px;
   }
 
-  .label {
+  .pro-label {
     flex: 0 0 50%; /* Label takes half of the info-pair width */
   }
 
-  .value {
+  .pro-value {
     flex: 0 0 50%; /* Value takes half of the info-pair width */
     text-align: left; /* Align values to the left */
   }
