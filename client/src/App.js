@@ -9,14 +9,14 @@ import UserProfile from "./Pages/UserProfile";
 import ProProfile from "./Pages/ProProfile";
 import Evaluations from './Pages/Evaluations';
 import "./global.css";
-
+import All from "./Pages/MainPage/All";
 function App() {
   return (
     <div className="background">
       <Router>
         {/* here for the header if we create one later on  */}
         <Routes>
-          <Route path="/" element={<UserChoose />}></Route>
+          <Route path="/" element={<All />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/userhomepage" element={<UserHomepage />}></Route>
