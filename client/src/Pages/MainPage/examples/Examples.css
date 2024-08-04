@@ -1,38 +1,78 @@
 /* Style for the bottom section container */
 .bottom-section {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 20px;
-    padding: 110px;
-    
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 110px;
 }
 
 /* Style for the text container */
 .text-container {
-    flex: 0.5;
-    padding-right: 60px;
-    text-align: justify;
+  flex: 0.5;
+  padding-right: 60px;
+  text-align: justify;
 }
-.title{
-    color: #007bff;
-    padding-bottom: 20px;
+.title {
+  color: #007bff;
+  padding-bottom: 20px;
 }
 /* Style for the text within the container */
 .text-container p {
-    font-size: 16px;
-    line-height: 1.5;
-    color: whitesmoke;
+  font-size: 16px;
+  line-height: 1.5;
+  color: whitesmoke;
 }
 
 /* Style for the image container */
 /* Style for the image container */
 .image-container {
-    position: sticky;
+  position: sticky;
+  margin-top: 20px;
+  top: 0;
+  flex: 0.3;
+  display: flex;
+  padding: 10px;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgb(139, 139, 139);
+  /* Add a box shadow */
+  background-color: white;
+  /* Optional: Add a background color to the container */
+}
+
+/* Style for the image within the container */
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+}
+
+@media (max-width: 768px) {
+  .bottom-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
-    top: 0;
-    flex: 0.3;
+    padding: 10px;
+  }
+  .text-container {
+    padding-right: 0px;
+    padding-bottom: 10px;
+    text-justify: inter-word;
+    text-align: justify;
+  }
+
+  .image-container {
+    position: relative;
+    margin-top: 10px;
+    flex: 1;
+    max-width: 80%;
     display: flex;
     padding: 10px;
     border-radius: 15px;
@@ -42,48 +82,5 @@
     /* Add a box shadow */
     background-color: white;
     /* Optional: Add a background color to the container */
-}
-
-/* Style for the image within the container */
-.image-container img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
-}
-
-@media (max-width: 768px) {
-
-    .bottom-section {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
-        padding: 10px;
-    }
-    .text-container {
-        padding-right: 0px;
-        padding-bottom: 10px;
-        text-justify: inter-word;
-        text-align: justify;
-    }
-    
-    .image-container {
-        position: relative;
-        margin-top: 10px;
-        flex: 1;
-        max-width: 80%;
-        display: flex;
-        padding: 10px;
-        border-radius: 15px;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0px 0px 20px rgb(139, 139, 139);
-        /* Add a box shadow */
-        background-color: white;
-        /* Optional: Add a background color to the container */
-    }
-    
+  }
 }

@@ -1,4 +1,4 @@
-.userhome-user-homepage-container{
+.userhome-user-homepage-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +46,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 40px;
 }
 
 .userhome-user-image {
@@ -112,7 +111,7 @@
 .userhome-programming-area-form {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
   border-radius: 10px;
   color: rgba(148, 205, 198, 255);
@@ -127,7 +126,7 @@
 }
 
 .userhome-programming-area-form input[type="text"] {
-  width: 40%;
+  min-width: 200px;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -186,7 +185,6 @@
   color: rgba(148, 205, 198, 255);
   margin-bottom: 10px;
   font-family: "Audiowide";
-  margin-left: -60px;
 }
 
 .userhome-right-side-button {
@@ -197,7 +195,6 @@
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: -60px;
   transition: background-color 0.3s ease;
 }
 
@@ -224,7 +221,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 80px;
   }
   .userhome-programming-area-form input[type="text"] {
     width: 50%;
@@ -235,7 +231,6 @@
     flex-direction: column;
     align-items: center;
     padding-top: 15px;
-    margin-right: -10px;
   }
 
   .userhome-content-container {
@@ -245,9 +240,5 @@
   .userhome-left-side,
   .userhome-right-side {
     width: 100%;
-  }
-  .userhome-right-side-button,
-  .userhome-right-side-text {
-    margin-right: 20px;
   }
 }

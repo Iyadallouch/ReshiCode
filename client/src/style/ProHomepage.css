@@ -64,11 +64,6 @@
   transform: scale(1.05);
 }
 
-.proHome-gray-card {
-  background-color: #ccc;
-  padding: 20px;
-  border-radius: 10px;
-}
 
 .proHome-right-section {
   width: 20%;
@@ -122,6 +117,11 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .proHome-homepage-container {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 30px;
+  }
   .proHome-main-content {
     flex-direction: column;
   }

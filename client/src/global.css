@@ -1,19 +1,18 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: rgb(79, 78, 78);
+  background-color: #2a2a2a;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow-y: auto; /* Prevent horizontal scrolling */
+  text-align: center;
+}
 
-  }
-  
-  .background {
-    width: 100vw;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-  }
-  
-hr{
+hr {
   margin: 10px 0;
-    border: none;
-    border-top: 5px dotted  rgba(148, 205, 198, 255);
+  border: none;
+  border-top: 5px dotted rgba(148, 205, 198, 255);
+}
+header{
+  height: 13vh;
 }

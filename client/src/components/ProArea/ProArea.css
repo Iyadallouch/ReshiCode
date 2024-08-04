@@ -6,8 +6,9 @@
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 97%; /* Ensure full width */
+  box-shadow: 0 4px 8px rgba(229, 229, 229, 0.3),
+    0 6px 20px rgba(183, 183, 183, 0.3);
+  width: 100%; /* Ensure full width */
 }
 
 .pro-info {
@@ -54,7 +55,7 @@
 }
 @media (max-width: 768px) {
   .pro-card {
-    width: 90%;
+    width: 100%;
   }
 
   .pro-info {

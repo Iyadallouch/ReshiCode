@@ -12,10 +12,7 @@ export default function UserHomepage() {
 
   const handleLanguageChange = (selectedOptions) => {
     setSelectedLanguages(selectedOptions.target.value);
-    if (selectRef.current) {
-      selectRef.current.blur();
-      setSelectFocused(false);
-    }
+      setSelectFocused(!isSelectFocused);
   };
 
   return (

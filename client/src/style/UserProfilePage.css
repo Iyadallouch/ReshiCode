@@ -1,11 +1,7 @@
 /* Container for the entire profile page */
 body {
-  margin: 0;
-  padding: 0;
   font-family: Arial, sans-serif;
-  height: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  overflow-y: auto; /* Allow vertical scrolling */
+  overflow: hidden; /* Prevent horizontal scrolling */
 }
 .userpro-container {
   display: flex;
@@ -35,14 +31,11 @@ body {
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  margin: 0 auto 20px auto;
 }
 
 /* File input for profile image */
 .userpro-file-input {
-  margin-top: 10px;
   display: block;
-  margin: 10px auto;
 }
 
 /* Container for user details */
@@ -52,7 +45,6 @@ body {
 
 /* Flex container for each detail item */
 .userpro-detail {
-  margin: 20px 0;
   display: flex;
   align-items: center;
 }
@@ -60,7 +52,6 @@ body {
 /* Label styling for detail items */
 .userpro-detail-label {
   font-size: 22px;
-  margin-right: 10px; /* Adjust the margin between label and text */
   width: 120px; /* Set a fixed width for labels to align inputs */
   flex-shrink: 0; /* Prevent label from shrinking */
 }
@@ -79,7 +70,6 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 18px;
-  width: calc(100% - 130px); /* Adjust width to account for label width and margin */
   box-sizing: border-box; /* Include padding and border in element's total width */
 }
 
