@@ -17,9 +17,9 @@
   align-items: center;
   padding: 20px;
   background: linear-gradient(
-    158deg,
-    rgb(58, 149, 246) 20%,
-    rgb(122, 20, 255) 100%
+    338deg,
+    rgb(148, 205, 198) 5%,
+    rgb(42, 83, 231) 100%
   );
   color: white;
   offset: 3;
@@ -44,19 +44,19 @@ html {
 
 @keyframes moveBackground {
   0% {
-    background-position: 200% 100%;
+    background-position: 200% 0%;
   }
 
   50% {
-    background-position: 150% 100%;
+    background-position: 150% 80%;
   }
 
   50% {
-    background-position: 100% 100%;
+    background-position: 80% 80%;
   }
 
   0% {
-    background-position: 0% 100%;
+    background-position: 0% 200%;
   }
 }
 
@@ -84,9 +84,9 @@ html {
   text-decoration: none;
   color: white;
   transition: color 0.3s ease;
-
+  font-family: "Audiowide";
   &:hover {
-    color: rgb(58, 149, 246);
+    color: rgb(0, 0, 0);
     /* Change color on hover */
   }
 }
@@ -109,10 +109,11 @@ html {
   text-decoration: none;
   color: white;
   transition: color 0.3s ease;
+  font-family: "Audiowide";
 }
 
 .nav-login-links a:hover {
-  color: rgb(58, 149, 246);
+  color: rgb(0, 0, 0);
 }
 .nav-login-link {
   display: none;

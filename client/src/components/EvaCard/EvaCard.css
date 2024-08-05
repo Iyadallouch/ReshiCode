@@ -11,7 +11,7 @@
 /* Card styling */
 .evacard-programmer {
   border-radius: 8px;
-  box-shadow: 8px 8px 8px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 8px 8px 8px 8px rgba(148, 205, 198, 255);
   padding: 20px;
   width: 100%;
   max-width: 600px;
@@ -34,7 +34,6 @@
   display: flex;
   justify-content: center; /* Center stars horizontally */
   cursor: pointer; /* Change cursor to pointer when hovering over stars */
-
 }
 
 .evacard-star-filled {
@@ -49,7 +48,6 @@
 
 .evacard-star-filled,
 .evacard-star-empty {
-  
   margin-left: 5px;
   cursor: pointer; /* Change cursor to pointer when hovering over stars */
 }
@@ -71,18 +69,20 @@
 /* Profile picture */
 .evacard-user-image {
   width: 60px;
-  margin-right: 10px;
 }
 
 /* Programmer name styling */
 .evacard-prog-name {
-  margin-right: auto;
   font-family: "Audiowide";
   font-size: 22px;
   color: rgba(148, 205, 198, 1);
-  margin-left: 10px;
+  padding-left: 10px;
 }
-
+.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 /* Feedback section */
 .evacard-feedback-section {
   display: flex;
@@ -95,7 +95,6 @@
   color: #94cdc6;
   width: 100px;
   font-family: "Audiowide";
-  margin-right: 10px;
 }
 
 .evacard-feedback-input {
@@ -111,6 +110,7 @@
   border: 1px solid #ccc;
   font-family: "Arial", sans-serif;
   box-sizing: border-box; /* Ensure padding doesn't exceed the width */
+  margin-left: 10px;
 }
 
 /* Media query for stacking cards on smaller screens */
@@ -119,11 +119,15 @@
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center items */
   }
-
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .evacard-prog-name {
     text-align: center; /* Center the name text */
-    width: 95%; /* Make the name span the full width */
-    margin-top: 20px;
+    padding-left: 0;
+    padding-top: 10px;
   }
 
   .evacard-rating-stars {
@@ -145,8 +149,10 @@
   }
 
   .evacard-feedback-input {
-    width: 100%; /* Make textarea full width */
-    max-width: 100%; /* Ensure textarea does not exceed card width */
-    box-sizing: border-box; /* Ensure padding doesn't exceed card's width */
+    min-width: 300px;
+    max-width: 300px; /* Ensure the textarea doesn't exceed the card's width */
+    min-height: 85px;
+    max-height: 85px;
+    margin-left: 0px;
   }
 }

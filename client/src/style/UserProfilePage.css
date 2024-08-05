@@ -22,6 +22,7 @@ body {
   max-width: 600px;
   text-align: left; /* Align text to the left */
   box-sizing: border-box;
+  margin: 10px;
 }
 
 /* Profile picture styling */
@@ -31,11 +32,14 @@ body {
   border-radius: 50%;
   object-fit: cover;
   display: block;
+  margin: 0 auto 20px auto;
 }
 
 /* File input for profile image */
 .userpro-file-input {
+  margin-top: 10px;
   display: block;
+  margin: 10px auto;
 }
 
 /* Container for user details */
@@ -45,6 +49,7 @@ body {
 
 /* Flex container for each detail item */
 .userpro-detail {
+  margin: 20px 0;
   display: flex;
   align-items: center;
 }
@@ -54,6 +59,7 @@ body {
   font-size: 22px;
   width: 120px; /* Set a fixed width for labels to align inputs */
   flex-shrink: 0; /* Prevent label from shrinking */
+  margin-right: 10px;
 }
 
 /* Text styling for detail items */
@@ -70,6 +76,9 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 18px;
+  width: calc(
+    100% - 130px
+  );
   box-sizing: border-box; /* Include padding and border in element's total width */
 }
 
@@ -155,7 +164,8 @@ body {
   font-family: "Audiowide";
 }
 @media (max-width: 768px) {
-  .userpro-detail-label,.userpro-detail-text {
+  .userpro-detail-label,
+  .userpro-detail-text {
     font-size: 17px;
   }
 }

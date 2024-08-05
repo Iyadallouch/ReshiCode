@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../images/logo.png";
+// import logo from "../images/logo.png";
 import userImage from "../images/userpic.png";
 import "../style/ProHomepage.css";
 import ProArea from "../components/ProArea/ProArea";
@@ -12,8 +12,10 @@ export default function ProHomepage() {
     <div className="proHome-homepage-container">
       <div className="proHome-top-section">
         <div className="proHome-logo-welcome-container">
-          <img src={logo} alt="Website Logo" className="proHome-website-logo" />
-          <h1 className="proHome-welcome-text">Welcome to RESHI CODE website!</h1>
+          {/* <img src={logo} alt="Website Logo" className="proHome-website-logo" /> */}
+          <h1 className="proHome-welcome-text">
+            Welcome to RESHI CODE website!
+          </h1>
         </div>
       </div>
       <div className="proHome-main-content">

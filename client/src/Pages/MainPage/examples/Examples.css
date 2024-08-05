@@ -8,6 +8,12 @@
   padding: 110px;
 }
 
+.h1-team{
+  color: rgba(148, 205, 198, 255);
+  font-family: "Audiowide";
+  font-size: 36px;
+}
+
 /* Style for the text container */
 .text-container {
   flex: 0.5;
@@ -15,8 +21,10 @@
   text-align: justify;
 }
 .title {
-  color: #007bff;
+  color: #a200ff;
   padding-bottom: 20px;
+  font-family: "Audiowide";
+
 }
 /* Style for the text within the container */
 .text-container p {

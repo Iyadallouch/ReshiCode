@@ -13,11 +13,16 @@ const NavigationBar = () => {
 
   const handleScroll = (sectionId) => {
     if (sectionId === "home") {
+      setNavActive(!isNavActive);
+
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       const section = document.getElementById(sectionId);
+      setNavActive(!isNavActive);
+
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
+        setNavActive(!isNavActive);
       }
     }
   };
@@ -62,7 +67,7 @@ const NavigationBar = () => {
         </li>
         <li>
           <a href="#examples" onClick={() => handleScroll("examples")}>
-            Projects
+            Team
           </a>
         </li>
         <li>

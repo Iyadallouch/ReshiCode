@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../style/LoginPage.css";
-import logo from "../images/logo.png";
+// import logo from "../images/logo.png";
 
 export default function LoginPage() {
   return (
     <div className="login-container">
-      <img src={logo} alt="Website Logo" className="login-logo" />
-      <h1>Login</h1>
+      {/* <img src={logo} alt="Website Logo" className="login-logo" /> */}
+      <h1 className="login-letter">Login</h1>
       <form className="login-form">
         <div className="login-form-group">
           <label htmlFor="email">Email</label>

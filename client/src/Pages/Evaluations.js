@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../images/logo.png";
+// import logo from "../images/logo.png";
 import EvaCard from "../components/EvaCard/EvaCard";
 import "../style/Evaluation.css";
 
@@ -32,7 +32,7 @@ export default function Evaluations() {
   return (
     <div className="evaluations-container">
       <div className="evaluations-upper-section">
-        <img src={logo} alt="Website Logo" className="evaluations-logo" />
+        {/* <img src={logo} alt="Website Logo" className="evaluations-logo" /> */}
         <div className="evaluations-header-text">
           <h1 className="evaluations-website-name">Evaluation Area</h1>
           <p className="evaluations-instructions">

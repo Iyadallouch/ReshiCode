@@ -39,8 +39,10 @@ const EvaCard = ({
 }) => (
   <div className="evacard-programmer">
     <div className="evacard-header">
+      <div className="user-info">
       <img className="evacard-user-image" alt="user" src={userImage} />
       <div className="evacard-prog-name">{programmer.name}</div>
+      </div>
       <RatingStars
         programmerId={programmer.id}
         rating={rating}

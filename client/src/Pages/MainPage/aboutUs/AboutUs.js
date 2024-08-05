@@ -47,7 +47,7 @@ At ReshiCode, our core task is to encourage a collaborative environment where kn
 "
       />
       <Section
-        title="mission"
+        title="Mission"
         content="We were inspired by the idea of creating our website from our struggle to find quick and effective solutions without a monthly subscription or the need to pay some money to get the required answers. That is why we designed this platform to make it easier for students to ask questions and receive answers quickly. The website allows users to communicate directly with programmers to explain their problems while providing a smart chatbot that they can use for immediate assistance. And many other features to provide a smooth and integrated experience that
                  helps students overcome programming challenges efficiently, quickly, and without paying, which contributes to their academic and professional success."
       />

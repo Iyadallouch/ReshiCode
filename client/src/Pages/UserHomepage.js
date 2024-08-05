@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import logo from "../images/logo.png";
+// import logo from "../images/logo.png";
 import userImage from "../images/userpic.png";
 import "../style/UserHomepage.css";
 
@@ -12,14 +12,17 @@ export default function UserHomepage() {
 
   const handleLanguageChange = (selectedOptions) => {
     setSelectedLanguages(selectedOptions.target.value);
-      setSelectFocused(!isSelectFocused);
+    if (selectRef.current) {
+      selectRef.current.blur();
+      setSelectFocused(false);
+    }
   };
 
   return (
     <div>
       <div className="userhome-user-homepage-container">
         <div className="userhome-header">
-          <img className="userhome-logo" alt="logo" src={logo} />
+          {/* <img className="userhome-logo" alt="logo" src={logo} /> */}
           <div className="userhome-website-info">
             <h1 className="userhome-website-name">
               Welcome to Reshi Code website !!
@@ -44,7 +47,9 @@ export default function UserHomepage() {
       <div className="userhome-content-container">
         <div className="userhome-left-side">
           <form className="userhome-programming-area-form">
-            <label htmlFor="area-name" className="userhome-label">Enter programming area name:</label>
+            <label htmlFor="area-name" className="userhome-label">
+              Enter programming area name:
+            </label>
             <input
               type="text"
               id="area-name"

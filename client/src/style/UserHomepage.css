@@ -15,9 +15,9 @@
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
-.userhome-logo {
+/* .userhome-logo {
   width: 180px;
-}
+} */
 
 .userhome-website-info {
   flex: 1;
@@ -60,6 +60,7 @@
   font-size: 16px;
   font-weight: bold;
   color: white;
+  font-family: "Audiowide";
 }
 
 .userhome-profile-button {
@@ -230,11 +231,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15px;
+    padding-top: 30px;
   }
 
   .userhome-content-container {
     flex-direction: column; /* Stack left and right side vertically on small screens */
+    padding-top: -0px;
   }
 
   .userhome-left-side,

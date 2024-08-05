@@ -9,7 +9,9 @@
 .section-heading {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #007bff;
+    color: rgba(148, 205, 198, 255);
+    font-family: "Audiowide";
+
 }
 
 .paragraph {

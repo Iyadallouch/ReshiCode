@@ -12,10 +12,10 @@
   margin: 10px;
 }
 
-.evaluations-logo {
+/* .evaluations-logo {
   width: 180px;
   margin-left: 20px;
-}
+} */
 
 .evaluations-header-text {
   text-align: center;
@@ -58,7 +58,7 @@
 
 .evacard-programmers-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 15px;
 }

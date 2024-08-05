@@ -35,11 +35,16 @@
   margin-top: -60px; /* Move everything up */
 }
 
-.login-logo {
-  width: 240px; /* Adjust the width as needed */
+/* .login-logo {
+  width: 240px; 
   margin-bottom: 20px;
-}
+} */
 
+.login-letter {
+  margin-bottom: 30px;
+  color: rgba(148, 205, 198, 255);
+  font-family: "Audiowide";
+}
 .login-form {
   display: flex;
   flex-direction: column;
