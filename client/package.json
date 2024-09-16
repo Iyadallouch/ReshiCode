@@ -20,6 +20,7 @@
     "react-select-country-list": "^2.2.3",
     "react-spring": "^9.7.4",
     "react-typed": "^2.0.12",
+    "socket.io-client": "^4.7.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

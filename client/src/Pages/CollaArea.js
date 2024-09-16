@@ -1,11 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../style/CollaAreaPage.css";
 import userImage from "../images/userpic.png";
 import ProRequest from "../components/ProRequest/ProRequest";
 import { Link } from "react-router-dom";
+import io from "socket.io-client";
 
 export default function CollaArea() {
   const [activeTab, setActiveTab] = useState("members");
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const socketRef = useRef(); // Maintain the same socket instance
+
+  useEffect(() => {
+    socketRef.current = io("http://192.168.1.39:3001"); // Connect to the backend
+
+    // Receive message from the server
+    socketRef.current.on("chat message", (msg) => {
+      setMessages((prevMessages) => [...prevMessages, msg]);
+    });
+
+    return () => {
+      socketRef.current.off("chat message");
+    };
+  }, []);
+  const sendMessage = (e) => {
+    e.preventDefault();
+    if (message.trim()) {
+      socketRef.current.emit("chat message", message); // Send message to server
+      setMessage("");
+    }
+  };
 
   return (
     <div className="colla-area-container">
@@ -39,7 +63,9 @@ export default function CollaArea() {
               Members
             </button>
             <button
-              className={`colla-tab ${activeTab === "requests" ? "active" : ""}`}
+              className={`colla-tab ${
+                activeTab === "requests" ? "active" : ""
+              }`}
               onClick={() => setActiveTab("requests")}
             >
               Requests
@@ -76,8 +102,19 @@ export default function CollaArea() {
         </div>
         <div className="colla-output-label">Chatting area :</div>
         <div className="colla-empty-card">
-          <p>This is an empty card...</p>
+          {messages.map((msg, index) => (
+            <div key={index}>{msg}</div>
+          ))}
         </div>
+        <form onSubmit={sendMessage}>
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Type a message"
+          />
+          <button type="submit">Send</button>
+        </form>
       </div>
     </div>
   );
