@@ -1,49 +1,106 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Select from "react-select";
-import countryList from "react-select-country-list";
+import axios from "axios";
 import "../style/SignupPage.css";
-// import logo from "../images/logo.png";
 
 export default function Signup() {
   const [phone, setPhone] = useState("");
-  const [region, setRegion] = useState("");
-  const [language, setLanguage] = useState(null);
   const [user, setUser] = useState(null);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
+  const [error, setError] = useState(null);
 
-  const countryOptions = countryList().getData();
-  const languageOptions = [
-    { value: "c+", label: "C+" },
-    { value: "java", label: "Java" },
-    { value: "python", label: "Python" },
-  ];
+  const navigate = useNavigate();
 
   const UserOption = [
-    { value: "user", label: "User" },
-    { value: "programmer", label: "Programmer" },
+    { value: "NORMAL_USER", label: "User" },
+    { value: "PROGRAMMER", label: "Programmer" },
   ];
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!user) {
+      alert("Please select a user type before submitting.");
+      return;
+    }
+
+    const signupData = {
+      ...formData,
+      phoneNumber: phone,
+      type: user ? user.value :"", // Ensure user role (normal or programmer) is included
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/auth/signup",
+        signupData
+      );
+      if (response.status === 201) {
+        // On success, redirect to login page
+        navigate("/login");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Something went wrong!");
+    }
+  };
 
   return (
     <div className="signup-container">
-      {/* <img src={logo} alt="Website Logo" className="signup-logo" /> */}
       <h1 className="signup-h1">Signup</h1>
-      <form className="signup-form">
+      {error && <p className="error-message">{error}</p>}
+      <form className="signup-form" onSubmit={handleSubmit}>
         <div className="signup-form-row">
           <div className="signup-form-group">
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" name="username" required />
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              value={formData.username}
+              onChange={handleChange}
+            />
           </div>
           <div className="signup-form-group">
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+            />
           </div>
         </div>
         <div className="signup-form-row">
           <div className="signup-form-group">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" required />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              value={formData.password}
+              onChange={handleChange}
+            />
           </div>
           <div className="signup-form-group">
             <label htmlFor="phone">Phone Number</label>
@@ -60,25 +117,25 @@ export default function Signup() {
         </div>
         <div className="signup-form-row">
           <div className="signup-form-group">
-            <label htmlFor="region">Region</label>
-            <Select
-              options={countryOptions}
-              value={region}
-              onChange={setRegion}
-              placeholder="Select a region"
-              id="region"
-              name="region"
+            <label htmlFor="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              required
+              value={formData.firstName}
+              onChange={handleChange}
             />
           </div>
           <div className="signup-form-group">
-            <label htmlFor="language">Preferred Programming Language</label>
-            <Select
-              options={languageOptions}
-              value={language}
-              onChange={setLanguage}
-              placeholder="Select a language"
-              id="language"
-              name="language"
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              required
+              value={formData.lastName}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -97,10 +154,10 @@ export default function Signup() {
           Sign Up
         </button>
         <p className="signup-p">
-          Already have account
-          <Link to="/login" className="signup-link ">
+          Already have an account?{" "}
+          <Link to="/login" className="signup-link">
             Login
-          </Link>{" "}
+          </Link>
           now
         </p>
       </form>
