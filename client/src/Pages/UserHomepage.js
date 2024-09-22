@@ -29,15 +29,16 @@ export default function UserHomepage() {
       if (token) {
         socket.emit("auth", token); // Send token to the server for authentication
       }
-      socket.on("userInfo", ({ username }) => {
+      socket.once("userInfo", ({ username }) => {
         socket.username = username; // Set the username after successful auth
         console.log("Authenticated user:", socket.username);
-      });
-      // Emit the join_room event when creating the area
-      socket.emit("join_room", areaName);
 
-      // Navigate to CollaArea with areaName (room ID) passed as state
-      navigate("/collaarea", { state: { room: areaName } });
+        // Emit the join_room event when creating the area
+        socket.emit("join_room", areaName);
+
+        // Navigate to CollaArea with areaName (room ID) passed as state
+        navigate("/collaarea", { state: { room: areaName } });
+      });
     }
   };
 

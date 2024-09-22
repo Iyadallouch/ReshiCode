@@ -83,8 +83,8 @@
 }
 
 .colla-right-side {
-  width: 30%;
   display: flex;
+  flex: 0.8;
   flex-direction: column;
 }
 
@@ -195,6 +195,50 @@
   box-shadow: 0 4px 50px rgba(0, 0, 0, 1); /* Add a subtle shadow */
   background-color: #1e1e1e;
 }
+/* modalStyles.css */
+.custom-modal {
+  background-color: rgba(
+    115,
+    115,
+    115,
+    0.315
+  ); /* Slightly transparent background */
+  border-radius: 10px;
+}
+
+.custom-modal .modal-header {
+  background: linear-gradient(
+    300deg,
+    rgb(92, 196, 184) 20%,
+    rgb(42, 83, 231) 100%
+  );
+  color: white;
+  animation: moveBackground 3s linear infinite; /* Correct application */
+  background-size: 200% 100%;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 200% 0%;
+  }
+
+  50% {
+    background-position: 150% 80%;
+  }
+
+  50% {
+    background-position: 80% 80%;
+  }
+
+  0% {
+    background-position: 0% 200%;
+  }
+}
+
+.custom-modal .modal-footer {
+  background-color: #f1f1f1; /* Light gray for the footer */
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .colla-area-container {
