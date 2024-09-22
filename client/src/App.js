@@ -11,6 +11,7 @@ import Evaluations from "./Pages/Evaluations";
 import "./global.css";
 import All from "./Pages/MainPage/All";
 import NavigationBar from "./Pages/MainPage/navigationBar/NavigationBar";
+
 function App() {
   const location = useLocation();
 

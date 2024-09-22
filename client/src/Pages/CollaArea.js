@@ -3,18 +3,20 @@ import "../style/CollaAreaPage.css";
 import userImage from "../images/userpic.png";
 import ProRequest from "../components/ProRequest/ProRequest";
 import { Link } from "react-router-dom";
-import io from "socket.io-client";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
+import socket from "../components/socket"; // Import the shared socket instance
+import { useLocation } from "react-router-dom";
+
 // Initialize the socket connection
-const socket = io.connect("http://192.168.1.39:3001");
 
 export default function CollaArea() {
   const [activeTab, setActiveTab] = useState("members");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [room, setRoom] = useState(""); // Room state for managing room joining
+  const location = useLocation();
+  const room = location.state?.room; // Access the room (areaName) from state
   const [userList, setUserList] = useState([]); // To track users in the room
   const [value, setValue] = React.useState("console.log('hello world!');");
   const onChange = React.useCallback((val, viewUpdate) => {
@@ -22,46 +24,40 @@ export default function CollaArea() {
     setValue(val);
   }, []);
   useEffect(() => {
-    // Fetch JWT from localStorage and authenticate
-    const token = localStorage.getItem("token"); // Assuming token is stored here
-    if (token) {
-      socket.emit("auth", token); // Send token to the server for authentication
+    if (room) {
+      if (!socket.connected) {
+        socket.connect();
+      }
+      socket.emit("join_room", room); // Automatically join the room on page load
     }
-    socket.on("userInfo", ({ username }) => {
-      socket.username = username; // Set the username after successful auth
-      console.log("Authenticated user:", socket.username);
-    });
-    // Listen for user list from the server
+
     socket.on("user_list", (users) => {
-      setUserList(users); // Update user list
+      setUserList(users);
     });
 
-    // Listen for new messages from the server
     socket.on("receive_message", (data) => {
-      setMessages((prevMessages) => [...prevMessages, data]); // Add new messages
+      setMessages((prevMessages) => [...prevMessages, data]);
     });
 
-    // Listen for old messages when joining a room
     socket.on("get_old_messages", (oldMessages) => {
-      setMessages((prevMessages) => [...prevMessages, ...oldMessages]); // Add old messages
+      setMessages((prevMessages) => [...prevMessages, ...oldMessages]);
     });
 
-    // Clean up on component unmount
     return () => {
       socket.off("user_list");
       socket.off("receive_message");
       socket.off("get_old_messages");
     };
-  }, []);
+  }, [room]);
+
   // Function to join a room
-  const joinRoom = (e) => {
-    e.preventDefault();
-    if (room.trim()) {
-      socket.emit("join_room", room); // Emit join room event to the server
-    }
-  };
+
   // Function to send a message
   const sendMessage = (e) => {
+    if (!room) {
+      console.error("No room joined. Cannot send messages.");
+      return;
+    }
     e.preventDefault();
     if (message.trim()) {
       const msgData = {
@@ -147,17 +143,7 @@ export default function CollaArea() {
         </div>
 
         {/* Room joining section */}
-        <div className="colla-room-container">
-          <form onSubmit={joinRoom}>
-            <input
-              type="text"
-              value={room}
-              onChange={(e) => setRoom(e.target.value)}
-              placeholder="Enter room ID"
-            />
-            <button type="submit">Join Room</button>
-          </form>
-        </div>
+        <div className="colla-room-container"></div>
 
         <div className="colla-output-label">Chatting area :</div>
         <div className="colla-empty-card">

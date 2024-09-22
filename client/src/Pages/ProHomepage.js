@@ -1,18 +1,52 @@
-import React from "react";
-// import logo from "../images/logo.png";
+import React, { useEffect, useState } from "react";
 import userImage from "../images/userpic.png";
 import "../style/ProHomepage.css";
-import ProArea from "../components/ProArea/ProArea";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-
+import axios from "axios"; // Assuming you are using axios
+import socket from "../components/socket";
 export default function ProHomepage() {
+  const [rooms, setRooms] = useState([]); // To store the rooms fetched from backend
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch the list of rooms when the component mounts
+    axios
+      .get("http://localhost:3001/api/rooms")
+      .then((response) => {
+        setRooms(response.data); // Store the rooms in state
+      })
+      .catch((error) => {
+        console.error("Error fetching rooms:", error);
+      });
+  }, []);
+
+  // Function to handle room click and navigate to CollaArea
+  const handleJoinRoom = (room) => {
+    if (room.trim()) {
+      if (!socket.connected) {
+        socket.connect();
+      }
+      const token = localStorage.getItem("token"); // Assuming token is stored here
+      if (token) {
+        socket.emit("auth", token); // Send token to the server for authentication
+      }
+      socket.on("userInfo", ({ username }) => {
+        socket.username = username; // Set the username after successful auth
+        console.log("Authenticated user:", socket.username);
+      });
+      // Emit the join_room event when creating the area
+      socket.emit("join_room", room);
+
+      // Navigate to CollaArea with areaName (room ID) passed as state
+      navigate("/collaarea", { state: { room: room } });
+    }
+  };
+
   return (
     <div className="proHome-homepage-container">
       <div className="proHome-top-section">
         <div className="proHome-logo-welcome-container">
-          {/* <img src={logo} alt="Website Logo" className="proHome-website-logo" /> */}
           <h1 className="proHome-welcome-text">
             Welcome to RESHI CODE website!
           </h1>
@@ -29,9 +63,18 @@ export default function ProHomepage() {
             <button className="proHome-search-button">Search</button>
           </div>
           <div className="proHome-gray-card">
-            {/* Content for the big gray card will go here */}
-            <ProArea />
-            <ProArea />
+            <h2>Available Rooms:</h2>
+            <ul>
+              {rooms.length > 0 ? (
+                rooms.map((room, index) => (
+                  <li key={index} onClick={() => handleJoinRoom(room)}>
+                    {room}
+                  </li>
+                ))
+              ) : (
+                <p>No rooms available</p>
+              )}
+            </ul>
           </div>
         </div>
         <div className="proHome-right-section">

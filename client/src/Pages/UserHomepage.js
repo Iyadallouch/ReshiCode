@@ -1,13 +1,15 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
-// import logo from "../images/logo.png";
+import { useNavigate } from "react-router-dom";
 import userImage from "../images/userpic.png";
 import "../style/UserHomepage.css";
+import socket from "../components/socket";
+// Initialize the socket connection
 
 export default function UserHomepage() {
   const [areaName, setAreaName] = useState("");
   const [selectedLanguages, setSelectedLanguages] = useState([]);
   const [isSelectFocused, setSelectFocused] = useState(false);
+  const navigate = useNavigate();
   const selectRef = useRef(null);
 
   const handleLanguageChange = (selectedOptions) => {
@@ -18,18 +20,37 @@ export default function UserHomepage() {
     }
   };
 
+  const handleCreateArea = () => {
+    if (areaName.trim()) {
+      if (!socket.connected) {
+        socket.connect();
+      }
+      const token = localStorage.getItem("token"); // Assuming token is stored here
+      if (token) {
+        socket.emit("auth", token); // Send token to the server for authentication
+      }
+      socket.on("userInfo", ({ username }) => {
+        socket.username = username; // Set the username after successful auth
+        console.log("Authenticated user:", socket.username);
+      });
+      // Emit the join_room event when creating the area
+      socket.emit("join_room", areaName);
+
+      // Navigate to CollaArea with areaName (room ID) passed as state
+      navigate("/collaarea", { state: { room: areaName } });
+    }
+  };
+
   return (
     <div>
       <div className="userhome-user-homepage-container">
         <div className="userhome-header">
-          {/* <img className="userhome-logo" alt="logo" src={logo} /> */}
           <div className="userhome-website-info">
             <h1 className="userhome-website-name">
               Welcome to Reshi Code website !!
             </h1>
             <p className="userhome-website-description">
               Experience Real-Time Collaboration with Expert Programmers
-              <br />
               Instantly Resolve Code Errors and Enhance Your Projects with Live
               Assistance
             </p>
@@ -37,9 +58,6 @@ export default function UserHomepage() {
           <div className="userhome-user-info">
             <img className="userhome-user-image" alt="user" src={userImage} />
             <p className="userhome-user-name">User Name</p>
-            <Link to="/userprofile" className="userhome-notLink">
-              <button className="userhome-profile-button">Go to Profile</button>
-            </Link>
             <button className="userhome-profile-button">Log out</button>
           </div>
         </div>
@@ -55,7 +73,7 @@ export default function UserHomepage() {
               id="area-name"
               value={areaName}
               onChange={(e) => setAreaName(e.target.value)}
-              placeholder="programming area name"
+              placeholder="Programming area name"
             />
 
             <p>Choose programming languages:</p>
@@ -74,16 +92,15 @@ export default function UserHomepage() {
               <option value="java">Java</option>
               <option value="python">Python</option>
             </select>
-            <Link to="/collaarea" className="userhome-notLink">
-              <button
-                type="button"
-                className={`userhome-create-button ${
-                  isSelectFocused ? "active" : ""
-                }`}
-              >
-                Create programming area
-              </button>
-            </Link>
+            <button
+              type="button"
+              className={`userhome-create-button ${
+                isSelectFocused ? "active" : ""
+              }`}
+              onClick={handleCreateArea} // Trigger area creation
+            >
+              Create programming area
+            </button>
           </form>
         </div>
         <div className="userhome-right-side">
