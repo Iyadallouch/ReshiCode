@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.2",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@uiw/codemirror-theme-vscode": "^4.23.2",
+    "@uiw/react-codemirror": "^4.23.2",
     "libphonenumber-js": "^1.11.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -21,7 +24,8 @@
     "react-spring": "^9.7.4",
     "react-typed": "^2.0.12",
     "socket.io-client": "^4.7.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.22"
   },
   "scripts": {
     "start": "react-scripts start",
