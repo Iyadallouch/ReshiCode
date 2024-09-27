@@ -16,10 +16,12 @@ export default function CollaArea() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [userList, setUserList] = useState([]);
-  const [value, setValue] = useState("console.log('hello world!');");
+  const [output, setOutput] = useState('');
+  const [code, setcode] = useState("");
   const [showModal, setShowModal] = useState(false); // State for modal visibility
   const location = useLocation();
   const room = location.state?.room;
+  const language = location.state?.language;
   const uniqueMessages = [];
   const seenIds = new Set();
   messages.forEach((msg) => {
@@ -50,11 +52,11 @@ export default function CollaArea() {
     };
 
     const handleCodeUpdate = (newCode) => {
-      setValue(newCode);
+      setcode(newCode);
     };
 
     const handleGetOldCode = (oldCode) => {
-      setValue(oldCode);
+      setcode(oldCode);
     };
 
     socket.on("user_list", handleUserList);
@@ -87,7 +89,7 @@ export default function CollaArea() {
   };
 
   const onChange = (val) => {
-    setValue(val);
+    setcode(val);
     socket.emit("code_change", val);
   };
   const handleSave = async () => {
@@ -101,7 +103,7 @@ export default function CollaArea() {
           // Update with your actual endpoint
           roomId,
           userId,
-          code: value,
+          code: code,
         }
       );
 
@@ -122,20 +124,33 @@ export default function CollaArea() {
     navigate("/evaluations");
     // Optionally, redirect or perform any additional cleanup here
   };
+  const handleRun = async (e) => {
+    e.preventDefault();
 
+    try {
+      
+        const response = await axios.post('http://localhost:3001/api/code/run', {
+            language, // selected programming language
+            code: code // Escaping double quotes
+          });
+        setOutput(response.data.output);  // Set the output from the response
+    } catch (error) {
+        setOutput(error.response ? error.response.data.error : 'An error occurred');
+    }
+};
   return (
     <div className="colla-area-container">
       <div className="colla-left-side">
         <div className="colla-buttons-container">
           <span className="colla-buttons-text">Enter your code :</span>
-          <button className="colla-action-button">Run</button>
+          <button className="colla-action-button" onClick={handleRun}>Run</button>
           <button className="colla-action-button" onClick={handleSave}>
             Save
           </button>
         </div>
         <div className="code-mirror">
           <CodeMirror
-            value={value}
+            value={code}
             height="100%"
             theme={vscodeDark}
             extensions={[javascript({ jsx: true })]}
@@ -145,7 +160,7 @@ export default function CollaArea() {
         </div>
         <div className="colla-output-label">Output :</div>
         <div className="colla-output-card">
-          <p>Your output will be displayed here...</p>
+          <pre>{output}</pre>
         </div>
       </div>
 

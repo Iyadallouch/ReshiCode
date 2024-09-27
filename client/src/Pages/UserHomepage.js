@@ -7,7 +7,7 @@ import socket from "../components/socket";
 
 export default function UserHomepage() {
   const [areaName, setAreaName] = useState("");
-  const [selectedLanguages, setSelectedLanguages] = useState([]);
+  const [selectedLanguages, setSelectedLanguages] = useState("");
   const [isSelectFocused, setSelectFocused] = useState(false);
   const navigate = useNavigate();
   const selectRef = useRef(null);
@@ -21,7 +21,7 @@ export default function UserHomepage() {
   };
 
   const handleCreateArea = () => {
-    if (areaName.trim()) {
+    if (areaName.trim()&&selectedLanguages) {
       if (!socket.connected) {
         socket.connect();
       }
@@ -37,7 +37,7 @@ export default function UserHomepage() {
         socket.emit("join_room", areaName);
 
         // Navigate to CollaArea with areaName (room ID) passed as state
-        navigate("/collaarea", { state: { room: areaName } });
+        navigate("/collaarea", { state: { room: areaName, language:selectedLanguages } });
       });
     }
   };
@@ -78,21 +78,20 @@ export default function UserHomepage() {
             />
 
             <p>Choose programming languages:</p>
-            <select
-              value={selectedLanguages}
-              onChange={handleLanguageChange}
-              onFocus={() => setSelectFocused(true)}
-              onBlur={() => setSelectFocused(false)}
-              ref={selectRef}
-              placeholder="Select languages..."
-            >
-              <option value="" disabled>
-                Select languages...
-              </option>
-              <option value="cPlus">C+</option>
-              <option value="java">Java</option>
-              <option value="python">Python</option>
-            </select>
+           <select
+  value={selectedLanguages}
+  onChange={handleLanguageChange}
+  onFocus={() => setSelectFocused(true)}
+  onBlur={() => setSelectFocused(false)}
+  ref={selectRef}
+>
+  <option value="" disabled>Select languages...</option>
+  <option value="cpp">C++</option>
+  <option value="java">Java</option>
+  <option value="python">Python</option>
+  <option value="javascript">JavaScript</option>
+</select>
+
             <button
               type="button"
               className={`userhome-create-button ${
