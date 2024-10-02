@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import axios from "axios"; // Assuming you are using axios
 import socket from "../components/socket";
+
 export default function ProHomepage() {
   const [rooms, setRooms] = useState([]); // To store the rooms fetched from backend
   const navigate = useNavigate();
@@ -23,7 +24,9 @@ export default function ProHomepage() {
 
   // Function to handle room click and navigate to CollaArea
   const handleJoinRoom = (room) => {
-    if (room.trim()) {
+    const { room: areaName, roomId: areaId } = room; // Destructure areaName and areaId
+
+    if (areaName.trim()) {
       if (!socket.connected) {
         socket.connect();
       }
@@ -37,11 +40,17 @@ export default function ProHomepage() {
         socket.username = username; // Set the username after successful auth
         console.log("Authenticated user:", socket.username);
 
-        // Emit the join_room event after authentication is complete
-        socket.emit("join_room", room);
+        // Emit the join_room event with areaName and areaId
+        socket.emit("join_room", { areaName, areaId }); // Emit both areaName and areaId
 
-        // Navigate to CollaArea with areaName (room ID) passed as state
-        navigate("/collaarea", { state: { room: room } });
+        // Navigate to CollaArea with areaName and areaId passed as state
+        navigate("/collaarea", {
+          state: {
+            room: areaName,
+            areaId: areaId,
+            language: areaName,
+          },
+        });
       });
     }
   };
@@ -70,7 +79,7 @@ export default function ProHomepage() {
             <ul>
               {rooms.length > 0 ? (
                 rooms.map((room) => (
-                  <li key={room.roomId} onClick={() => handleJoinRoom(room.room)}>
+                  <li key={room.roomId} onClick={() => handleJoinRoom(room)}>
                     {room.room} {room.roomId}
                   </li>
                 ))

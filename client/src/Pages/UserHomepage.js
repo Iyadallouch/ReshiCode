@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import userImage from "../images/userpic.png";
 import "../style/UserHomepage.css";
 import socket from "../components/socket";
+import { v4 as uuidv4 } from "uuid"; // Import the uuid function
+
 // Initialize the socket connection
 
 export default function UserHomepage() {
@@ -19,29 +21,43 @@ export default function UserHomepage() {
       setSelectFocused(false);
     }
   };
-
   const handleCreateArea = () => {
-    if (areaName.trim()&&selectedLanguages) {
+    if (areaName.trim() && selectedLanguages) {
+      const generatedRoomId = uuidv4();
+  
       if (!socket.connected) {
         socket.connect();
       }
+  
       const token = localStorage.getItem("token"); // Assuming token is stored here
       if (token) {
         socket.emit("auth", token); // Send token to the server for authentication
       }
+  
       socket.once("userInfo", ({ username }) => {
         socket.username = username; // Set the username after successful auth
         console.log("Authenticated user:", socket.username);
+  
+        // Emit the join_room event with both areaName and areaId
+        socket.emit("join_room", {
+          areaName: areaName, // Pass areaName
+          areaId: generatedRoomId, // Pass generated room ID
+          language: selectedLanguages,
 
-        // Emit the join_room event when creating the area
-        socket.emit("join_room", areaName);
-
-        // Navigate to CollaArea with areaName (room ID) passed as state
-        navigate("/collaarea", { state: { room: areaName, language:selectedLanguages } });
+        });
+  
+        // Navigate to CollaArea with areaName and areaId passed as state
+        navigate("/collaarea", {
+          state: {
+            room: areaName,
+            areaId: generatedRoomId,
+            language: selectedLanguages,
+          },
+        });
       });
     }
   };
-
+  
   return (
     <div>
       <div className="userhome-user-homepage-container">
@@ -78,19 +94,21 @@ export default function UserHomepage() {
             />
 
             <p>Choose programming languages:</p>
-           <select
-  value={selectedLanguages}
-  onChange={handleLanguageChange}
-  onFocus={() => setSelectFocused(true)}
-  onBlur={() => setSelectFocused(false)}
-  ref={selectRef}
->
-  <option value="" disabled>Select languages...</option>
-  <option value="cpp">C++</option>
-  <option value="java">Java</option>
-  <option value="python">Python</option>
-  <option value="javascript">JavaScript</option>
-</select>
+            <select
+              value={selectedLanguages}
+              onChange={handleLanguageChange}
+              onFocus={() => setSelectFocused(true)}
+              onBlur={() => setSelectFocused(false)}
+              ref={selectRef}
+            >
+              <option value="" disabled>
+                Select languages...
+              </option>
+              <option value="cpp">C++</option>
+              <option value="java">Java</option>
+              <option value="python">Python</option>
+              <option value="javascript">JavaScript</option>
+            </select>
 
             <button
               type="button"

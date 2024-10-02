@@ -20,8 +20,7 @@ export default function CollaArea() {
   const [code, setcode] = useState("");
   const [showModal, setShowModal] = useState(false); // State for modal visibility
   const location = useLocation();
-  const room = location.state?.room;
-  const language = location.state?.language;
+  const { areaId, room, language } = location.state || {};
   const uniqueMessages = [];
   const seenIds = new Set();
   messages.forEach((msg) => {
@@ -35,7 +34,12 @@ export default function CollaArea() {
       if (!socket.connected) {
         socket.connect();
       }
-      socket.emit("join_room", room);
+
+      // Emitting with room details
+      socket.emit("join_room", {
+        areaName: room,
+        areaId: areaId, // Make sure to define roomId if necessary
+      });
       console.log("connected");
     }
 
@@ -69,7 +73,6 @@ export default function CollaArea() {
     socket.on("code_update", handleCodeUpdate);
     socket.on("get_old_code", handleGetOldCode);
     socket.on("room_closed", handleRoomClosed);
-
     return () => {
       socket.off("user_list", handleUserList);
       socket.off("receive_message", handleReceiveMessage);
@@ -78,7 +81,7 @@ export default function CollaArea() {
       socket.off("get_old_code", handleGetOldCode);
       socket.on("room_closed", handleRoomClosed);
     };
-  }, [room, navigate]);
+  }, [areaId, room, navigate]);
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -87,8 +90,9 @@ export default function CollaArea() {
         id: Date.now(),
         username: socket.username,
         message,
-        room,
+        room: areaId,
       };
+      console.log(msgData);
       socket.emit("send_message", msgData);
       setMessage("");
     }
@@ -99,23 +103,23 @@ export default function CollaArea() {
     socket.emit("code_change", val);
   };
   const handleSave = async () => {
-    const userId = socket.userId; // Assuming you have userId stored in the socket
-    const roomId = room; // Use the room ID from location state
-    console.log(roomId);
+    const userName = socket.username; // Assuming you have userId stored in the socket
+
+    const roomId = areaId; // Use the room ID from location state
     try {
       const response = await axios.post(
         "http://localhost:3001/api/auth/saveCode",
         {
           // Update with your actual endpoint
           roomId,
-          userId,
+          userName,
           code: code,
         }
       );
 
       console.log("Code saved successfully:", response.data);
     } catch (error) {
-      console.error("Error saving code:", console.log(roomId, userId));
+      console.error("Error saving code:", console.log(roomId, userName));
     }
   };
 
@@ -133,10 +137,16 @@ export default function CollaArea() {
   const handleRun = async (e) => {
     e.preventDefault();
 
+    // Check if the socket is still connected before running the code
+    if (!socket.connected) {
+      console.error("Socket is not connected!");
+      return;
+    }
+
     try {
       const response = await axios.post("http://localhost:3001/api/code/run", {
         language, // selected programming language
-        code: code, // Escaping double quotes
+        code: language === "javascript" ? code.replace(/"/g, '\\"') : code, // the current code to run
       });
       setOutput(response.data.output); // Set the output from the response
     } catch (error) {
@@ -145,6 +155,7 @@ export default function CollaArea() {
       );
     }
   };
+
   return (
     <div className="colla-area-container">
       <div className="colla-left-side">
