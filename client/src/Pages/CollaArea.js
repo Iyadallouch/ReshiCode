@@ -16,7 +16,7 @@ export default function CollaArea() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [userList, setUserList] = useState([]);
-  const [output, setOutput] = useState('');
+  const [output, setOutput] = useState("");
   const [code, setcode] = useState("");
   const [showModal, setShowModal] = useState(false); // State for modal visibility
   const location = useLocation();
@@ -58,12 +58,17 @@ export default function CollaArea() {
     const handleGetOldCode = (oldCode) => {
       setcode(oldCode);
     };
-
+    const handleRoomClosed = (message) => {
+      navigate("/prohomepage"); // Redirect the user to the homepage or another page
+      alert(message); // Display a message to the user
+      socket.disconnect(); // Optionally disconnect the socket
+    };
     socket.on("user_list", handleUserList);
     socket.on("receive_message", handleReceiveMessage);
     socket.on("get_old_messages", handleGetOldMessages);
     socket.on("code_update", handleCodeUpdate);
     socket.on("get_old_code", handleGetOldCode);
+    socket.on("room_closed", handleRoomClosed);
 
     return () => {
       socket.off("user_list", handleUserList);
@@ -71,8 +76,9 @@ export default function CollaArea() {
       socket.off("get_old_messages", handleGetOldMessages);
       socket.off("code_update", handleCodeUpdate);
       socket.off("get_old_code", handleGetOldCode);
+      socket.on("room_closed", handleRoomClosed);
     };
-  }, [room]);
+  }, [room, navigate]);
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -95,7 +101,7 @@ export default function CollaArea() {
   const handleSave = async () => {
     const userId = socket.userId; // Assuming you have userId stored in the socket
     const roomId = room; // Use the room ID from location state
-
+    console.log(roomId);
     try {
       const response = await axios.post(
         "http://localhost:3001/api/auth/saveCode",
@@ -128,22 +134,25 @@ export default function CollaArea() {
     e.preventDefault();
 
     try {
-      
-        const response = await axios.post('http://localhost:3001/api/code/run', {
-            language, // selected programming language
-            code: code // Escaping double quotes
-          });
-        setOutput(response.data.output);  // Set the output from the response
+      const response = await axios.post("http://localhost:3001/api/code/run", {
+        language, // selected programming language
+        code: code, // Escaping double quotes
+      });
+      setOutput(response.data.output); // Set the output from the response
     } catch (error) {
-        setOutput(error.response ? error.response.data.error : 'An error occurred');
+      setOutput(
+        error.response ? error.response.data.error : "An error occurred"
+      );
     }
-};
+  };
   return (
     <div className="colla-area-container">
       <div className="colla-left-side">
         <div className="colla-buttons-container">
           <span className="colla-buttons-text">Enter your code :</span>
-          <button className="colla-action-button" onClick={handleRun}>Run</button>
+          <button className="colla-action-button" onClick={handleRun}>
+            Run
+          </button>
           <button className="colla-action-button" onClick={handleSave}>
             Save
           </button>

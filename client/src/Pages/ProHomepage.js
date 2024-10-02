@@ -69,9 +69,9 @@ export default function ProHomepage() {
             <h2>Available Rooms:</h2>
             <ul>
               {rooms.length > 0 ? (
-                rooms.map((room, index) => (
-                  <li key={index} onClick={() => handleJoinRoom(room)}>
-                    {room}
+                rooms.map((room) => (
+                  <li key={room.roomId} onClick={() => handleJoinRoom(room.room)}>
+                    {room.room} {room.roomId}
                   </li>
                 ))
               ) : (
