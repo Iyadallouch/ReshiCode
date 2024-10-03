@@ -69,7 +69,12 @@ body {
   align-items: center; /* Align label and input horizontally */
   justify-content: flex-start; /* Align items to the top */
 }
-
+.userpro-detail-username {
+  font-size: 22px;
+  display: flex;
+  align-items: center; /* Align label and input horizontally */
+  justify-content: center; /* Align items to the top */
+}
 /* Styling for input fields */
 .userpro-input {
   padding: 10px;

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
-import Select from 'react-select';
-import countryList from 'react-select-country-list';
+import React, { useEffect, useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import Select from "react-select";
+import countryList from "react-select-country-list";
 import userImage from "../images/userpic.png";
 import "../style/UserProfilePage.css";
 import OldCode from "../components/OldCode/OldCode";
-
+import axios from "axios";
 
 export default function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -14,11 +14,49 @@ export default function UserProfile() {
   const [email, setEmail] = useState("user.email@example.com");
   const [password, setPassword] = useState("password");
   const [phone, setPhone] = useState("+1234567890");
-  const [region, setRegion] = useState({ value: 'Region', label: 'Region' });
+  const [region, setRegion] = useState({ value: "Region", label: "Region" });
   const [profileImage, setProfileImage] = useState(userImage);
-
   const countryOptions = countryList().getData();
+  const [userInfo, setUserInfo] = useState(null);
+  const [error, setError] = useState(null);
+  const [codes, setCodes] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token"); // Assuming the token is stored in local storage
 
+        // Fetch user info
+        const userInfoResponse = await axios.get(
+          "http://localhost:3001/api/auth/userInfo",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUserInfo(userInfoResponse.data);
+
+        // Fetch user codes
+        const codesResponse = await axios.get(
+          "http://localhost:3001/api/auth/userCode",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCodes(codesResponse.data);
+      } catch (err) {
+        setError(err.response?.data?.message || "An error occurred");
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(userInfo);
+  console.log(codes);
   const handleEdit = () => setIsEditing(true);
   const handleCancel = () => setIsEditing(false);
   const handleSave = () => {
@@ -40,6 +78,8 @@ export default function UserProfile() {
     <div className="userpro-container">
       <div className="userpro-card">
         <img src={profileImage} alt="User" className="userpro-picture" />
+        <span className="userpro-detail-username">{userInfo?.username}</span>
+
         <hr />
         {isEditing && (
           <>
@@ -55,7 +95,9 @@ export default function UserProfile() {
           {isEditing ? (
             <>
               <div className="userpro-detail">
-                <label className="userpro-detail-label"><strong>Name:</strong></label>
+                <label className="userpro-detail-label">
+                  <strong>Name:</strong>
+                </label>
                 <input
                   type="text"
                   value={userName}
@@ -64,7 +106,9 @@ export default function UserProfile() {
                 />
               </div>
               <div className="userpro-detail">
-                <label className="userpro-detail-label"><strong>Email:</strong></label>
+                <label className="userpro-detail-label">
+                  <strong>Email:</strong>
+                </label>
                 <input
                   type="email"
                   value={email}
@@ -73,7 +117,9 @@ export default function UserProfile() {
                 />
               </div>
               <div className="pro-prof-detail">
-                <label className="pro-prof-detail-label"><strong>Password:</strong></label>
+                <label className="pro-prof-detail-label">
+                  <strong>Password:</strong>
+                </label>
                 <input
                   type="password"
                   value={password}
@@ -82,18 +128,22 @@ export default function UserProfile() {
                 />
               </div>
               <div className="userpro-detail">
-                <label className="userpro-detail-label"><strong>Phone:</strong></label>
+                <label className="userpro-detail-label">
+                  <strong>Phone:</strong>
+                </label>
                 <PhoneInput
-                  country={'ae'}
+                  country={"ae"}
                   value={phone}
                   onChange={(phone) => setPhone(phone)}
-                  inputProps={{ name: 'phone', required: true }}
+                  inputProps={{ name: "phone", required: true }}
                   containerClass="userpro-phone-container"
                   inputClass="userpro-phone-input"
                 />
               </div>
               <div className="userpro-detail">
-                <label className="userpro-detail-label"><strong>Region:</strong></label>
+                <label className="userpro-detail-label">
+                  <strong>Region:</strong>
+                </label>
                 <Select
                   options={countryOptions}
                   value={region}
@@ -106,24 +156,26 @@ export default function UserProfile() {
           ) : (
             <>
               <div className="userpro-detail">
-                <span className="userpro-detail-label"><strong>Name:</strong></span>
-                <span className="userpro-detail-text">{userName}</span>
+                <span className="userpro-detail-label">
+                  <strong>Name:</strong>
+                </span>
+                <span className="userpro-detail-text">
+                  {userInfo?.firstName} {userInfo?.lastName}
+                </span>
               </div>
               <div className="userpro-detail">
-                <span className="userpro-detail-label"><strong>Email:</strong></span>
-                <span className="userpro-detail-text">{email}</span>
-              </div>
-              <div className="pro-prof-detail">
-                <span className="pro-prof-detail-label"><strong>Password:</strong></span>
-                <span className="pro-prof-detail-text">********</span>
+                <span className="userpro-detail-label">
+                  <strong>Email:</strong>
+                </span>
+                <span className="userpro-detail-text">{userInfo?.email}</span>
               </div>
               <div className="userpro-detail">
-                <span className="userpro-detail-label"><strong>Phone:</strong></span>
-                <span className="userpro-detail-text">{phone}</span>
-              </div>
-              <div className="userpro-detail">
-                <span className="userpro-detail-label"><strong>Region:</strong></span>
-                <span className="userpro-detail-text">{region.label}</span>
+                <span className="userpro-detail-label">
+                  <strong>Phone:</strong>
+                </span>
+                <span className="userpro-detail-text">
+                  {userInfo?.phoneNumber}
+                </span>
               </div>
             </>
           )}
@@ -131,24 +183,47 @@ export default function UserProfile() {
         <div className="userpro-buttons">
           {isEditing ? (
             <>
-              <button className="userpro-button userpro-save-button" onClick={handleSave}>Save</button>
-              <button className="userpro-button userpro-cancel-button" onClick={handleCancel}>Cancel</button>
+              <button
+                className="userpro-button userpro-save-button"
+                onClick={handleSave}
+              >
+                Save
+              </button>
+              <button
+                className="userpro-button userpro-cancel-button"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
             </>
           ) : (
             <>
-              <button className="userpro-button userpro-edit-button" onClick={handleEdit}>Edit Account</button>
-              <button className="userpro-button userpro-delete-button">Delete Account</button>
+              <button
+                className="userpro-button userpro-edit-button"
+                onClick={handleEdit}
+              >
+                Edit Account
+              </button>
+              <button className="userpro-button userpro-delete-button">
+                Delete Account
+              </button>
             </>
           )}
         </div>
       </div>
       <h1 className="userpro-old-code">Old Code</h1>
       <div className="oldcode-container">
-        <OldCode />
-        <OldCode />
-        <OldCode />
-        <OldCode />
-        <OldCode />     
+        {codes
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by createdAt from newest to oldest
+          .map((codeEntry) => (
+            <OldCode
+              key={codeEntry.id} // Ensure id is a valid string or number
+              date={new Date(codeEntry.createdAt).toLocaleString()} // Use the custom formatDate function
+              code={codeEntry.code} // Ensure this is a string
+              room={codeEntry.roomName} // Ensure this is a string
+              language={codeEntry.language} // Ensure this is a string
+            />
+          ))}
       </div>
     </div>
   );

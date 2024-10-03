@@ -112,6 +112,8 @@ export default function CollaArea() {
         {
           // Update with your actual endpoint
           roomId,
+          room,
+          language,
           userName,
           code: code,
         }
@@ -155,7 +157,7 @@ export default function CollaArea() {
       );
     }
   };
-
+ 
   return (
     <div className="colla-area-container">
       <div className="colla-left-side">

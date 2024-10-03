@@ -21,7 +21,7 @@ export default function ProHomepage() {
         console.error("Error fetching rooms:", error);
       });
   }, []);
-
+  console.log(rooms);
   // Function to handle room click and navigate to CollaArea
   const handleJoinRoom = (room) => {
     const { room: areaName, roomId: areaId } = room; // Destructure areaName and areaId
@@ -80,7 +80,7 @@ export default function ProHomepage() {
               {rooms.length > 0 ? (
                 rooms.map((room) => (
                   <li key={room.roomId} onClick={() => handleJoinRoom(room)}>
-                    {room.room} {room.roomId}
+                    {room.roomName} {room.language} {room.roomId}
                   </li>
                 ))
               ) : (
