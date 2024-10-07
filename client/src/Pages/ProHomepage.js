@@ -5,9 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import axios from "axios"; // Assuming you are using axios
 import socket from "../components/socket";
+import ProArea from "../components/ProArea/ProArea";
 
 export default function ProHomepage() {
   const [rooms, setRooms] = useState([]); // To store the rooms fetched from backend
+  const [searchTerm, setSearchTerm] = useState(""); // State for the search term
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export default function ProHomepage() {
         console.error("Error fetching rooms:", error);
       });
   }, []);
-  console.log(rooms);
+
   // Function to handle room click and navigate to CollaArea
   const handleJoinRoom = (room) => {
     const { roomName, roomId: areaId, language } = room; // Destructure areaName and areaId
@@ -41,19 +43,36 @@ export default function ProHomepage() {
         console.log("Authenticated user:", socket.username);
 
         // Emit the join_room event with areaName and areaId
-        socket.emit("join_room", { areaName: roomName, areaId, language }); // Emit both areaName and areaId
-
-        // Navigate to CollaArea with areaName and areaId passed as state
-        navigate("/collaarea", {
-          state: {
-            room: roomName,
-            areaId: areaId,
-            language: language,
-          },
+        socket.on("join_request_status", (data) => {
+          alert(data.message);
+          if (data.message === "accepted") {
+            // Navigate to CollaArea with areaName and areaId passed as state
+            navigate("/collaarea", {
+              state: {
+                room: roomName,
+                areaId: areaId,
+                language: language,
+              },
+            });
+          } // Show a toast notification
         });
       });
     }
   };
+
+  // Function to handle search input change
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase()); // Update search term in lowercase
+  };
+
+  // Filter rooms based on search term
+  const filteredRooms = rooms.filter((room) => {
+    return (
+      room.roomName.toLowerCase().includes(searchTerm) ||
+      room.roomId.toLowerCase().includes(searchTerm) ||
+      room.language.toLowerCase().includes(searchTerm)
+    );
+  });
 
   return (
     <div className="proHome-homepage-container">
@@ -69,24 +88,30 @@ export default function ProHomepage() {
           <div className="proHome-search-bar-container">
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search by Room ID, Name, or Language..."
               className="proHome-search-input"
+              value={searchTerm} // Bind input value to searchTerm
+              onChange={handleSearchChange} // Handle input changes
             />
             <button className="proHome-search-button">Search</button>
           </div>
           <div className="proHome-gray-card">
             <h2>Available Rooms:</h2>
-            <ul>
-              {rooms.length > 0 ? (
-                rooms.map((room) => (
-                  <li key={room.roomId} onClick={() => handleJoinRoom(room)}>
-                    {room.roomName} {room.language} {room.roomId}
-                  </li>
-                ))
-              ) : (
-                <p>No rooms available</p>
-              )}
-            </ul>
+            {filteredRooms.length > 0 ? (
+              filteredRooms.map((room) => (
+                <ProArea
+                  key={room.roomId}
+                  areaName={room.roomName}
+                  owner={room.owner}
+                  language={room.language}
+                  areaId={room.roomId}
+                  numOfUsers={room.users}
+                  onJoinRoom={() => handleJoinRoom(room)} // Pass the room to the handler
+                />
+              ))
+            ) : (
+              <p>No rooms available</p>
+            )}
           </div>
         </div>
         <div className="proHome-right-section">

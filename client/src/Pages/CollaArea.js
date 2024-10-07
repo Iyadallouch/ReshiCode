@@ -36,7 +36,7 @@ export default function CollaArea() {
       if (!socket.connected) {
         socket.connect();
       }
-
+      
       // Emitting with room details
       socket.emit("join_room", {
         areaName: room,
@@ -187,7 +187,7 @@ export default function CollaArea() {
 
   const handleReject = (username) => {
     // Logic to handle rejecting the request
-    console.log(`Rejected: ${username} for area ID: ${areaId}`);
+    socket.emit("reject_user", { areaId, username });
     // Emit socket event or API call here
   };
   return (
@@ -244,14 +244,14 @@ export default function CollaArea() {
 
           <div className="colla-tab-content">
             {activeTab === "members" ? (
-              <div className="colla-user-card">
-                <img src={userImage} alt="User" />
-                <h2>Connected Users:</h2>
-                <ul>
-                  {userList.map((username, index) => (
-                    <li key={index}>{username}</li>
-                  ))}
-                </ul>
+              <div>
+                {userList.map((username, index) => (
+                  <div className="colla-user-card">
+                    <img src={userImage} alt="User" />
+                    <h2 key={index}>{username}</h2>
+                    <ul></ul>
+                  </div>
+                ))}
               </div>
             ) : (
               <div className="colla-request-card">
