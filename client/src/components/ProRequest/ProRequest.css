@@ -34,7 +34,6 @@
   color: #00a88b;
   margin-right: 30px;
   font-size: 22px;
-
 }
 
 .req-reject-icon {
@@ -50,7 +49,7 @@
 
 .req-stars {
   display: flex;
-  margin-left: 10px
+  margin-left: 10px;
 }
 
 .req-star {
@@ -70,5 +69,19 @@
 .req-feedback-button:hover {
   background-color: #00a88b;
   transform: scale(1.05);
+}
+.req-star {
+  color: gray; /* Default color for empty stars */
+}
 
+.req-star.filled {
+  color: gold; /* Color for filled stars */
+}
+
+.req-star.half-filled {
+  color: gold; /* Color for half-filled stars, you can add gradient for half color */
+}
+
+.req-star.empty {
+  color: gray; /* Ensure empty stars have a distinct color */
 }

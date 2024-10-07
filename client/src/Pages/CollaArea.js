@@ -16,7 +16,9 @@ export default function CollaArea() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [userList, setUserList] = useState([]);
+  const [pendingProgrammer, setPendingProgrammer] = useState([]);
   const [output, setOutput] = useState("");
+
   const [code, setcode] = useState("");
   const [showModal, setShowModal] = useState(false); // State for modal visibility
   const location = useLocation();
@@ -68,14 +70,32 @@ export default function CollaArea() {
       alert(message); // Display a message to the user
       socket.disconnect(); // Optionally disconnect the socket
     };
+    const handlePendingUsers = async (pending) => {
+      console.log("Pending users", pending);
+
+      try {
+        const response = await axios.post(
+          "http://localhost:3001/api/auth/proInfoPending",
+          {
+            usernames: pending,
+          }
+        );
+        const programmersData = response.data;
+        setPendingProgrammer(programmersData);
+        // You can set this data to state or use it as needed
+      } catch (error) {
+        console.error("Failed to fetch programmer info", error);
+      }
+    };
     socket.on("user_list", handleUserList);
-    socket.on("pending_list", (pending) => console.log(pending));
+    socket.on("pending_list", handlePendingUsers);
     socket.on("receive_message", handleReceiveMessage);
     socket.on("get_old_messages", handleGetOldMessages);
     socket.on("code_update", handleCodeUpdate);
     socket.on("get_old_code", handleGetOldCode);
     socket.on("room_closed", handleRoomClosed);
     return () => {
+      socket.off("pending_list", handlePendingUsers);
       socket.off("user_list", handleUserList);
       socket.off("receive_message", handleReceiveMessage);
       socket.off("get_old_messages", handleGetOldMessages);
@@ -159,7 +179,17 @@ export default function CollaArea() {
       );
     }
   };
+  const handleAccept = (username, areaId) => {
+    console.log("areaId", areaId, "username", username);
+    // Logic to handle accepting the request
+    socket.emit("accept_user", { username, areaId }); // Send as an object
+  };
 
+  const handleReject = (username) => {
+    // Logic to handle rejecting the request
+    console.log(`Rejected: ${username} for area ID: ${areaId}`);
+    // Emit socket event or API call here
+  };
   return (
     <div className="colla-area-container">
       <div className="colla-left-side">
@@ -225,9 +255,19 @@ export default function CollaArea() {
               </div>
             ) : (
               <div className="colla-request-card">
-                <ProRequest userName="User 1" />
-                <ProRequest userName="User 2" />
-                <ProRequest userName="User 3" />
+                {pendingProgrammer.length > 0 ? (
+                  pendingProgrammer.map((programmer, index) => (
+                    <ProRequest
+                      key={programmer.id || index} // Use a unique identifier if available
+                      user={programmer.username}
+                      rate={programmer.rate} // Assuming `rating` is fetched from API response
+                      onAccept={() => handleAccept(programmer.username, areaId)}
+                      onReject={() => handleReject(programmer.username)}
+                    />
+                  ))
+                ) : (
+                  <p>No pending requests.</p>
+                )}
               </div>
             )}
           </div>
