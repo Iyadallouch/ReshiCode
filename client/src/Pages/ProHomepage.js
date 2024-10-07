@@ -24,9 +24,9 @@ export default function ProHomepage() {
   console.log(rooms);
   // Function to handle room click and navigate to CollaArea
   const handleJoinRoom = (room) => {
-    const { room: areaName, roomId: areaId } = room; // Destructure areaName and areaId
+    const { roomName, roomId: areaId, language } = room; // Destructure areaName and areaId
 
-    if (areaName.trim()) {
+    if (roomName.trim()) {
       if (!socket.connected) {
         socket.connect();
       }
@@ -41,14 +41,14 @@ export default function ProHomepage() {
         console.log("Authenticated user:", socket.username);
 
         // Emit the join_room event with areaName and areaId
-        socket.emit("join_room", { areaName, areaId }); // Emit both areaName and areaId
+        socket.emit("join_room", { areaName: roomName, areaId, language }); // Emit both areaName and areaId
 
         // Navigate to CollaArea with areaName and areaId passed as state
         navigate("/collaarea", {
           state: {
-            room: areaName,
+            room: roomName,
             areaId: areaId,
-            language: areaName,
+            language: language,
           },
         });
       });

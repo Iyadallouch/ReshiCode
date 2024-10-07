@@ -52,6 +52,7 @@ export default function CollaArea() {
     };
 
     const handleGetOldMessages = (oldMessages) => {
+      console.log("old messages", oldMessages);
       setMessages((prevMessages) => [...prevMessages, ...oldMessages]);
     };
 
@@ -68,6 +69,7 @@ export default function CollaArea() {
       socket.disconnect(); // Optionally disconnect the socket
     };
     socket.on("user_list", handleUserList);
+    socket.on("pending_list", (pending) => console.log(pending));
     socket.on("receive_message", handleReceiveMessage);
     socket.on("get_old_messages", handleGetOldMessages);
     socket.on("code_update", handleCodeUpdate);
@@ -157,7 +159,7 @@ export default function CollaArea() {
       );
     }
   };
- 
+
   return (
     <div className="colla-area-container">
       <div className="colla-left-side">
