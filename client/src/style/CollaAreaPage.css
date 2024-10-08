@@ -186,13 +186,6 @@
   background-color: #00a88b;
 }
 
-.colla-empty-card {
-  background-color: #ccc;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  flex: 1; /* Ensure it fills remaining space */
-}
 .code-mirror {
   display: block; /* Change from flex to block to avoid flex alignment issues */
   flex: 3;
@@ -254,13 +247,12 @@
 .colla-empty-card {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center messages horizontally */
   gap: 10px;
   padding: 10px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 10px;
-
+  flex: 1; /* Ensure it fills remaining space */
   max-height: 500px; /* Keep the preferred height */
   max-width: 480px;
   overflow-y: auto;
@@ -275,7 +267,6 @@
   flex-direction: column;
   align-items: flex-start;
   max-width: 100%;
-  margin: 0 auto; /* Center the message box */
   word-wrap: break-word;
 }
 
@@ -287,10 +278,8 @@
 
 /* Style for the sender's name */
 .colla-message-sender {
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
-  font-size: 14px;
+  font-size: 15px;
+  color: #444;
 }
 
 /* Style for the message text */

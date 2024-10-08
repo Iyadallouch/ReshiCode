@@ -99,9 +99,7 @@ export default function CollaArea() {
         setProgStatus(false);
         alert(data.message);
 
-        setTimeout(() => {
-          navigate("/prohomepage");
-        }, 1000); // Delay for 1000 milliseconds (1 second)
+        window.location.href = "/prohomepage";
       }
     });
     socket.on("user_list", handleUserList);
@@ -125,7 +123,7 @@ export default function CollaArea() {
     console.log(socket.username, areaId);
     // Emit the disconnect_user event to the server
     socket.emit("disconnect_programmer", { areaId });
-    navigate("/prohomepage");
+    window.location.href = "/prohomepage";
   };
   const sendMessage = (e) => {
     e.preventDefault();
