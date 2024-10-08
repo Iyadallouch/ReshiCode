@@ -40,17 +40,17 @@ const EvaCard = ({
   <div className="evacard-programmer">
     <div className="evacard-header">
       <div className="user-info">
-      <img className="evacard-user-image" alt="user" src={userImage} />
-      <div className="evacard-prog-name">{programmer.name}</div>
+        <img className="evacard-user-image" alt="user" src={userImage} />
+        <div className="evacard-prog-name">{programmer}</div>
       </div>
       <RatingStars
-        programmerId={programmer.id}
+        programmerId={programmer}
         rating={rating}
         onRatingChange={onRatingChange}
       />
     </div>
     <FeedbackInput
-      programmerId={programmer.id}
+      programmerId={programmer}
       feedback={feedback}
       onFeedbackChange={onFeedbackChange}
     />

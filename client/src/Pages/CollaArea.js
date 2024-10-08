@@ -175,8 +175,18 @@ export default function CollaArea() {
   const confirmEndSession = () => {
     socket.disconnect(); // Disconnect the socket
     setShowModal(false); // Hide the modal
-    navigate("/evaluations");
-    // Optionally, redirect or perform any additional cleanup here
+    const updatedList = userList.filter((user) => {
+      console.log(
+        "Type of user:",
+        typeof user,
+        "Type of socket.username:",
+        typeof socket.username
+      );
+      return user !== socket.username;
+    });
+
+    console.log("Updated List after filtering:", updatedList);
+    navigate("/evaluations", { state: { updatedList } }); // Optionally, redirect or perform any additional cleanup here
   };
   const handleRun = async (e) => {
     e.preventDefault();

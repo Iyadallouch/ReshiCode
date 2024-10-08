@@ -53,7 +53,7 @@ export default function UserProfile() {
     };
 
     fetchData();
-  }, []);
+  }, [error]);
 
   console.log(userInfo);
   console.log(codes);
