@@ -14,6 +14,7 @@ export default function ProHomepage() {
 
   useEffect(() => {
     // Fetch the list of rooms when the component mounts
+
     axios
       .get("http://localhost:3001/api/rooms")
       .then((response) => {
@@ -43,18 +44,17 @@ export default function ProHomepage() {
         console.log("Authenticated user:", socket.username);
 
         // Emit the join_room event with areaName and areaId
-        socket.on("join_request_status", (data) => {
-          alert(data.message);
-          if (data.message === "accepted") {
-            // Navigate to CollaArea with areaName and areaId passed as state
-            navigate("/collaarea", {
-              state: {
-                room: roomName,
-                areaId: areaId,
-                language: language,
-              },
-            });
-          } // Show a toast notification
+
+        socket.emit("join_room", { areaName: roomName, areaId, language }); // Emit both areaName and areaId
+
+        // Navigate to CollaArea with areaName and areaId passed as state
+        navigate("/collaarea", {
+          state: {
+            room: roomName,
+            areaId: areaId,
+            language: language,
+            prog: true,
+          },
         });
       });
     }

@@ -31,15 +31,16 @@
 }
 
 .colla-action-button {
-  padding: 5px 10px; /* Smaller buttons */
+  padding: 10px 20px; /* Smaller buttons */
   background-color: #94cdc6;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: medium;
   margin-left: 10px; /* Space between buttons */
   width: 80px;
   height: 40px;
+  transition: transform 0.1s ease;
 }
 
 .colla-action-button:hover {
@@ -66,6 +67,7 @@
   font-size: 22px;
   color: #ffffff;
   margin-bottom: 10px;
+
   font-family: "Audiowide";
   color: rgba(148, 205, 198, 255);
 }
@@ -94,12 +96,14 @@
 }
 
 .colla-top-button {
-  padding: 5px 10px;
+  padding: 10px 20px;
   background-color: #94cdc6;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: medium;
   margin-bottom: 10px;
+  transition: transform 0.1s ease;
 }
 
 .colla-top-button:hover {
@@ -134,7 +138,14 @@
 .colla-tab.active {
   background-color: white;
 }
-
+.colla-logo {
+  position: absolute;
+  top: 0;
+  padding-top: 40px;
+}
+.colla-img {
+  width: 150px;
+}
 .colla-tab-content {
   padding: 10px;
   max-height: 200px;
@@ -237,6 +248,123 @@
 
 .custom-modal .modal-footer {
   background-color: #f1f1f1; /* Light gray for the footer */
+}
+
+/* Container for all messages */
+.colla-empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center messages horizontally */
+  gap: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  max-height: 500px; /* Keep the preferred height */
+  max-width: 480px;
+  overflow-y: auto;
+}
+
+/* Style for each chat message box */
+.colla-message-card {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 100%;
+  margin: 0 auto; /* Center the message box */
+  word-wrap: break-word;
+}
+
+/* Style for message from the current user */
+.colla-message-card.self {
+  background-color: #d1e7dd;
+  align-self: flex-end; /* Align self messages to the right */
+}
+
+/* Style for the sender's name */
+.colla-message-sender {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Style for the message text */
+.colla-message-text {
+  font-size: 15px;
+  color: #444;
+}
+
+/* Input container for message input and send button */
+.colla-message-input-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 5px;
+  border-top: 1px solid #ddd;
+}
+
+/* Style for the input field */
+.colla-message-input {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 15px;
+  outline: none;
+  font-size: 14px;
+  margin-right: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.colla-message-input:focus {
+  border-color: #4a90e2;
+}
+
+/* Style for the send button */
+.colla-message-send-button {
+  background-color: #4a90e2;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.colla-message-send-button:hover {
+  background-color: #357abd;
+}
+.colla-body {
+  margin: 0; /* Remove default margin */
+  height: 100vh; /* Full height of the viewport */
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+.colla-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  padding: 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin: 20px; /* Margin around the container */
+  gap: 20px;
+  width: 400px;
+}
+
+.colla-container h5 {
+  font-size: 1.2rem; /* Font size */
+  color: #333; /* Dark text color */
+  margin-bottom: 15px; /* Space between heading and button */
 }
 
 /* Responsive adjustments */

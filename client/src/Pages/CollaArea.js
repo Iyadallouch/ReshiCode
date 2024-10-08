@@ -9,6 +9,8 @@ import socket from "../components/socket";
 import { useLocation, useNavigate } from "react-router-dom";
 import Alert from "./Alert";
 import axios from "axios";
+import logo from "../images/logo.png";
+import { ReactTyped } from "react-typed";
 
 export default function CollaArea() {
   const [activeTab, setActiveTab] = useState("members");
@@ -18,11 +20,11 @@ export default function CollaArea() {
   const [userList, setUserList] = useState([]);
   const [pendingProgrammer, setPendingProgrammer] = useState([]);
   const [output, setOutput] = useState("");
-
+  const [progStatus, setProgStatus] = useState();
   const [code, setcode] = useState("");
   const [showModal, setShowModal] = useState(false); // State for modal visibility
   const location = useLocation();
-  const { areaId, room, language } = location.state || {};
+  const { areaId, room, language, prog } = location.state || {};
   const uniqueMessages = [];
   const seenIds = new Set();
   messages.forEach((msg) => {
@@ -36,12 +38,12 @@ export default function CollaArea() {
       if (!socket.connected) {
         socket.connect();
       }
-      
       // Emitting with room details
       socket.emit("join_room", {
         areaName: room,
         areaId: areaId, // Make sure to define roomId if necessary
       });
+
       console.log("connected");
     }
 
@@ -65,6 +67,7 @@ export default function CollaArea() {
     const handleGetOldCode = (oldCode) => {
       setcode(oldCode);
     };
+
     const handleRoomClosed = (message) => {
       navigate("/prohomepage"); // Redirect the user to the homepage or another page
       alert(message); // Display a message to the user
@@ -87,6 +90,20 @@ export default function CollaArea() {
         console.error("Failed to fetch programmer info", error);
       }
     };
+
+    socket.on("join_request_status", (data) => {
+      if (data.message === "accepted") {
+        setProgStatus(true);
+        alert(data.message);
+      } else if (data.message === "rejected") {
+        setProgStatus(false);
+        alert(data.message);
+
+        setTimeout(() => {
+          navigate("/prohomepage");
+        }, 1000); // Delay for 1000 milliseconds (1 second)
+      }
+    });
     socket.on("user_list", handleUserList);
     socket.on("pending_list", handlePendingUsers);
     socket.on("receive_message", handleReceiveMessage);
@@ -104,7 +121,12 @@ export default function CollaArea() {
       socket.on("room_closed", handleRoomClosed);
     };
   }, [areaId, room, navigate]);
-
+  const handleDisconnectProgrammer = () => {
+    console.log(socket.username, areaId);
+    // Emit the disconnect_user event to the server
+    socket.emit("disconnect_programmer", { areaId });
+    navigate("/prohomepage");
+  };
   const sendMessage = (e) => {
     e.preventDefault();
     if (message.trim()) {
@@ -191,107 +213,151 @@ export default function CollaArea() {
     // Emit socket event or API call here
   };
   return (
-    <div className="colla-area-container">
-      <div className="colla-left-side">
-        <div className="colla-buttons-container">
-          <span className="colla-buttons-text">Enter your code :</span>
-          <button className="colla-action-button" onClick={handleRun}>
-            Run
-          </button>
-          <button className="colla-action-button" onClick={handleSave}>
-            Save
-          </button>
-        </div>
-        <div className="code-mirror">
-          <CodeMirror
-            value={code}
-            height="100%"
-            theme={vscodeDark}
-            extensions={[javascript({ jsx: true })]}
-            onChange={onChange}
-            style={{ minWidth: "100%" }}
-          />
-        </div>
-        <div className="colla-output-label">Output :</div>
-        <div className="colla-output-card">
-          <pre>{output}</pre>
-        </div>
-      </div>
-
-      <div className="colla-right-side">
-        <div className="colla-top-button-container">
-          <button className="colla-top-button" onClick={handleEndSessionClick}>
-            End Session
-          </button>
-        </div>
-        <div className="colla-tabs-container">
-          <div className="colla-tabs">
+    <div>
+      {prog && !progStatus ? (
+        <div className="colla-body">
+          <div className="colla-logo">
+            <img className="colla-img" src={logo} alt="logo" />
+          </div>
+          <div className="colla-container">
+            <h5>
+              Waiting for user accept{" "}
+              <ReactTyped strings={["..."]} typeSpeed={100} loop />
+            </h5>
             <button
-              className={`colla-tab ${activeTab === "members" ? "active" : ""}`}
-              onClick={() => setActiveTab("members")}
+              className="colla-top-button"
+              onClick={handleDisconnectProgrammer}
             >
-              Members
-            </button>
-            <button
-              className={`colla-tab ${
-                activeTab === "requests" ? "active" : ""
-              }`}
-              onClick={() => setActiveTab("requests")}
-            >
-              Requests
+              Disconnect
             </button>
           </div>
+        </div>
+      ) : !prog || progStatus ? (
+        <div className="colla-area-container">
+          <div className="colla-left-side">
+            <div className="colla-buttons-container">
+              <span className="colla-buttons-text">Enter your code :</span>
+              <button className="colla-action-button" onClick={handleRun}>
+                Run
+              </button>
+              <button className="colla-action-button" onClick={handleSave}>
+                Save
+              </button>
+            </div>
+            <div className="code-mirror">
+              <CodeMirror
+                value={code}
+                height="100%"
+                theme={vscodeDark}
+                extensions={[javascript({ jsx: true })]}
+                onChange={onChange}
+                style={{ minWidth: "100%" }}
+              />
+            </div>
+            <div className="colla-output-label">Output :</div>
+            <div className="colla-output-card">
+              <pre>{output}</pre>
+            </div>
+          </div>
 
-          <div className="colla-tab-content">
-            {activeTab === "members" ? (
-              <div>
-                {userList.map((username, index) => (
-                  <div className="colla-user-card">
-                    <img src={userImage} alt="User" />
-                    <h2 key={index}>{username}</h2>
-                    <ul></ul>
-                  </div>
-                ))}
+          <div className="colla-right-side">
+            <div className="colla-top-button-container">
+              <button
+                className="colla-top-button"
+                onClick={handleEndSessionClick}
+              >
+                End Session
+              </button>
+            </div>
+            <div className="colla-tabs-container">
+              <div className="colla-tabs">
+                <button
+                  className={`colla-tab ${
+                    activeTab === "members" ? "active" : ""
+                  }`}
+                  onClick={() => setActiveTab("members")}
+                >
+                  Members
+                </button>
+                <button
+                  className={`colla-tab ${
+                    activeTab === "requests" ? "active" : ""
+                  }`}
+                  onClick={() => setActiveTab("requests")}
+                >
+                  Requests
+                </button>
               </div>
-            ) : (
-              <div className="colla-request-card">
-                {pendingProgrammer.length > 0 ? (
-                  pendingProgrammer.map((programmer, index) => (
-                    <ProRequest
-                      key={programmer.id || index} // Use a unique identifier if available
-                      user={programmer.username}
-                      rate={programmer.rate} // Assuming `rating` is fetched from API response
-                      onAccept={() => handleAccept(programmer.username, areaId)}
-                      onReject={() => handleReject(programmer.username)}
-                    />
-                  ))
+
+              <div className="colla-tab-content">
+                {activeTab === "members" ? (
+                  <div>
+                    {userList.map((username, index) => (
+                      <div className="colla-user-card">
+                        <img src={userImage} alt="User" />
+                        <h2 key={index}>{username}</h2>
+                        <ul></ul>
+                      </div>
+                    ))}
+                  </div>
                 ) : (
-                  <p>No pending requests.</p>
+                  <div className="colla-request-card">
+                    {pendingProgrammer.length > 0 ? (
+                      pendingProgrammer.map((programmer, index) => (
+                        <ProRequest
+                          key={programmer.id || index} // Use a unique identifier if available
+                          user={programmer.username}
+                          rate={programmer.rate} // Assuming `rating` is fetched from API response
+                          onAccept={() =>
+                            handleAccept(programmer.username, areaId)
+                          }
+                          onReject={() => handleReject(programmer.username)}
+                        />
+                      ))
+                    ) : (
+                      <p>No pending requests.</p>
+                    )}
+                  </div>
                 )}
               </div>
-            )}
+            </div>
+
+            {/* Chatting area */}
+            <div className="colla-output-label">Chatting area :</div>
+            <div className="colla-empty-card">
+              {uniqueMessages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`colla-message-card ${
+                    msg.username === socket.username ? "self" : ""
+                  }`}
+                >
+                  <div className="colla-message-sender">{msg.username}</div>
+                  <div className="colla-message-text">{msg.message}</div>
+                </div>
+              ))}
+            </div>
+
+            <form
+              className="colla-message-input-container"
+              onSubmit={sendMessage}
+            >
+              <input
+                type="text"
+                className="colla-message-input"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Type a message"
+              />
+              <button type="submit" className="colla-message-send-button">
+                Send
+              </button>
+            </form>
           </div>
         </div>
-
-        <div className="colla-output-label">Chatting area :</div>
-        <div className="colla-empty-card">
-          {uniqueMessages.map((msg, index) => (
-            <div key={index}>
-              <strong>{msg.username}:</strong> {msg.message}
-            </div>
-          ))}
-        </div>
-
-        <form onSubmit={sendMessage}>
-          <input
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type a message"
-          />
-          <button type="submit">Send</button>
-        </form>
-      </div>
+      ) : (
+        <></>
+      )}
 
       {/* Bootstrap Modal for confirmation */}
       <Alert
