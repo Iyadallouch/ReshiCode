@@ -121,6 +121,8 @@
     display: flex;
     flex-direction: column-reverse;
     padding: 30px;
+    align-items: center;
+    justify-content: center;
   }
   .proHome-main-content {
     flex-direction: column;
@@ -144,13 +146,8 @@
   .proHome-logo-welcome-container {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
-
-  /* .proHome-website-logo {
-    margin-bottom: 10px;
-    width: 230px;
-    margin-left: 50px;
-  } */
 
   .proHome-welcome-text {
     text-align: center;
@@ -158,8 +155,7 @@
 
   .proHome-search-bar-container {
     flex-direction: column;
-    width: 70%;
-    margin-left: 50px;
+    width: 100%;
   }
 
   .proHome-search-input,

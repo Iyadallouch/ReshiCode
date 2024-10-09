@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
-import Select from 'react-select';
-import countryList from 'react-select-country-list';
+import React, { useEffect, useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import Select from "react-select";
+import countryList from "react-select-country-list";
 import userImage from "../images/userpic.png";
 import "../style/ProProfilePage.css";
 import Feedback from "../components/Feedback/Feedback";
-
+import axios from "axios";
 
 export default function ProProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -14,11 +14,18 @@ export default function ProProfile() {
   const [email, setEmail] = useState("user.email@example.com");
   const [password, setPassword] = useState("password");
   const [phone, setPhone] = useState("+1234567890");
-  const [region, setRegion] = useState({ value: 'Region', label: 'Region' });
+  const [region, setRegion] = useState({ value: "Region", label: "Region" });
   const [profileImage, setProfileImage] = useState(userImage);
+  const [feedbackData, setFeedbackData] = useState([]);
 
   const countryOptions = countryList().getData();
-
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    const date = new Date(dateString);
+    return date
+      .toLocaleDateString("en-US", options)
+      .replace(/(\w+)\s(\d+),\s(\d+)/, "$2-$1-$3");
+  };
   const handleEdit = () => setIsEditing(true);
   const handleCancel = () => setIsEditing(false);
   const handleSave = () => {
@@ -35,6 +42,35 @@ export default function ProProfile() {
       reader.readAsDataURL(e.target.files[0]);
     }
   };
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          "http://localhost:3001/api/auth/getFeedback",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // Check if 'feedbacks' key exists and is an array
+        const feedbackArray = response.data.feedbacks || [];
+        setFeedbackData(feedbackArray);
+        console.log("Feedback retrieved successfully:", feedbackData);
+      } catch (error) {
+        const errorMessage =
+          error.response?.data?.error ||
+          error.message ||
+          "An error occurred while fetching feedback.";
+        console.error("Error retrieving feedback:", errorMessage);
+        alert(errorMessage);
+      }
+    };
+
+    fetchFeedback();
+  }, []); // Runs only once on mount
 
   return (
     <div className="pro-prof-container">
@@ -55,7 +91,9 @@ export default function ProProfile() {
           {isEditing ? (
             <>
               <div className="pro-prof-detail">
-                <label className="pro-prof-detail-label"><strong>Name:</strong></label>
+                <label className="pro-prof-detail-label">
+                  <strong>Name:</strong>
+                </label>
                 <input
                   type="text"
                   value={userName}
@@ -64,7 +102,9 @@ export default function ProProfile() {
                 />
               </div>
               <div className="pro-prof-detail">
-                <label className="pro-prof-detail-label"><strong>Email:</strong></label>
+                <label className="pro-prof-detail-label">
+                  <strong>Email:</strong>
+                </label>
                 <input
                   type="email"
                   value={email}
@@ -73,7 +113,9 @@ export default function ProProfile() {
                 />
               </div>
               <div className="pro-prof-detail">
-                <label className="pro-prof-detail-label"><strong>Password:</strong></label>
+                <label className="pro-prof-detail-label">
+                  <strong>Password:</strong>
+                </label>
                 <input
                   type="password"
                   value={password}
@@ -82,18 +124,22 @@ export default function ProProfile() {
                 />
               </div>
               <div className="pro-prof-detail">
-                <label className="pro-prof-detail-label"><strong>Phone:</strong></label>
+                <label className="pro-prof-detail-label">
+                  <strong>Phone:</strong>
+                </label>
                 <PhoneInput
-                  country={'ae'}
+                  country={"ae"}
                   value={phone}
                   onChange={(phone) => setPhone(phone)}
-                  inputProps={{ name: 'phone', required: true }}
+                  inputProps={{ name: "phone", required: true }}
                   containerClass="pro-prof-phone-container"
                   inputClass="pro-prof-phone-input"
                 />
               </div>
               <div className="pro-prof-detail">
-                <label className="pro-prof-detail-label"><strong>Region:</strong></label>
+                <label className="pro-prof-detail-label">
+                  <strong>Region:</strong>
+                </label>
                 <Select
                   options={countryOptions}
                   value={region}
@@ -106,23 +152,33 @@ export default function ProProfile() {
           ) : (
             <>
               <div className="pro-prof-detail">
-                <span className="pro-prof-detail-label"><strong>Name:</strong></span>
+                <span className="pro-prof-detail-label">
+                  <strong>Name:</strong>
+                </span>
                 <span className="pro-prof-detail-text">{userName}</span>
               </div>
               <div className="pro-prof-detail">
-                <span className="pro-prof-detail-label"><strong>Email:</strong></span>
+                <span className="pro-prof-detail-label">
+                  <strong>Email:</strong>
+                </span>
                 <span className="pro-prof-detail-text">{email}</span>
               </div>
               <div className="pro-prof-detail">
-                <span className="pro-prof-detail-label"><strong>Password:</strong></span>
+                <span className="pro-prof-detail-label">
+                  <strong>Password:</strong>
+                </span>
                 <span className="pro-prof-detail-text">********</span>
               </div>
               <div className="pro-prof-detail">
-                <span className="pro-prof-detail-label"><strong>Phone:</strong></span>
+                <span className="pro-prof-detail-label">
+                  <strong>Phone:</strong>
+                </span>
                 <span className="pro-prof-detail-text">{phone}</span>
               </div>
               <div className="pro-prof-detail">
-                <span className="pro-prof-detail-label"><strong>Region:</strong></span>
+                <span className="pro-prof-detail-label">
+                  <strong>Region:</strong>
+                </span>
                 <span className="pro-prof-detail-text">{region.label}</span>
               </div>
             </>
@@ -131,24 +187,44 @@ export default function ProProfile() {
         <div className="pro-prof-buttons">
           {isEditing ? (
             <>
-              <button className="pro-prof-button pro-prof-save-button" onClick={handleSave}>Save</button>
-              <button className="pro-prof-button pro-prof-cancel-button" onClick={handleCancel}>Cancel</button>
+              <button
+                className="pro-prof-button pro-prof-save-button"
+                onClick={handleSave}
+              >
+                Save
+              </button>
+              <button
+                className="pro-prof-button pro-prof-cancel-button"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
             </>
           ) : (
             <>
-              <button className="pro-prof-button pro-prof-edit-button" onClick={handleEdit}>Edit Account</button>
-              <button className="pro-prof-button pro-prof-delete-button">Delete Account</button>
+              <button
+                className="pro-prof-button pro-prof-edit-button"
+                onClick={handleEdit}
+              >
+                Edit Account
+              </button>
+              <button className="pro-prof-button pro-prof-delete-button">
+                Delete Account
+              </button>
             </>
           )}
         </div>
       </div>
       <h1 className="pro-prof-feedback">Feedback</h1>
       <div className="feedback-container">
-        <Feedback />
-        <Feedback />
-        <Feedback />
-        <Feedback />
-        <Feedback />
+        {feedbackData.map((feedback, index) => (
+          <Feedback
+            key={index}
+            feedback={feedback.feedback}
+            username={feedback.createdBy.username}
+            date={formatDate(feedback.createdAt)}
+          />
+        ))}
       </div>
     </div>
   );

@@ -6,8 +6,8 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 export default function Evaluations() {
-  const [ratings, setRatings] = useState({});
-  const [feedbacks, setFeedbacks] = useState({});
+  const [ratings, setRatings] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
   const location = useLocation();
   const userList = location.state?.updatedList || [];
 
@@ -21,30 +21,34 @@ export default function Evaluations() {
       };
     });
     console.log("Array", feedbackArray);
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/api/auth/sendFeedback",
-        {
-          feedbackArray,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Attach the JWT token for authentication
+    if (feedbacks.length !== 0|| ratings.length!==0) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3001/api/auth/sendFeedback",
+          {
+            feedbackArray,
           },
-        }
-      );
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Attach the JWT token for authentication
+            },
+          }
+        );
 
-      console.log("Feedback sent successfully:", response.data);
-      if (response.data) {
-        window.location.href = "/userhomepage";
-        return response.data;
+        console.log("Feedback sent successfully:", response.data);
+        if (response.data) {
+          window.location.href = "/userhomepage";
+          return response.data;
+        }
+      } catch (error) {
+        console.error(
+          "Error sending feedback:",
+          error.response?.data || error.message
+        );
+        throw error; // Rethrow or handle the error as needed
       }
-    } catch (error) {
-      console.error(
-        "Error sending feedback:",
-        error.response?.data || error.message
-      );
-      throw error; // Rethrow or handle the error as needed
+    } else {
+      window.location.href = "/userhomepage";
     }
   };
 
