@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import Select from "react-select";
-import countryList from "react-select-country-list";
 import userImage from "../images/userpic.png";
 import "../style/UserProfilePage.css";
 import OldCode from "../components/OldCode/OldCode";
@@ -12,11 +10,8 @@ export default function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [userName, setUserName] = useState("User Name");
   const [email, setEmail] = useState("user.email@example.com");
-  const [password, setPassword] = useState("password");
   const [phone, setPhone] = useState("+1234567890");
-  const [region, setRegion] = useState({ value: "Region", label: "Region" });
   const [profileImage, setProfileImage] = useState(userImage);
-  const countryOptions = countryList().getData();
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);
   const [codes, setCodes] = useState([]);
@@ -116,17 +111,7 @@ export default function UserProfile() {
                   className="userpro-input"
                 />
               </div>
-              <div className="pro-prof-detail">
-                <label className="pro-prof-detail-label">
-                  <strong>Password:</strong>
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pro-prof-input"
-                />
-              </div>
+              
               <div className="userpro-detail">
                 <label className="userpro-detail-label">
                   <strong>Phone:</strong>
@@ -140,18 +125,7 @@ export default function UserProfile() {
                   inputClass="userpro-phone-input"
                 />
               </div>
-              <div className="userpro-detail">
-                <label className="userpro-detail-label">
-                  <strong>Region:</strong>
-                </label>
-                <Select
-                  options={countryOptions}
-                  value={region}
-                  onChange={setRegion}
-                  placeholder="Select a region"
-                  className="userpro-select"
-                />
-              </div>
+              
             </>
           ) : (
             <>

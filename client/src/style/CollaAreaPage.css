@@ -254,8 +254,9 @@
   border-radius: 10px;
   flex: 1;
   max-height: 500px;
+  max-width: 100%;
   overflow-y: auto;
-  align-items: center; /* Center messages in the container */
+  align-items: center;
 }
 
 /* Style for each chat message box */
@@ -264,32 +265,35 @@
   border-radius: 8px;
   padding: 10px;
   display: inline-block;
-  max-width: 75%; /* Limit the width to a percentage of the container */
+  max-width: 75%;
   word-wrap: break-word;
-  align-self: flex-start; /* Default alignment */
-  text-align: left; /* Align text to the left */
+  word-break: break-word; /* Ensures text breaks within the word */
+  white-space: pre-wrap; /* Preserves whitespace but wraps text to the next line */
+  align-self: flex-start;
+  text-align: left;
+  overflow-wrap: break-word; /* Additional overflow handling */
 }
 
 /* Style for message from the current user */
 .colla-message-card.self {
   background-color: #d1e7dd;
-  align-self: flex-end; /* Align self messages to the right */
+  align-self: flex-end;
 }
 
 /* Style for the sender's name */
 .colla-message-sender {
   font-size: 15px;
   color: #444;
-  margin-bottom: 4px; /* Add space between username and message */
-  font-weight: bold; /* Make the username bold */
-  text-decoration: underline; /* Underline the username */
+  margin-bottom: 4px;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 /* Style for the message text */
 .colla-message-text {
   font-size: 15px;
   color: #444;
-  text-align: left; /* Ensure message text is left-aligned */
+  text-align: left;
 }
 
 /* Input container for message input and send button */
@@ -298,7 +302,7 @@
   align-items: center;
   margin-top: 10px;
   padding: 5px;
-  border-top: 1px solid #ddd;
+ 
 }
 
 /* Style for the input field */
@@ -314,23 +318,25 @@
 }
 
 .colla-message-input:focus {
-  border-color: #4a90e2;
+  border-color: #94cdc6;
 }
 
 /* Style for the send button */
 .colla-message-send-button {
-  background-color: #4a90e2;
+  background-color: #94cdc6;
+  padding: 10px 20px;
   border: none;
-  color: #fff;
+  color: #000000;
   padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s ease;
+  transition: transform 0.1s ease;
 }
 
 .colla-message-send-button:hover {
-  background-color: #357abd;
+  background-color: #00a88b;
+  transform: scale(1.05);
 }
 
 .colla-body {

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import Select from "react-select";
-import countryList from "react-select-country-list";
 import userImage from "../images/userpic.png";
 import "../style/ProProfilePage.css";
 import Feedback from "../components/Feedback/Feedback";
@@ -12,13 +10,10 @@ export default function ProProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [userName, setUserName] = useState("User Name");
   const [email, setEmail] = useState("user.email@example.com");
-  const [password, setPassword] = useState("password");
   const [phone, setPhone] = useState("+1234567890");
-  const [region, setRegion] = useState({ value: "Region", label: "Region" });
   const [profileImage, setProfileImage] = useState(userImage);
   const [feedbackData, setFeedbackData] = useState([]);
 
-  const countryOptions = countryList().getData();
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "short", day: "numeric" };
     const date = new Date(dateString);
@@ -76,6 +71,7 @@ export default function ProProfile() {
     <div className="pro-prof-container">
       <div className="pro-prof-card">
         <img src={profileImage} alt="User" className="pro-prof-picture" />
+        <span className="userpro-detail-username">username</span>
         <hr />
         {isEditing && (
           <>
@@ -112,17 +108,7 @@ export default function ProProfile() {
                   className="pro-prof-input"
                 />
               </div>
-              <div className="pro-prof-detail">
-                <label className="pro-prof-detail-label">
-                  <strong>Password:</strong>
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pro-prof-input"
-                />
-              </div>
+              
               <div className="pro-prof-detail">
                 <label className="pro-prof-detail-label">
                   <strong>Phone:</strong>
@@ -136,18 +122,7 @@ export default function ProProfile() {
                   inputClass="pro-prof-phone-input"
                 />
               </div>
-              <div className="pro-prof-detail">
-                <label className="pro-prof-detail-label">
-                  <strong>Region:</strong>
-                </label>
-                <Select
-                  options={countryOptions}
-                  value={region}
-                  onChange={setRegion}
-                  placeholder="Select a region"
-                  className="pro-prof-select"
-                />
-              </div>
+              
             </>
           ) : (
             <>
@@ -163,24 +138,14 @@ export default function ProProfile() {
                 </span>
                 <span className="pro-prof-detail-text">{email}</span>
               </div>
-              <div className="pro-prof-detail">
-                <span className="pro-prof-detail-label">
-                  <strong>Password:</strong>
-                </span>
-                <span className="pro-prof-detail-text">********</span>
-              </div>
+              
               <div className="pro-prof-detail">
                 <span className="pro-prof-detail-label">
                   <strong>Phone:</strong>
                 </span>
                 <span className="pro-prof-detail-text">{phone}</span>
               </div>
-              <div className="pro-prof-detail">
-                <span className="pro-prof-detail-label">
-                  <strong>Region:</strong>
-                </span>
-                <span className="pro-prof-detail-text">{region.label}</span>
-              </div>
+              
             </>
           )}
         </div>
