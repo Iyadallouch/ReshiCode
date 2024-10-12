@@ -13,7 +13,13 @@ export default function ProProfile() {
   const [phone, setPhone] = useState("+1234567890");
   const [profileImage, setProfileImage] = useState(userImage);
   const [feedbackData, setFeedbackData] = useState([]);
-
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+  });
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "short", day: "numeric" };
     const date = new Date(dateString);
@@ -49,7 +55,15 @@ export default function ProProfile() {
             },
           }
         );
-
+        const userInfoResponse = await axios.get(
+          "http://localhost:3001/api/auth/userInfo",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUserInfo(userInfoResponse.data);
         // Check if 'feedbacks' key exists and is an array
         const feedbackArray = response.data.feedbacks || [];
         setFeedbackData(feedbackArray);
@@ -66,12 +80,13 @@ export default function ProProfile() {
 
     fetchFeedback();
   }, []); // Runs only once on mount
+  console.log(userInfo);
 
   return (
     <div className="pro-prof-container">
       <div className="pro-prof-card">
         <img src={profileImage} alt="User" className="pro-prof-picture" />
-        <span className="userpro-detail-username">username</span>
+        <span className="userpro-detail-username">{userInfo.username}</span>
         <hr />
         {isEditing && (
           <>
@@ -108,7 +123,7 @@ export default function ProProfile() {
                   className="pro-prof-input"
                 />
               </div>
-              
+
               <div className="pro-prof-detail">
                 <label className="pro-prof-detail-label">
                   <strong>Phone:</strong>
@@ -122,7 +137,6 @@ export default function ProProfile() {
                   inputClass="pro-prof-phone-input"
                 />
               </div>
-              
             </>
           ) : (
             <>
@@ -130,22 +144,25 @@ export default function ProProfile() {
                 <span className="pro-prof-detail-label">
                   <strong>Name:</strong>
                 </span>
-                <span className="pro-prof-detail-text">{userName}</span>
+                <span className="pro-prof-detail-text">
+                  {userInfo.firstName} {userInfo.lastName}
+                </span>
               </div>
               <div className="pro-prof-detail">
                 <span className="pro-prof-detail-label">
                   <strong>Email:</strong>
                 </span>
-                <span className="pro-prof-detail-text">{email}</span>
+                <span className="pro-prof-detail-text">{userInfo.email}</span>
               </div>
-              
+
               <div className="pro-prof-detail">
                 <span className="pro-prof-detail-label">
                   <strong>Phone:</strong>
                 </span>
-                <span className="pro-prof-detail-text">{phone}</span>
+                <span className="pro-prof-detail-text">
+                  {userInfo.phoneNumber}
+                </span>
               </div>
-              
             </>
           )}
         </div>
@@ -182,14 +199,16 @@ export default function ProProfile() {
       </div>
       <h1 className="pro-prof-feedback">Feedback</h1>
       <div className="feedback-container">
-        {feedbackData.map((feedback, index) => (
-          <Feedback
-            key={index}
-            feedback={feedback.feedback}
-            username={feedback.createdBy.username}
-            date={formatDate(feedback.createdAt)}
-          />
-        ))}
+        {feedbackData
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .map((feedback, index) => (
+            <Feedback
+              key={index}
+              feedback={feedback.feedback}
+              username={feedback.createdBy.username}
+              date={formatDate(feedback.createdAt)}
+            />
+          ))}
       </div>
     </div>
   );

@@ -24,6 +24,7 @@ export default function CollaArea() {
   const [code, setcode] = useState("");
   const [showModal, setShowModal] = useState(false); // State for modal visibility
   const location = useLocation();
+  const [userImages, setUserImages] = useState([]);
   const { areaId, room, language, prog } = location.state || {};
   const uniqueMessages = [];
   const seenIds = new Set();
@@ -47,8 +48,26 @@ export default function CollaArea() {
       console.log("connected");
     }
 
-    const handleUserList = (users) => {
-      setUserList(users);
+    const handleUserList = async (users) => {
+      try {
+        // Set userList state with the usernames first
+        setUserList(users);
+        console.log(users);
+        // Make API call to fetch images for the user list as a GET request with query parameters
+        const response = await axios.post(
+          "http://localhost:3001/api/auth/getUserImages",
+          {
+            users,
+          }
+        );
+
+        // Assuming the API response contains an array of { username, image } objects
+        setUserImages(response.data);
+        console.log("images", userImages);
+        // Set the updated user list with images
+      } catch (error) {
+        console.error("Error fetching user images:", error);
+      }
     };
 
     const handleReceiveMessage = (data) => {
@@ -220,6 +239,7 @@ export default function CollaArea() {
     socket.emit("reject_user", { areaId, username });
     // Emit socket event or API call here
   };
+
   return (
     <div>
       {prog && !progStatus ? (
@@ -302,7 +322,14 @@ export default function CollaArea() {
                   <div>
                     {userList.map((username, index) => (
                       <div className="colla-user-card">
-                        <img src={userImage} alt="User" />
+                        <img
+                          src={
+                            userImages[index]?.image
+                              ? `data:image/jpeg;base64,${userImages[index].image}`
+                              : userImage
+                          }
+                          alt="User"
+                        />
                         <h2 key={index}>{username}</h2>
                         <ul></ul>
                       </div>
@@ -316,6 +343,7 @@ export default function CollaArea() {
                           key={programmer.id || index} // Use a unique identifier if available
                           user={programmer.username}
                           rate={programmer.rate} // Assuming `rating` is fetched from API response
+                          image={programmer.image}
                           onAccept={() =>
                             handleAccept(programmer.username, areaId)
                           }

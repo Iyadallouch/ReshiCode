@@ -16,6 +16,8 @@ export default function Signup() {
     firstName: "",
     lastName: "",
   });
+  const [image, setImage] = useState(null); // State to store image file
+  const [preview, setPreview] = useState(null); // State to store preview URL
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -33,6 +35,17 @@ export default function Signup() {
     });
   };
 
+  // Handle image input change
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+
+    // Generate a preview URL
+    if (file) {
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,19 +54,28 @@ export default function Signup() {
       return;
     }
 
-    const signupData = {
-      ...formData,
-      phoneNumber: phone,
-      type: user ? user.value :"", // Ensure user role (normal or programmer) is included
-    };
+    // Append form data
+    const signupData = new FormData();
+    signupData.append("username", formData.username);
+    signupData.append("email", formData.email);
+    signupData.append("password", formData.password);
+    signupData.append("firstName", formData.firstName);
+    signupData.append("lastName", formData.lastName);
+    signupData.append("phoneNumber", phone);
+    signupData.append("type", user.value);
+    if (image) {
+      signupData.append("image", image); // Add image file to FormData
+    }
 
     try {
       const response = await axios.post(
         "http://localhost:3001/api/auth/signup",
-        signupData
+        signupData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
       );
       if (response.status === 201) {
-        // On success, redirect to login page
         navigate("/login");
       }
     } catch (err) {
@@ -66,6 +88,30 @@ export default function Signup() {
       <h1 className="signup-h1">Signup</h1>
       {error && <p className="error-message">{error}</p>}
       <form className="signup-form" onSubmit={handleSubmit}>
+        {/* Image Upload and Preview */}
+        <div className="signup-image-preview">
+          {preview ? (
+            <img src={preview} alt="Preview" className="image-preview" />
+          ) : (
+            <div className="image-placeholder">Photo</div>
+          )}
+          <div className="custom-file-upload">
+            <button
+              className="signup-upload-button"
+              onClick={() => document.getElementById("fileInput").click()}
+            >
+              Upload Photo
+            </button>
+            <input
+              type="file"
+              id="fileInput"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
+          </div>{" "}
+        </div>
+        {/* Other Form Fields */}
         <div className="signup-form-row">
           <div className="signup-form-group">
             <label htmlFor="username">Username</label>

@@ -10,18 +10,20 @@ export default function Evaluations() {
   const [feedbacks, setFeedbacks] = useState([]);
   const location = useLocation();
   const userList = location.state?.updatedList || [];
-
+  if (userList.length === 0) {
+    window.location.href = "/userhomepage";
+  }
   const sendFeedback = async (userList, ratings, feedbacks) => {
     const token = localStorage.getItem("token"); // Assuming you're storing the token in local storage
     const feedbackArray = userList.map((userId) => {
       return {
         programmerUsername: userId, // Use userId directly as the username
-        rating: ratings[userId], // Get the rating for the current userId
-        feedback: feedbacks[userId], // Get the feedback for the current userId
+        rating: ratings[userId] || 0, // Get the rating for the current userId
+        feedback: feedbacks[userId] || "", // Get the feedback for the current userId
       };
     });
     console.log("Array", feedbackArray);
-    if (feedbacks.length !== 0|| ratings.length!==0) {
+    if (feedbacks.length !== 0 || ratings.length !== 0) {
       try {
         const response = await axios.post(
           "http://localhost:3001/api/auth/sendFeedback",
@@ -38,6 +40,8 @@ export default function Evaluations() {
         console.log("Feedback sent successfully:", response.data);
         if (response.data) {
           window.location.href = "/userhomepage";
+          setFeedbacks([]);
+          setRatings([]);
           return response.data;
         }
       } catch (error) {

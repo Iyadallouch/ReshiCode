@@ -39,7 +39,7 @@ export default function LoginPage() {
         );
 
         const { userType } = userResponse.data;
-
+        
         // Redirect based on user type
         if (userType === "NORMAL_USER") {
           navigate("/userhomepage");

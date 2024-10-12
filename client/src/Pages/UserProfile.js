@@ -72,7 +72,15 @@ export default function UserProfile() {
   return (
     <div className="userpro-container">
       <div className="userpro-card">
-        <img src={profileImage} alt="User" className="userpro-picture" />
+        <img
+          src={
+            userInfo?.image
+              ? `data:image/jpeg;base64,${userInfo.image}`
+              : profileImage
+          }
+          alt="User"
+          className="userpro-picture"
+        />
         <span className="userpro-detail-username">{userInfo?.username}</span>
 
         <hr />
@@ -111,7 +119,7 @@ export default function UserProfile() {
                   className="userpro-input"
                 />
               </div>
-              
+
               <div className="userpro-detail">
                 <label className="userpro-detail-label">
                   <strong>Phone:</strong>
@@ -125,7 +133,6 @@ export default function UserProfile() {
                   inputClass="userpro-phone-input"
                 />
               </div>
-              
             </>
           ) : (
             <>
