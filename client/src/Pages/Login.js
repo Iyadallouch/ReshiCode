@@ -8,13 +8,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
+  const apiUrl = process.env.REACT_APP_API_URL;
+  console.log("API URL:", apiUrl);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/auth/login",
+        `${apiUrl}/api/auth/login`,
         {
           email,
           password,
