@@ -64,15 +64,15 @@
 }
 
 .userhome-profile-button {
-  padding: 5px 10px;
+  padding: 10px 20px;
   border: none;
   background-color: rgba(148, 205, 198, 255);
   color: black;
   font-size: 14px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 5px;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
 
 .userhome-profile-button:hover {

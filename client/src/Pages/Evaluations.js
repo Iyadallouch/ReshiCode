@@ -4,17 +4,18 @@ import EvaCard from "../components/EvaCard/EvaCard";
 import "../style/Evaluation.css";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function Evaluations() {
   const [ratings, setRatings] = useState([]);
   const [feedbacks, setFeedbacks] = useState([]);
   const location = useLocation();
+  const token = useSelector((state) => state.login.token);
   const userList = location.state?.updatedList || [];
   if (userList.length === 0) {
     window.location.href = "/userhomepage";
   }
   const sendFeedback = async (userList, ratings, feedbacks) => {
-    const token = localStorage.getItem("token"); // Assuming you're storing the token in local storage
     const feedbackArray = userList.map((userId) => {
       return {
         programmerUsername: userId, // Use userId directly as the username

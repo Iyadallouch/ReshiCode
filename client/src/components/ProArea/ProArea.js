@@ -31,7 +31,9 @@ export default function ProArea({
           </div>
           <div className="pro-info-pair">
             <span className="pro-label">language:</span>
-            <span className="pro-value">{language}</span>
+            <span className="pro-value">
+              {language === "cpp" ? "C++" : language}
+            </span>
           </div>
         </div>
         <button className="pro-button" onClick={onJoinRoom}>

@@ -1,16 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./NavigationBar.css";
 import logo from "../../../images/logo.png";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../loginSlice";
+import { persistor } from "../../../index"
 
 const NavigationBar = () => {
   const [isNavActive, setNavActive] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-
+  const token = useSelector((state) => state.login.token);
+  const dispatch = useDispatch();
   const toggleNav = () => {
     setNavActive(!isNavActive);
   };
+  const handleLogout = async () => {
+    // Dispatch the logout action
+    dispatch(logout());
 
+    // Optionally, clear any other client-side storage, e.g., localStorage
+    localStorage.removeItem("token"); // If you are using localStorage
+    await persistor.purge(); // This will remove all persisted data
+
+    // Redirect to the home page or login page
+  };
   const handleScroll = (sectionId) => {
     if (sectionId === "home") {
       setNavActive(!isNavActive);
@@ -83,13 +97,25 @@ const NavigationBar = () => {
         </li>
       </ul>
       <ul className="nav-login-links desktop">
-        <li>
-          <a href="/login">Login</a>
-        </li>
-        <li>
-          <a href="/signup">Sign Up</a>
-        </li>
+        {token === null && (
+          <ul className="nav-login-links desktop">
+            <li>
+              <a href="/login">Login</a>
+            </li>
+            <li>
+              <a href="/signup">Sign Up</a>
+            </li>
+          </ul>
+        )}
+        {token != null && (
+          <li>
+            <a href="/" onClick={handleLogout}>
+              Log Out
+            </a>
+          </li>
+        )}
       </ul>
+
       <div
         className={`hamburger ${isNavActive ? "active" : ""}`}
         onClick={toggleNav}

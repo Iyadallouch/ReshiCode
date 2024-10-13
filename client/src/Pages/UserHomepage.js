@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import userImage from "../images/userpic.png";
+import { Link, useNavigate } from "react-router-dom";
+import Image from "../images/userpic.png";
 import "../style/UserHomepage.css";
 import socket from "../components/socket";
 import { v4 as uuidv4 } from "uuid"; // Import the uuid function
+import { useSelector } from "react-redux";
 
 // Initialize the socket connection
 
@@ -13,7 +14,9 @@ export default function UserHomepage() {
   const [isSelectFocused, setSelectFocused] = useState(false);
   const navigate = useNavigate();
   const selectRef = useRef(null);
-
+  const token = useSelector((state) => state.login.token);
+  const username = useSelector((state) => state.login.username);
+  const userImage = useSelector((state) => state.login.userImage);
   const handleLanguageChange = (selectedOptions) => {
     setSelectedLanguages(selectedOptions.target.value);
     if (selectRef.current) {
@@ -24,28 +27,26 @@ export default function UserHomepage() {
   const handleCreateArea = () => {
     if (areaName.trim() && selectedLanguages) {
       const generatedRoomId = uuidv4();
-  
+
       if (!socket.connected) {
         socket.connect();
       }
-  
-      const token = localStorage.getItem("token"); // Assuming token is stored here
+
       if (token) {
         socket.emit("auth", token); // Send token to the server for authentication
       }
-  
+
       socket.once("userInfo", ({ username }) => {
         socket.username = username; // Set the username after successful auth
         console.log("Authenticated user:", socket.username);
-  
+
         // Emit the join_room event with both areaName and areaId
         socket.emit("join_room", {
           areaName: areaName, // Pass areaName
           areaId: generatedRoomId, // Pass generated room ID
           language: selectedLanguages,
-
         });
-  
+
         // Navigate to CollaArea with areaName and areaId passed as state
         navigate("/collaarea", {
           state: {
@@ -57,7 +58,7 @@ export default function UserHomepage() {
       });
     }
   };
-  
+
   return (
     <div>
       <div className="userhome-user-homepage-container">
@@ -73,9 +74,15 @@ export default function UserHomepage() {
             </p>
           </div>
           <div className="userhome-user-info">
-            <img className="userhome-user-image" alt="user" src={userImage} />
-            <p className="userhome-user-name">User Name</p>
-            <button className="userhome-profile-button">Log out</button>
+            <img
+              className="userhome-user-image"
+              alt="user"
+              src={userImage ? `data:image/jpeg;base64,${userImage}` : Image}
+            />
+            <p className="userhome-user-name">{username}</p>
+            <Link to="/userprofile" className="notLink">
+              <button className="userhome-profile-button">Go to profile</button>
+            </Link>
           </div>
         </div>
       </div>

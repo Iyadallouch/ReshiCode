@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 //import UserChoose from "./Pages/UserChoose";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
@@ -11,10 +11,12 @@ import Evaluations from "./Pages/Evaluations";
 import "./global.css";
 import All from "./Pages/MainPage/All";
 import NavigationBar from "./Pages/MainPage/navigationBar/NavigationBar";
+import { useSelector } from "react-redux";
 
 function App() {
   const location = useLocation();
-
+  const token = useSelector((state) => state.login.token);
+  const userType = useSelector((state) => state.login.userType);
   return (
     <div>
       {location.pathname !== "/collaarea" && (
@@ -23,15 +25,90 @@ function App() {
         </header>
       )}
       <Routes>
-        <Route path="/" element={<All />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/userhomepage" element={<UserHomepage />} />
-        <Route path="/prohomepage" element={<ProHomepage />} />
-        <Route path="/collaarea" element={<CollaArea />} />
-        <Route path="/userprofile" element={<UserProfile />} />
-        <Route path="/proprofile" element={<ProProfile />} />
-        <Route path="/evaluations" element={<Evaluations />} />
+        <Route
+          path="/"
+          element={
+            token !== null && userType === "NORMAL_USER" ? (
+              <Navigate to="/userhomepage" replace />
+            ) : token !== null && userType === "PROGRAMMER" ? (
+              <Navigate to="/prohomepage" replace />
+            ) : (
+              <All />
+            )
+          }
+        />
+        <Route
+          path="/signup"
+          element={token ? <Navigate to="/" replace /> : <Signup />}
+        />
+        {/* Redirect to home if user is logged in */}
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" replace /> : <Login />}
+        />
+        <Route
+          path="/userhomepage"
+          element={
+            token !== null && userType === "NORMAL_USER" ? (
+              <UserHomepage />
+            ) : token !== null && userType === "PROGRAMMER" ? (
+              <Navigate to="/prohomepage" replace />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/prohomepage"
+          element={
+            token !== null && userType === "PROGRAMMER" ? (
+              <ProHomepage />
+            ) : token !== null && userType === "NORMAL_USER" ? (
+              <Navigate to="/userhomepage" replace />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/collaarea"
+          element={token !== null ? <CollaArea /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="/userprofile"
+          element={
+            token !== null && userType === "NORMAL_USER" ? (
+              <UserProfile />
+            ) : token !== null && userType === "PROGRAMMER" ? (
+              <Navigate to="/proprofile" replace />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/proprofile"
+          element={
+            token !== null && userType === "PROGRAMMER" ? (
+              <ProProfile />
+            ) : token !== null && userType === "NORMAL_USER" ? (
+              <Navigate to="/userprofile" replace />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+
+        <Route
+          path="/evaluations"
+          element={
+            token !== null && userType === "NORMAL_USER" ? (
+              <Evaluations />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
       </Routes>
     </div>
   );

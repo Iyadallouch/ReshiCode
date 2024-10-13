@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
-import userImage from "../images/userpic.png";
+import Image from "../images/userpic.png";
 import "../style/ProHomepage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import axios from "axios"; // Assuming you are using axios
 import socket from "../components/socket";
 import ProArea from "../components/ProArea/ProArea";
+import { useSelector } from "react-redux";
 
 export default function ProHomepage() {
   const [rooms, setRooms] = useState([]); // To store the rooms fetched from backend
   const [searchTerm, setSearchTerm] = useState(""); // State for the search term
   const navigate = useNavigate();
-
+  const token = useSelector((state) => state.login.token);
+  const username = useSelector((state) => state.login.username);
+  const userImage = useSelector((state) => state.login.userImage);
   useEffect(() => {
     // Fetch the list of rooms when the component mounts
 
@@ -34,7 +37,6 @@ export default function ProHomepage() {
         socket.connect();
       }
 
-      const token = localStorage.getItem("token"); // Assuming token is stored here
       if (token) {
         socket.emit("auth", token); // Send token to the server for authentication
       }
@@ -115,8 +117,12 @@ export default function ProHomepage() {
           </div>
         </div>
         <div className="proHome-right-section">
-          <img src={userImage} alt="User Logo" className="proHome-user-logo" />
-          <h2 className="proHome-h2">Dr. Yazeed</h2>
+          <img
+            src={userImage ? `data:image/jpeg;base64,${userImage}` : Image}
+            alt="User Logo"
+            className="proHome-user-logo"
+          />
+          <h2 className="proHome-h2">{username}</h2>
           <div className="proHome-star-rating">
             Rate
             {[...Array(5)].map((star, index) => (
@@ -126,7 +132,6 @@ export default function ProHomepage() {
           <Link to="/proprofile" className="notLink">
             <button className="proHome-profile-button">Go to Profile</button>
           </Link>
-          <button className="proHome-profile-button">Log out</button>
         </div>
       </div>
     </div>

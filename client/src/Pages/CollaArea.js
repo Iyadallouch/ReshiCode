@@ -4,6 +4,9 @@ import userImage from "../images/userpic.png";
 import ProRequest from "../components/ProRequest/ProRequest";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
+import { python } from "@codemirror/lang-python";
+import { java } from "@codemirror/lang-java";
+import { cpp } from "@codemirror/lang-cpp";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import socket from "../components/socket";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,6 +14,8 @@ import Alert from "./Alert";
 import axios from "axios";
 import logo from "../images/logo.png";
 import { ReactTyped } from "react-typed";
+import Modal from "../components/AlertColla/Modal";
+import { useSelector } from "react-redux";
 
 export default function CollaArea() {
   const [activeTab, setActiveTab] = useState("members");
@@ -28,6 +33,10 @@ export default function CollaArea() {
   const { areaId, room, language, prog } = location.state || {};
   const uniqueMessages = [];
   const seenIds = new Set();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const userType = useSelector((state) => state.login.userType);
+  console.log(userType);
   messages.forEach((msg) => {
     if (!seenIds.has(msg.id)) {
       seenIds.add(msg.id);
@@ -88,9 +97,12 @@ export default function CollaArea() {
     };
 
     const handleRoomClosed = (message) => {
-      navigate("/prohomepage"); // Redirect the user to the homepage or another page
-      alert(message); // Display a message to the user
+      setModalMessage(message); // Set the message to display in the modal
+      setIsModalOpen(true); // Open the modal
       socket.disconnect(); // Optionally disconnect the socket
+      setTimeout(() => {
+        window.location.href = "/prohomepage"; // Redirect after showing the modal
+      }, 2000); // Optional delay before redirecting
     };
     const handlePendingUsers = async (pending) => {
       console.log("Pending users", pending);
@@ -111,16 +123,20 @@ export default function CollaArea() {
     };
 
     socket.on("join_request_status", (data) => {
-      if (data.message === "accepted") {
+      if (data.message === "Accepted") {
         setProgStatus(true);
-        alert(data.message);
-      } else if (data.message === "rejected") {
+        setModalMessage(data.message);
+        setIsModalOpen(true);
+      } else if (data.message === "Rejected") {
         setProgStatus(false);
-        alert(data.message);
-
-        window.location.href = "/prohomepage";
+        setModalMessage(data.message);
+        setIsModalOpen(true);
+        setTimeout(() => {
+          window.location.href = "/prohomepage"; // Redirect after showing the modal
+        }, 2000); // Optional delay before redirecting
       }
     });
+
     socket.on("user_list", handleUserList);
     socket.on("pending_list", handlePendingUsers);
     socket.on("receive_message", handleReceiveMessage);
@@ -205,7 +221,11 @@ export default function CollaArea() {
     });
 
     console.log("Updated List after filtering:", updatedList);
-    navigate("/evaluations", { state: { updatedList } }); // Optionally, redirect or perform any additional cleanup here
+    if (userType === "NORMAL_USER") {
+      navigate("/evaluations", { state: { updatedList } }); // Optionally, redirect or perform any additional cleanup here
+    } else {
+      window.location.href = "/prohomepage"; // Redirect after showing the modal
+    }
   };
   const handleRun = async (e) => {
     e.preventDefault();
@@ -239,7 +259,24 @@ export default function CollaArea() {
     socket.emit("reject_user", { areaId, username });
     // Emit socket event or API call here
   };
-
+  const getLanguageExtension = () => {
+    console.log(language);
+    switch (language) {
+      case "javascript":
+        return javascript({ jsx: true });
+      case "python":
+        return python();
+      case "java":
+        return java();
+      case "cpp":
+        return cpp();
+      default:
+        return javascript(); // Default to JavaScript if no match
+    }
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div>
       {prog && !progStatus ? (
@@ -268,16 +305,18 @@ export default function CollaArea() {
               <button className="colla-action-button" onClick={handleRun}>
                 Run
               </button>
-              <button className="colla-action-button" onClick={handleSave}>
-                Save
-              </button>
+              {userType === "NORMAL_USER" && (
+                <button className="colla-action-button" onClick={handleSave}>
+                  Save
+                </button>
+              )}
             </div>
             <div className="code-mirror">
               <CodeMirror
                 value={code}
                 height="100%"
                 theme={vscodeDark}
-                extensions={[javascript({ jsx: true })]}
+                extensions={[getLanguageExtension()]}
                 onChange={onChange}
                 style={{ minWidth: "100%" }}
               />
@@ -294,7 +333,7 @@ export default function CollaArea() {
                 className="colla-top-button"
                 onClick={handleEndSessionClick}
               >
-                End Session
+                {userType === "NORMAL_USER" ? "End session" : "Leave session"}
               </button>
             </div>
             <div className="colla-tabs-container">
@@ -307,14 +346,16 @@ export default function CollaArea() {
                 >
                   Members
                 </button>
-                <button
-                  className={`colla-tab ${
-                    activeTab === "requests" ? "active" : ""
-                  }`}
-                  onClick={() => setActiveTab("requests")}
-                >
-                  Requests
-                </button>
+                {userType === "NORMAL_USER" && (
+                  <button
+                    className={`colla-tab ${
+                      activeTab === "requests" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveTab("requests")}
+                  >
+                    Requests
+                  </button>
+                )}
               </div>
 
               <div className="colla-tab-content">
@@ -394,6 +435,7 @@ export default function CollaArea() {
       ) : (
         <></>
       )}
+      <Modal isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
 
       {/* Bootstrap Modal for confirmation */}
       <Alert

@@ -1,45 +1,45 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import "../style/LoginPage.css";
+import { login } from "../loginSlice";
+import { jwtDecode } from "jwt-decode";
 
-export default function LoginPage() {
+export default function Login() {
   const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const apiUrl = process.env.REACT_APP_API_URL;
-  console.log("API URL:", apiUrl);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${apiUrl}/api/auth/login`,
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/auth/login`, {
+        email,
+        password,
+      });
 
       if (response.status === 200) {
         const { token } = response.data;
 
-        // Store the JWT token (e.g., in localStorage or context)
-        localStorage.setItem("token", token);
+        // Store the JWT token
+        console.log(token);
 
-        // Optionally, you can fetch user details to get the user type
-        const userResponse = await axios.get(
-          "http://localhost:3001/api/auth/user",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        // Decode the token to extract the username and userType
+        const decodedToken = jwtDecode(token);
+        const { username, userType } = decodedToken; // Assuming these fields exist in the token payload
+        dispatch(
+          login({
+            username: username,
+            userType: userType,
+            token: token,
+            userImage: response.data.imageData,
+          })
         );
 
-        const { userType } = userResponse.data;
-        
         // Redirect based on user type
         if (userType === "NORMAL_USER") {
           navigate("/userhomepage");
