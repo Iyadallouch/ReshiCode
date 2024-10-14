@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import "../style/LoginPage.css";
 import { login } from "../loginSlice";
 import { jwtDecode } from "jwt-decode";
+import PasswordField from "../components/passwordInput/PasswordField";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -50,10 +51,16 @@ export default function Login() {
     } catch (err) {
       setError(err.response?.data?.message || "Login failed!");
     }
+  };  const handleMouseMove = (event) => {
+    const beam = document.querySelector('.passwordfield-beam');
+    const mouseY = event.clientY;
+    const rotationRange = 8;
+    const rotationAngle = (mouseY / window.innerHeight) * rotationRange - rotationRange/ 2;
+    beam.style.transform = `translate(0%, -50%) rotate(${-rotationAngle}deg)`;
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container" onMouseMove={handleMouseMove}>
       {/* <img src={logo} alt="Website Logo" className="login-logo" /> */}
       <h1 className="login-letter">Login</h1>
       {error && <p className="error-message">{error}</p>}
@@ -71,14 +78,7 @@ export default function Login() {
         </div>
         <div className="login-form-group">
           <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <PasswordField password={password} setPassword={setPassword}/>
         </div>
         <button type="submit" className="login-submit-button">
           Login
