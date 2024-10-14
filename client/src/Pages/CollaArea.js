@@ -16,6 +16,7 @@ import logo from "../images/logo.png";
 import { ReactTyped } from "react-typed";
 import Modal from "../components/AlertColla/Modal";
 import { useSelector } from "react-redux";
+import { FaCheck } from "react-icons/fa";
 
 export default function CollaArea() {
   const [activeTab, setActiveTab] = useState("members");
@@ -36,7 +37,8 @@ export default function CollaArea() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const userType = useSelector((state) => state.login.userType);
-  console.log(userType);
+  const [isSaved, setIsSved] = useState(false);
+
   messages.forEach((msg) => {
     if (!seenIds.has(msg.id)) {
       seenIds.add(msg.id);
@@ -184,19 +186,27 @@ export default function CollaArea() {
 
     const roomId = areaId; // Use the room ID from location state
     try {
-      const response = await axios.post(
-        "http://localhost:3001/api/auth/saveCode",
-        {
-          // Update with your actual endpoint
-          roomId,
-          room,
-          language,
-          userName,
-          code: code,
-        }
-      );
+      if (code !== "" && code !== null) {
+        const response = await axios.post(
+          "http://localhost:3001/api/auth/saveCode",
+          {
+            // Update with your actual endpoint
+            roomId,
+            room,
+            language,
+            userName,
+            code: code,
+          }
+        );
 
-      console.log("Code saved successfully:", response.data);
+        if (response) {
+          setIsSved(true);
+          setTimeout(() => {
+            setIsSved(false);
+          }, 1000);
+        }
+      } else {
+      }
     } catch (error) {
       console.error("Error saving code:", console.log(roomId, userName));
     }
@@ -222,7 +232,7 @@ export default function CollaArea() {
 
     console.log("Updated List after filtering:", updatedList);
     if (userType === "NORMAL_USER") {
-      navigate("/evaluations", { state: { updatedList } }); // Optionally, redirect or perform any additional cleanup here
+      navigate("/evaluations", { state: { updatedList,userImages } }); // Optionally, redirect or perform any additional cleanup here
     } else {
       window.location.href = "/prohomepage"; // Redirect after showing the modal
     }
@@ -307,7 +317,13 @@ export default function CollaArea() {
               </button>
               {userType === "NORMAL_USER" && (
                 <button className="colla-action-button" onClick={handleSave}>
-                  Save
+                  {isSaved ? (
+                    <>
+                      Saved <FaCheck />
+                    </>
+                  ) : (
+                    "Save"
+                  )}
                 </button>
               )}
             </div>

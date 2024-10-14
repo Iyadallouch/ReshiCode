@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import "../OldCode/OldCode.css";
+import "./OldCode.css";
 import { FaCheck } from "react-icons/fa";
 
 export default function OldCode({ date, code, room, language }) {
@@ -26,23 +26,30 @@ export default function OldCode({ date, code, room, language }) {
 
   return (
     <div className="oldcode-card">
-      <div className="oldcode-date">{formatDate(date)}</div>
-      <h2>{room}</h2>
-      <h2>{language}</h2>
-      <hr className="oldcode-hr" />
-      <button className="oldcode-copy-button" onClick={handleCopy}>
-        {isCopied ? (
-          <>
-            Copied <FaCheck style={{ marginLeft: "8px" }} />
-          </>
-        ) : (
-          "Copy Code"
-        )}
-      </button>
+      <div className="oldcode-copy-container">
+        <button className="oldcode-copy-button" onClick={handleCopy}>
+          {isCopied ? (
+            <>
+              Copied <FaCheck style={{ marginLeft: "8px" }} />
+            </>
+          ) : (
+            "Copy Code"
+          )}
+        </button>
+      </div>
       <div ref={paragraphRef} className="oldcode-paragraph">
-        {code.split('\n').map((line, index) => (
+        {code.split("\n").map((line, index) => (
           <p key={index}>{line}</p> // Render each line in a new paragraph
         ))}
+      </div>
+
+      <hr className="oldcode-hr" />
+      <div className="oldcode-info-container">
+        <div className="oldcode-date">{formatDate(date)}</div>
+        <div className="oldcode-date">{room}</div>
+        <div className="oldcode-date">
+          {language === "cpp" ? "C++" : language}
+        </div>
       </div>
     </div>
   );

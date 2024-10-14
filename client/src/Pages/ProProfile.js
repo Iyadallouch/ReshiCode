@@ -111,6 +111,7 @@ export default function ProProfile() {
               feedback={feedback.feedback}
               username={feedback.createdBy.username}
               date={formatDate(feedback.createdAt)}
+              rate={feedback.rate}
             />
           ))}
       </div>

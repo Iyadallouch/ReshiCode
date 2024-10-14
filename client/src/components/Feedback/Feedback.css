@@ -13,16 +13,20 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 100%;
-  max-width: 600px;
+  width: 650px;
+  max-width: 100%;
   box-sizing: border-box;
+  text-align: center; /* Center content */
   margin: 20px;
 }
-
+.feedback-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 /* Paragraph styling */
 .feedback-paragraph {
   font-size: 16px;
-  margin-bottom: 20px;
   text-align: left;
 }
 
@@ -45,6 +49,6 @@
 /* Media query to stack cards vertically on smaller screens */
 @media (max-width: 768px) {
   .feedback-card {
-    max-width: 100%; /* Ensure the card takes full width on smaller screens */
+    width: 100%;
   }
 }

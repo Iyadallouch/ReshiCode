@@ -12,6 +12,9 @@ export default function Evaluations() {
   const location = useLocation();
   const token = useSelector((state) => state.login.token);
   const userList = location.state?.updatedList || [];
+  const userImages = location.state?.userImages || [];
+  const updatedUserImages = userImages.slice(1);
+
   if (userList.length === 0) {
     window.location.href = "/userhomepage";
   }
@@ -92,6 +95,7 @@ export default function Evaluations() {
               programmer={programmer}
               rating={ratings[programmer] || 0}
               feedback={feedbacks[programmer] || ""}
+              image={updatedUserImages[index]?.image}
               onRatingChange={handleRatingChange}
               onFeedbackChange={handleFeedbackChange}
             />

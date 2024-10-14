@@ -36,11 +36,16 @@ const EvaCard = ({
   onFeedbackChange,
   rating,
   feedback,
+  image,
 }) => (
   <div className="evacard-programmer">
     <div className="evacard-header">
       <div className="user-info">
-        <img className="evacard-user-image" alt="user" src={userImage} />
+        <img
+          className="evacard-user-image"
+          alt="user"
+          src={image ? `data:image/jpeg;base64,${image}` : userImage}
+        />
         <div className="evacard-prog-name">{programmer}</div>
       </div>
       <RatingStars

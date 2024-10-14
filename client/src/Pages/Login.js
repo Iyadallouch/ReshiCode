@@ -51,11 +51,13 @@ export default function Login() {
     } catch (err) {
       setError(err.response?.data?.message || "Login failed!");
     }
-  };  const handleMouseMove = (event) => {
-    const beam = document.querySelector('.passwordfield-beam');
+  };
+  const handleMouseMove = (event) => {
+    const beam = document.querySelector(".passwordfield-beam");
     const mouseY = event.clientY;
     const rotationRange = 8;
-    const rotationAngle = (mouseY / window.innerHeight) * rotationRange - rotationRange/ 2;
+    const rotationAngle =
+      (mouseY / window.innerHeight) * rotationRange - rotationRange / 2;
     beam.style.transform = `translate(0%, -50%) rotate(${-rotationAngle}deg)`;
   };
 
@@ -63,7 +65,13 @@ export default function Login() {
     <div className="login-container" onMouseMove={handleMouseMove}>
       {/* <img src={logo} alt="Website Logo" className="login-logo" /> */}
       <h1 className="login-letter">Login</h1>
-      {error && <p className="error-message">{error}</p>}
+      {error && (
+        <div className="error-message">
+          <span className="error-icon">⚠️</span>
+          <p className="error-text">{error}</p>
+        </div>
+      )}
+
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="login-form-group">
           <label htmlFor="email">Email</label>
@@ -78,7 +86,7 @@ export default function Login() {
         </div>
         <div className="login-form-group">
           <label htmlFor="password">Password</label>
-          <PasswordField password={password} setPassword={setPassword}/>
+          <PasswordField password={password} setPassword={setPassword} />
         </div>
         <button type="submit" className="login-submit-button">
           Login
