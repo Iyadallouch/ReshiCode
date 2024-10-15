@@ -97,6 +97,7 @@ export default function Signup() {
           )}
           <div className="custom-file-upload">
             <button
+              type="button"
               className="signup-upload-button"
               onClick={() => document.getElementById("fileInput").click()}
             >

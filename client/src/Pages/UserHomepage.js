@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 export default function UserHomepage() {
   const [areaName, setAreaName] = useState("");
   const [selectedLanguages, setSelectedLanguages] = useState("");
-  const [isSelectFocused, setSelectFocused] = useState(false);
   const navigate = useNavigate();
   const selectRef = useRef(null);
   const token = useSelector((state) => state.login.token);
@@ -21,7 +20,6 @@ export default function UserHomepage() {
     setSelectedLanguages(selectedOptions.target.value);
     if (selectRef.current) {
       selectRef.current.blur();
-      setSelectFocused(false);
     }
   };
   const handleCreateArea = () => {
@@ -104,8 +102,6 @@ export default function UserHomepage() {
             <select
               value={selectedLanguages}
               onChange={handleLanguageChange}
-              onFocus={() => setSelectFocused(true)}
-              onBlur={() => setSelectFocused(false)}
               ref={selectRef}
             >
               <option value="" disabled>
@@ -119,9 +115,7 @@ export default function UserHomepage() {
 
             <button
               type="button"
-              className={`userhome-create-button ${
-                isSelectFocused ? "active" : ""
-              }`}
+              className={`userhome-create-button `}
               onClick={handleCreateArea} // Trigger area creation
             >
               Create programming area
