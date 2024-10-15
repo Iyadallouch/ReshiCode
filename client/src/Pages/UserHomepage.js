@@ -11,11 +11,19 @@ import { useSelector } from "react-redux";
 export default function UserHomepage() {
   const [areaName, setAreaName] = useState("");
   const [selectedLanguages, setSelectedLanguages] = useState("");
+
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
   const navigate = useNavigate();
   const selectRef = useRef(null);
   const token = useSelector((state) => state.login.token);
   const username = useSelector((state) => state.login.username);
   const userImage = useSelector((state) => state.login.userImage);
+
+  const handleChatToggle = () => {
+    setIsChatOpen((prev) => !prev);
+  };
+
   const handleLanguageChange = (selectedOptions) => {
     setSelectedLanguages(selectedOptions.target.value);
     if (selectRef.current) {
@@ -123,11 +131,23 @@ export default function UserHomepage() {
           </form>
         </div>
         <div className="userhome-right-side">
+      {!isChatOpen ? (
+        <>
           <p className="userhome-right-side-text">
             Ask for help from our chatbot AI
           </p>
-          <button className="userhome-right-side-button">chatbot</button>
+          <button className="userhome-right-side-button" onClick={handleChatToggle}>
+            chatbot
+          </button>
+        </>
+      ) : (
+        <div className="userhome-chat-card">
+          <button className="userhome-chat-close-button" onClick={handleChatToggle}>X</button>
+          {/* Chatbot content goes here */}
+          <p>Chatbot content...</p>
         </div>
+      )}
+    </div>
       </div>
     </div>
   );

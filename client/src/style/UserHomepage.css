@@ -204,6 +204,36 @@
   transform: scale(1.05);
 }
 
+.userhome-chat-card {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
+  position: relative; /* Allows positioning of the close button */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns content to the left */
+}
+
+.userhome-chat-close-button {
+  position: absolute; /* Positions the button relative to the card */
+  top: 10px; /* Adjust as necessary */
+  right: 10px; /* Adjust as necessary */
+  background-color: red; /* Red background */
+  color: white; /* White text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px 10px; /* Padding for better appearance */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.userhome-chat-close-button:hover {
+  background-color: darkred; /* Darker red on hover */
+}
+
 @media (max-width: 768px) {
   .userhome-header {
     flex-direction: column;
