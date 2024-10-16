@@ -11,6 +11,8 @@ export default function ProProfile() {
   const [feedbackData, setFeedbackData] = useState([]);
   const token = useSelector((state) => state.login.token);
   const userImage = useSelector((state) => state.login.userImage);
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   console.log(token);
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -31,21 +33,18 @@ export default function ProProfile() {
     const fetchFeedback = async () => {
       try {
         const userInfoResponse = await axios.get(
-          "http://localhost:3001/api/auth/userInfo",
+          `${apiUrl}/api/auth/userInfo`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        const response = await axios.get(
-          "http://localhost:3001/api/auth/getFeedback",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${apiUrl}/api/auth/getFeedback`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setUserInfo(userInfoResponse.data);
         // Check if 'feedbacks' key exists and is an array

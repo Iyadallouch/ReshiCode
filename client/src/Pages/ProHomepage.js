@@ -14,11 +14,13 @@ export default function ProHomepage() {
   const token = useSelector((state) => state.login.token);
   const username = useSelector((state) => state.login.username);
   const userImage = useSelector((state) => state.login.userImage);
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     // Fetch the list of rooms when the component mounts
 
     axios
-      .get("http://localhost:3001/api/rooms")
+      .get(`${apiUrl}:3001/api/rooms`)
       .then((response) => {
         setRooms(response.data); // Store the rooms in state
       })

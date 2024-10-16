@@ -14,6 +14,7 @@ export default function Evaluations() {
   const userList = location.state?.updatedList || [];
   const userImages = location.state?.userImages || [];
   const updatedUserImages = userImages.slice(1);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   if (userList.length === 0) {
     window.location.href = "/userhomepage";
@@ -30,7 +31,7 @@ export default function Evaluations() {
     if (feedbacks.length !== 0 || ratings.length !== 0) {
       try {
         const response = await axios.post(
-          "http://localhost:3001/api/auth/sendFeedback",
+          `${apiUrl}/api/auth/sendFeedback`,
           {
             feedbackArray,
           },

@@ -15,13 +15,14 @@ export default function UserProfile() {
   const [sortOrder, setSortOrder] = useState("newest"); // State for sorting order
   const token = useSelector((state) => state.login.token);
   const userImage = useSelector((state) => state.login.userImage);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch user info
         const userInfoResponse = await axios.get(
-          "http://localhost:3001/api/auth/userInfo",
+          `${apiUrl}:3001/api/auth/userInfo`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -32,7 +33,7 @@ export default function UserProfile() {
 
         // Fetch user codes
         const codesResponse = await axios.get(
-          "http://localhost:3001/api/auth/userCode",
+          `${apiUrl}:3001/api/auth/userCode`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

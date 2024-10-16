@@ -19,6 +19,7 @@ export default function Signup() {
   const [image, setImage] = useState(null); // State to store image file
   const [preview, setPreview] = useState(null); // State to store preview URL
   const [error, setError] = useState(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const navigate = useNavigate();
 
@@ -69,7 +70,7 @@ export default function Signup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/auth/signup",
+        `${apiUrl}:3001/api/auth/signup`,
         signupData,
         {
           headers: { "Content-Type": "multipart/form-data" },
