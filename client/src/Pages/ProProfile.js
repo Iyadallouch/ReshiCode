@@ -5,6 +5,7 @@ import "../style/ProProfilePage.css";
 import Feedback from "../components/Feedback/Feedback";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import StarRating from "../components/Stars/StarRating";
 
 export default function ProProfile() {
   const [feedbackData, setFeedbackData] = useState([]);
@@ -74,6 +75,10 @@ export default function ProProfile() {
           className="pro-prof-picture"
         />
         <span className="userpro-detail-username">{userInfo.username}</span>
+        <div style={{ margin: "10px 10px 20px 10px" }}>
+          <StarRating rating={userInfo.programmerInfo?.rate} />
+        </div>
+
         <hr />
 
         <div className="pro-prof-details">

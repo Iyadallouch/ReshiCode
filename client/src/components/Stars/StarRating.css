@@ -1,0 +1,22 @@
+/* StarRating.css */
+.star {
+  color: gray;
+  font-size: 1.5rem;
+  margin-right: 2px;
+}
+
+/* Full star */
+.star.filled {
+  color: gold;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+/* Empty star */
+.star.empty {
+  color: lightgray;
+}

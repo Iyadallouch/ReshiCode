@@ -4,7 +4,7 @@ import logo from "../../../images/logo.png";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../loginSlice";
-import { persistor } from "../../../index"
+import { persistor } from "../../../index";
 
 const NavigationBar = () => {
   const [isNavActive, setNavActive] = useState(false);
@@ -89,12 +89,24 @@ const NavigationBar = () => {
             Contact us
           </a>
         </li>
-        <li className="nav-login-link mobile">
-          <a href="/login">Login</a>
-        </li>
-        <li className="nav-login-link mobile">
-          <a href="/signup">Sign Up</a>
-        </li>
+
+        {token === null && (
+          <div>
+            <li className="nav-login-link mobile">
+              <a href="/login">Login</a>
+            </li>
+            <li className="nav-login-link mobile">
+              <a href="/signup">Sign Up</a>
+            </li>
+          </div>
+        )}
+        {token != null && (
+          <li className="nav-login-link mobile">
+            <a href="/" onClick={handleLogout}>
+              Log Out
+            </a>
+          </li>
+        )}
       </ul>
       <ul className="nav-login-links desktop">
         {token === null && (

@@ -25,6 +25,11 @@
   color: rgba(148, 205, 198, 255);
   font-size: 32px;
 }
+.proHome-Avaroom-text {
+  font-family: "Audiowide";
+  color: rgba(148, 205, 198, 255);
+  margin-bottom: 10px;
+}
 
 .proHome-main-content {
   display: flex;

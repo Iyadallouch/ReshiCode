@@ -11,6 +11,105 @@ body {
   min-height: 100vh;
   padding-top: 20px; /* Add some space from the top */
 }
+.userpro-filtering-component {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-around; /* Distribute space between items */
+  align-items: center; /* Center items vertically */
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  width: 95%;
+  max-width: 650px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+.userpro-filter {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Space between filter options */
+}
+
+.userpro-filter label {
+  font-weight: bold;
+}
+
+.userpro-filter select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.userpro-filter select:focus {
+  border-color: #007bff; /* Change this color to your preferred focus color */
+  outline: none;
+}
+
+.userpro-filter .filter-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.userpro-filter .filter-button:hover {
+  background-color: #0056b3; /* Darker shade for hover */
+  transform: translateY(-2px); /* Subtle lift effect on hover */
+}
+
+.userpro-search {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.userpro-search label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.userpro-search input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.userpro-search input:focus {
+  border-color: #007bff; /* Change this color to your preferred focus color */
+  outline: none;
+}
+
+.userpro-sort {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.userpro-sort label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.userpro-sort select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.userpro-sort select:focus {
+  border-color: #007bff; /* Change this color to your preferred focus color */
+  outline: none;
+}
 
 /* Card containing the profile details */
 .userpro-card {
@@ -81,9 +180,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 18px;
-  width: calc(
-    100% - 130px
-  );
+  width: calc(100% - 130px);
   box-sizing: border-box; /* Include padding and border in element's total width */
 }
 
@@ -172,5 +269,8 @@ body {
   .userpro-detail-label,
   .userpro-detail-text {
     font-size: 17px;
+  }
+  .userpro-filtering-component {
+    flex-direction: column;
   }
 }

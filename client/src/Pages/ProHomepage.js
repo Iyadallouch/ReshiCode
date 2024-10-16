@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Image from "../images/userpic.png";
 import "../style/ProHomepage.css";
 import { Link, useNavigate } from "react-router-dom";
-import { FaStar } from "react-icons/fa";
 import axios from "axios"; // Assuming you are using axios
 import socket from "../components/socket";
 import ProArea from "../components/ProArea/ProArea";
@@ -98,7 +97,7 @@ export default function ProHomepage() {
             <button className="proHome-search-button">Search</button>
           </div>
           <div className="proHome-gray-card">
-            <h2>Available Rooms:</h2>
+            <h2 className="proHome-Avaroom-text">Available Rooms :</h2>
             {filteredRooms.length > 0 ? (
               filteredRooms.map((room) => (
                 <ProArea
@@ -112,7 +111,7 @@ export default function ProHomepage() {
                 />
               ))
             ) : (
-              <p>No rooms available</p>
+              <p className="proHome-h2">No rooms available</p>
             )}
           </div>
         </div>
@@ -123,12 +122,7 @@ export default function ProHomepage() {
             className="proHome-user-logo"
           />
           <h2 className="proHome-h2">{username}</h2>
-          <div className="proHome-star-rating">
-            Rate
-            {[...Array(5)].map((star, index) => (
-              <FaStar key={index} className="proHome-star-icon" />
-            ))}
-          </div>
+
           <Link to="/proprofile" className="notLink">
             <button className="proHome-profile-button">Go to Profile</button>
           </Link>

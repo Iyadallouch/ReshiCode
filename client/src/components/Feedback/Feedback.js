@@ -1,6 +1,7 @@
 import React from "react";
 import "./Feedback.css";
 import { FaStar } from "react-icons/fa";
+import StarRating from "../Stars/StarRating";
 
 export default function Feedback({ feedback, username, date, rate }) {
   const totalStars = 5;
@@ -28,7 +29,7 @@ export default function Feedback({ feedback, username, date, rate }) {
       <div className="feedback-info-container">
         <p className="feedback-paragraph">{feedback}</p>
         <div className="req-rating-feedback">
-          <div className="req-stars">{stars}</div>
+        <StarRating rating={rate} />
         </div>
       </div>
       <hr />

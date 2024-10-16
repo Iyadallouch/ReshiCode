@@ -232,7 +232,7 @@ export default function CollaArea() {
 
     console.log("Updated List after filtering:", updatedList);
     if (userType === "NORMAL_USER") {
-      navigate("/evaluations", { state: { updatedList,userImages } }); // Optionally, redirect or perform any additional cleanup here
+      navigate("/evaluations", { state: { updatedList, userImages } }); // Optionally, redirect or perform any additional cleanup here
     } else {
       window.location.href = "/prohomepage"; // Redirect after showing the modal
     }
