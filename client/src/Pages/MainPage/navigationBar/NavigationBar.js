@@ -5,25 +5,19 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../loginSlice";
 import { persistor } from "../../../index";
+import { useLocation } from "react-router-dom";
 
 const NavigationBar = () => {
   const [isNavActive, setNavActive] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const token = useSelector((state) => state.login.token);
+  const userType = useSelector((state) => state.login.userType);
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const toggleNav = () => {
     setNavActive(!isNavActive);
-  };
-  const handleLogout = async () => {
-    // Dispatch the logout action
-    dispatch(logout());
-
-    // Optionally, clear any other client-side storage, e.g., localStorage
-    localStorage.removeItem("token"); // If you are using localStorage
-    await persistor.purge(); // This will remove all persisted data
-
-    // Redirect to the home page or login page
   };
   const handleScroll = (sectionId) => {
     if (sectionId === "home") {
@@ -40,7 +34,21 @@ const NavigationBar = () => {
       }
     }
   };
+  const handleLogout = async () => {
+    dispatch(logout());
+    localStorage.removeItem("token");
+    await persistor.purge();
+  };
 
+  const handleScrollToSection = (sectionId) => {
+    setNavActive(false);
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // Handle scroll event
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop =
@@ -50,8 +58,31 @@ const NavigationBar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [lastScrollTop]);
+
+  // Ensure navigation and scroll behavior after page fully loads
+  useEffect(() => {
+    const handlePageLoad = () => {
+      if (location.hash) {
+        const sectionId = location.hash.replace("#", "");
+        handleScrollToSection(sectionId);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      handlePageLoad();
+    } else {
+      window.addEventListener("load", handlePageLoad);
+    }
+
+    return () => {
+      window.removeEventListener("load", handlePageLoad);
+    };
+  }, [location]);
 
   return (
     <nav
@@ -65,27 +96,47 @@ const NavigationBar = () => {
       </div>
       <ul className={`nav-links ${isNavActive ? "nav-active" : ""}`}>
         <li>
-          <a href="/" onClick={() => handleScroll("home")}>
+          <a
+            href={
+              userType === "NORMAL_USER"
+                ? "/userhomepage"
+                : userType === "PROGRAMMER"
+                ? "/prohomepage"
+                : "/"
+            }
+          >
             Home
           </a>
         </li>
         <li>
-          <a href="#services" onClick={() => handleScroll("services")}>
+          <a
+            href="/#services"
+            to="/#services"
+            onClick={() => handleScroll("services")}
+          >
             Services
           </a>
         </li>
         <li>
-          <a href="#about" onClick={() => handleScroll("about")}>
+          <a
+            href="/#about"
+            to="/#aboutUs"
+            onClick={() => handleScroll("about")}
+          >
             About
           </a>
         </li>
         <li>
-          <a href="#examples" onClick={() => handleScroll("examples")}>
+          <a href="/#examples" to="/" onClick={() => handleScroll("examples")}>
             Team
           </a>
         </li>
         <li>
-          <a href="#contactUs" onClick={() => handleScroll("contactUs")}>
+          <a
+            href="/#contactUs"
+            to="/"
+            onClick={() => handleScroll("contactUs")}
+          >
             Contact us
           </a>
         </li>

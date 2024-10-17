@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./OldCode.css";
 import { FaCheck } from "react-icons/fa";
 import CodeMirror from "@uiw/react-codemirror";

@@ -67,25 +67,22 @@ function App() {
       )}
       <Routes>
         <Route
-          path="/"
+          path="/signup"
+          element={token ? <Navigate to="/" replace /> : <Signup />}
+        />
+        <Route path="/" element={<All />} />
+        {/* Redirect to home if user is logged in */}
+        <Route
+          path="/login"
           element={
             token !== null && userType === "NORMAL_USER" ? (
               <Navigate to="/userhomepage" replace />
             ) : token !== null && userType === "PROGRAMMER" ? (
               <Navigate to="/prohomepage" replace />
             ) : (
-              <All />
+              <Login />
             )
           }
-        />
-        <Route
-          path="/signup"
-          element={token ? <Navigate to="/" replace /> : <Signup />}
-        />
-        {/* Redirect to home if user is logged in */}
-        <Route
-          path="/login"
-          element={token ? <Navigate to="/" replace /> : <Login />}
         />
         <Route
           path="/userhomepage"
