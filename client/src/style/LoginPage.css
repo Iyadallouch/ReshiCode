@@ -31,8 +31,9 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  min-height: 100vh;
-  margin-top: -60px; /* Move everything up */
+  height: 90vh;
+  margin-top: -50px; /* Move everything up */
+  overflow: hidden;
 }
 
 /* .login-logo {
