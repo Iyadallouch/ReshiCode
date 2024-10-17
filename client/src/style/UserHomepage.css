@@ -1,0 +1,276 @@
+.userhome-user-homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.userhome-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+
+/* .userhome-logo {
+  width: 180px;
+} */
+
+.userhome-website-info {
+  flex: 1;
+  text-align: center;
+}
+
+.userhome-website-name,
+.userhome-website-description {
+  margin: 0;
+  display: block;
+}
+
+.userhome-website-name {
+  font-size: 38px;
+  font-family: "Audiowide";
+  color: rgba(148, 205, 198, 255);
+  margin-bottom: 10px;
+}
+
+.userhome-website-description {
+  font-size: 18px;
+  color: rgba(148, 205, 198, 255);
+}
+
+.userhome-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userhome-user-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.userhome-user-name {
+  margin: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  font-family: "Audiowide";
+}
+
+.userhome-profile-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: black;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.userhome-profile-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+
+.userhome-content-container {
+  display: flex; /* Ensure left and right side are next to each other */
+  width: 100%;
+  padding: 20px;
+}
+
+.userhome-left-side,
+.userhome-right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%; /* Make sure both sides take equal width */
+  padding: 20px;
+}
+
+.userhome-left-side {
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+.userhome-right-side {
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* New styles for the form on the left side */
+.userhome-programming-area-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  color: rgba(148, 205, 198, 255);
+  width: 80%;
+}
+
+.userhome-programming-area-form .userhome-label,
+.userhome-programming-area-form p {
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-family: "Audiowide";
+}
+
+.userhome-programming-area-form input[type="text"] {
+  min-width: 200px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.userhome-create-button {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: black;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform for animation */
+  transform: translateY(0); /* Default position */
+}
+
+.userhome-create-button.active {
+  transform: translateY(60px); /* Move down when active */
+}
+
+.userhome-create-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+
+.userhome-react-select__control {
+  border: 1px solid var(--input-border-color); /* Use the default border color */
+  border-radius: 5px;
+  padding: 5px;
+  transition: border-color 0.3s ease;
+  min-width: 200px;
+}
+
+.userhome-programming-area-form select {
+  min-width: 200px; /* Increase min-width */
+  height: 50px; /* Adjust height */
+  font-size: 16px; /* Increase font size */
+  transition: border-color 0.3s ease;
+  padding: 10px 40px 10px 10px; /* Adjust padding for larger appearance */
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  background: white
+    url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>')
+    no-repeat right 10px center;
+  background-size: 30px;
+}
+
+/* New styles for the right side */
+.userhome-right-side-text {
+  font-size: 28px;
+  color: rgba(148, 205, 198, 255);
+  margin-bottom: 10px;
+  font-family: "Audiowide";
+}
+
+.userhome-right-side-button {
+  padding: 10px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: black;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.userhome-right-side-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+
+.userhome-chat-card {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
+  position: relative; /* Allows positioning of the close button */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns content to the left */
+}
+
+.userhome-chat-close-button {
+  position: absolute; /* Positions the button relative to the card */
+  top: 10px; /* Adjust as necessary */
+  right: 10px; /* Adjust as necessary */
+  background-color: red; /* Red background */
+  color: white; /* White text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 5px 10px; /* Padding for better appearance */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.userhome-chat-close-button:hover {
+  background-color: darkred; /* Darker red on hover */
+}
+
+@media (max-width: 768px) {
+  .userhome-header {
+    flex-direction: column;
+  }
+  .userhome-website-name {
+    font-size: 22px;
+  }
+  .userhome-website-description {
+    font-size: 13px;
+  }
+  .userhome-label {
+    text-align: center;
+  }
+
+  .userhome-programming-area-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .userhome-programming-area-form input[type="text"] {
+    width: 50%;
+  }
+
+  .userhome-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+  }
+
+  .userhome-content-container {
+    flex-direction: column; /* Stack left and right side vertically on small screens */
+    padding-top: -0px;
+  }
+
+  .userhome-left-side,
+  .userhome-right-side {
+    width: 100%;
+  }
+}

@@ -1,0 +1,20 @@
+body {
+  background-color: #2a2a2a;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow-y: auto; /* Prevent horizontal scrolling */
+  text-align: center;
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  border-radius: 10px;
+  border-top: 5px solid rgba(148, 205, 198, 255);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Add a subtle shadow */
+}
+header {
+  height: 13vh;
+}

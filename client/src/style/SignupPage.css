@@ -1,0 +1,187 @@
+.signup-p {
+  text-align: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: -10px;
+}
+
+.signup-link {
+  padding: 10px;
+  color: #0056b3; /* Default link color */
+  display: inline-block; /* Ensure padding works correctly */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.signup-link:hover {
+  color: #003d80; /* Darker color on hover */
+}
+
+/* Define a CSS variable for border color */
+:root {
+  --input-border-color: #ccc; /* Default border color */
+  --input-border-color-focus: blue; /* Border color on focus */
+}
+.signup-image-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.image-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.image-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.signup-image-preview input[type="file"] {
+  font-size: 14px;
+}
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 90vh;
+}
+
+.signup-h1 {
+  color: #ffffff;
+  margin-bottom: 30px;
+  color: rgba(148, 205, 198, 255);
+  font-family: "Audiowide";
+}
+
+/* .signup-logo {
+  width: 240px; 
+  margin-bottom: 20px;
+} */
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+}
+
+.signup-form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.signup-form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.signup-form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.signup-form-group input {
+  padding: 10px;
+  border: 1px solid var(--input-border-color); /* Use the default border color */
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.signup-form-group input:focus {
+  border-color: var(
+    --input-border-color-focus
+  ); /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+.react-tel-input .form-control {
+  width: 100%;
+}
+
+.react-select__control {
+  border: 1px solid var(--input-border-color); /* Use the default border color */
+  border-radius: 5px;
+  padding: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.react-select__control--is-focused {
+  border-color: var(
+    --input-border-color-focus
+  ); /* Change border color on focus */
+  box-shadow: none; /* Remove default shadow */
+}
+
+.signup-submit-button {
+  padding: 10px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 20%;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto; /* Center the button horizontally */
+}
+.signup-upload-button {
+  padding: 10px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto; /* Center the button horizontally */
+}
+.signup-submit-button:hover,
+.signup-upload-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .signup-form {
+    width: 80%; /* Ensure form takes full width on smaller screens */
+  }
+
+  .signup-form-row {
+    flex-direction: column;
+  }
+
+  .signup-container {
+    padding-bottom: 100px; /* Ensure enough space for scrolling */
+  }
+  .signup-submit-button {
+    width: 50%;
+  }
+}

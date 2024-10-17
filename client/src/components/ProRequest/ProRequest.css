@@ -1,0 +1,73 @@
+.req-pro-request-card {
+  background-color: #555;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: rgba(148, 205, 198, 255);
+}
+
+.req-user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.req-user-info img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.req-user-name {
+  font-size: 18px;
+  margin-right: auto; /* Pushes the icons to the right */
+  font-family: "Audiowide";
+}
+
+.req-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.req-accept-icon {
+  color: #00a88b;
+  margin-right: 30px;
+  font-size: 22px;
+}
+
+.req-reject-icon {
+  color: #ff5c5c;
+  font-size: 22px;
+}
+
+.req-rating-feedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.req-stars {
+  display: flex;
+  margin-left: 10px;
+}
+
+.req-star {
+  color: rgba(148, 205, 198, 255);
+  margin-right: 5px;
+  font-size: 22px;
+}
+
+.req-feedback-button {
+  padding: 5px 10px;
+  background-color: #94cdc6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.req-feedback-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+

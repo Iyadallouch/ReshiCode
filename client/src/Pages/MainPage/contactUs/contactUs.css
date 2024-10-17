@@ -1,0 +1,52 @@
+.contactUs {
+  animation: fadeIn 1s;
+  padding: 50px;
+  text-align: center;
+}
+
+.contactUs h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: rgba(148, 205, 198, 255);
+  font-family: "Audiowide";
+}
+
+.contactUs p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: whitesmoke;
+}
+
+.contactForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.contactForm a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(
+    300deg,
+    rgb(92, 196, 184) 20%,
+    rgb(42, 83, 231) 100%
+  );
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s ease; /* Add transition effect */
+}
+
+.contactForm a:hover {
+  transform: scale(0.9);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

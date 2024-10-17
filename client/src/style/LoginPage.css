@@ -1,0 +1,142 @@
+.login-p {
+  text-align: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.login-notLink {
+  text-decoration: none;
+}
+
+.login-link {
+  padding: 10px;
+  color: #0056b3; /* Default link color */
+  display: inline-block; /* Ensure padding works correctly */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.login-link:hover {
+  color: #003d80; /* Darker color on hover */
+}
+
+/* Define a CSS variable for border color */
+:root {
+  --input-border-color: #ccc; /* Default border color */
+  --input-border-color-focus: blue; /* Border color on focus */
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 90vh;
+  margin-top: -50px; /* Move everything up */
+  overflow: hidden;
+}
+
+/* .login-logo {
+  width: 240px; 
+  margin-bottom: 20px;
+} */
+
+.login-letter {
+  margin-bottom: 30px;
+  color: rgba(148, 205, 198, 255);
+  font-family: "Audiowide";
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 100%;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form .login-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.login-form .login-form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.login-form .login-form-group input {
+  padding: 10px;
+  border: 1px solid var(--input-border-color); /* Use the default border color */
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.login-form .login-form-group input:focus {
+  border-color: var(
+    --input-border-color-focus
+  ); /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+.login-form .login-submit-button {
+  padding: 10px;
+  border: none;
+  background-color: rgba(148, 205, 198, 255);
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 100px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+}
+
+.login-form .login-submit-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  background-color: #fdecea; /* Soft red background */
+  color: #b71c1c; /* Dark red for text */
+  border: 1px solid #f5c6cb; /* Light red border */
+  border-left: 6px solid #d32f2f; /* Bold left border for emphasis */
+  border-radius: 4px; /* Rounded corners */
+  padding: 15px 20px; /* Padding for comfort */
+  margin: 15px 0; /* Margin for spacing */
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: all 0.3s ease; /* Smooth transitions */
+  gap: 12px; /* Space between icon and text */
+}
+
+.error-message:hover {
+  background-color: #fbdada; /* Slight change on hover */
+  border-color: #e57373;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.error-icon {
+  font-size: 22px; /* Slightly larger icon */
+  color: #d32f2f; /* Strong red color for icon */
+}
+
+.error-text {
+  margin: 0; /* Remove default margin */
+  line-height: 1.4; /* Comfortable line height */
+}

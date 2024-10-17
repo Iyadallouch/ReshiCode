@@ -1,0 +1,82 @@
+/* Container for the entire old code card */
+.oldcode-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Ensure items wrap to the next line */
+  gap: 20px; /* Add some space between the cards */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Card styling */
+.oldcode-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 650px;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: center; /* Center content */
+  margin: 20px;
+}
+
+/* Date styling */
+.oldcode-date {
+  color: #333;
+  text-align: center;
+}
+.oldcode-copy-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+/* Button styling */
+.oldcode-copy-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: rgba(148, 205, 198, 255);
+  color: black; /* Changed this to be consistent */
+  transition: all 0.3s;
+}
+.oldcode-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Hover effect for the button */
+.oldcode-copy-button:hover {
+  background-color: #00a88b;
+  transform: scale(1.05);
+}
+
+/* Paragraph styling */
+
+.oldcode-code-mirror {
+  width: 100%;
+  text-align: start;
+  overflow: auto; /* Allow scrolling */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 1); /* Add a subtle shadow */
+  background-color: #1e1e1e;
+}
+/* Media query to stack cards vertically on smaller screens */
+@media (max-width: 768px) {
+  /* Card styling */
+  .oldcode-container {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .oldcode-card {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0px;
+  }
+}

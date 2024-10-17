@@ -1,0 +1,276 @@
+/* Container for the entire profile page */
+body {
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Prevent horizontal scrolling */
+}
+.userpro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the top */
+  min-height: 100vh;
+  padding-top: 20px; /* Add some space from the top */
+}
+.userpro-filtering-component {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-around; /* Distribute space between items */
+  align-items: center; /* Center items vertically */
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+  width: 95%;
+  max-width: 650px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+.userpro-filter {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Space between filter options */
+}
+
+.userpro-filter label {
+  font-weight: bold;
+}
+
+.userpro-filter select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.userpro-filter select:focus {
+  border-color: #007bff; /* Change this color to your preferred focus color */
+  outline: none;
+}
+
+.userpro-filter .filter-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.userpro-filter .filter-button:hover {
+  background-color: #0056b3; /* Darker shade for hover */
+  transform: translateY(-2px); /* Subtle lift effect on hover */
+}
+
+.userpro-search {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.userpro-search label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.userpro-search input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.userpro-search input:focus {
+  border-color: #007bff; /* Change this color to your preferred focus color */
+  outline: none;
+}
+
+.userpro-sort {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.userpro-sort label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.userpro-sort select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.userpro-sort select:focus {
+  border-color: #007bff; /* Change this color to your preferred focus color */
+  outline: none;
+}
+
+/* Card containing the profile details */
+.userpro-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 95%;
+  max-width: 600px;
+  text-align: left; /* Align text to the left */
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+/* Profile picture styling */
+.userpro-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+/* File input for profile image */
+.userpro-file-input {
+  margin-top: 10px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Container for user details */
+.userpro-details {
+  margin-top: 20px;
+}
+
+/* Flex container for each detail item */
+.userpro-detail {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Label styling for detail items */
+.userpro-detail-label {
+  font-size: 22px;
+  width: 120px; /* Set a fixed width for labels to align inputs */
+  flex-shrink: 0; /* Prevent label from shrinking */
+  margin-right: 10px;
+}
+
+/* Text styling for detail items */
+.userpro-detail-text {
+  font-size: 22px;
+  display: flex;
+  align-items: center; /* Align label and input horizontally */
+  justify-content: flex-start; /* Align items to the top */
+}
+.userpro-detail-username {
+  font-size: 22px;
+  display: flex;
+  align-items: center; /* Align label and input horizontally */
+  justify-content: center; /* Align items to the top */
+}
+/* Styling for input fields */
+.userpro-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+  width: calc(100% - 130px);
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Styling for phone input component */
+.userpro-phone-input {
+  width: 100%; /* Match width with other inputs */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Styling for Select component */
+.userpro-select .react-select__control {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 18px;
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+/* Styling for focused state of Select component */
+.userpro-select .react-select__control--is-focused {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: none; /* Remove default shadow */
+}
+
+/* Container for buttons */
+.userpro-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Styling for buttons */
+.userpro-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Specific styling for Save button */
+.userpro-save-button {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Specific styling for Cancel button */
+.userpro-cancel-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Specific styling for Edit button */
+.userpro-edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Specific styling for Delete button */
+.userpro-delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Hover effects for buttons */
+.userpro-button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* Styling for the Old Code text */
+.userpro-old-code {
+  font-size: 42px; /* Set a larger font size */
+  text-align: center; /* Center the text */
+  margin-top: 70px; /* Add some space above the text */
+  color: rgba(148, 205, 198, 255); /* Set a color for the text */
+  font-family: "Audiowide";
+}
+@media (max-width: 768px) {
+  .userpro-detail-label,
+  .userpro-detail-text {
+    font-size: 17px;
+  }
+  .userpro-filtering-component {
+    flex-direction: column;
+  }
+}
