@@ -70,7 +70,7 @@ export default function Signup() {
 
     try {
       const response = await axios.post(
-        `${apiUrl}:3001/api/auth/signup`,
+        `${apiUrl}/api/auth/signup`,
         signupData,
         {
           headers: { "Content-Type": "multipart/form-data" },

@@ -67,7 +67,7 @@ export default function CollaArea() {
         console.log(users);
         // Make API call to fetch images for the user list as a GET request with query parameters
         const response = await axios.post(
-          `${apiUrl}:3001/api/auth/getUserImages`,
+          `${apiUrl}/api/auth/getUserImages`,
           {
             users,
           }
@@ -112,7 +112,7 @@ export default function CollaArea() {
 
       try {
         const response = await axios.post(
-          `${apiUrl}:3001/api/auth/proInfoPending`,
+          `${apiUrl}/api/auth/proInfoPending`,
           {
             usernames: pending,
           }
@@ -188,7 +188,7 @@ export default function CollaArea() {
     const roomId = areaId; // Use the room ID from location state
     try {
       if (code !== "" && code !== null) {
-        const response = await axios.post(`${apiUrl}:3001/api/auth/saveCode`, {
+        const response = await axios.post(`${apiUrl}/api/auth/saveCode`, {
           // Update with your actual endpoint
           roomId,
           room,
@@ -245,7 +245,7 @@ export default function CollaArea() {
     }
 
     try {
-      const response = await axios.post(`${apiUrl}:3001/api/code/run`, {
+      const response = await axios.post(`${apiUrl}/api/code/run`, {
         language, // selected programming language
         code: language === "javascript" ? code.replace(/"/g, '\\"') : code, // the current code to run
       });

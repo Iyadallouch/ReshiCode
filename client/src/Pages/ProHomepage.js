@@ -20,7 +20,7 @@ export default function ProHomepage() {
     // Fetch the list of rooms when the component mounts
 
     axios
-      .get(`${apiUrl}:3001/api/rooms`)
+      .get(`${apiUrl}/api/rooms`)
       .then((response) => {
         setRooms(response.data); // Store the rooms in state
       })

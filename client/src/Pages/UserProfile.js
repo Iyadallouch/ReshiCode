@@ -22,7 +22,7 @@ export default function UserProfile() {
       try {
         // Fetch user info
         const userInfoResponse = await axios.get(
-          `${apiUrl}:3001/api/auth/userInfo`,
+          `${apiUrl}/api/auth/userInfo`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -33,7 +33,7 @@ export default function UserProfile() {
 
         // Fetch user codes
         const codesResponse = await axios.get(
-          `${apiUrl}:3001/api/auth/userCode`,
+          `${apiUrl}/api/auth/userCode`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
