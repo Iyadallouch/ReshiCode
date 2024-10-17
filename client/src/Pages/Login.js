@@ -54,11 +54,15 @@ export default function Login() {
   };
   const handleMouseMove = (event) => {
     const beam = document.querySelector(".passwordfield-beam");
+    const light = document.querySelector(".rotate-light");
     const mouseY = event.clientY;
-    const rotationRange = 8;
+    const rotationRange = 10;
     const rotationAngle =
       (mouseY / window.innerHeight) * rotationRange - rotationRange / 2;
+    const rotationAngle2 =
+      (mouseY / window.innerHeight) * rotationRange - rotationRange * 27.5;
     beam.style.transform = `translate(0%, -50%) rotate(${-rotationAngle}deg)`;
+    light.style.transform = ` rotate(${-rotationAngle2}deg)`;
   };
 
   return (
