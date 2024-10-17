@@ -9,10 +9,12 @@ body {
 }
 
 hr {
-  margin: 10px 0;
+  margin: 20px 0;
   border: none;
-  border-top: 5px dotted rgba(148, 205, 198, 255);
+  border-radius: 10px;
+  border-top: 5px solid rgba(148, 205, 198, 255);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Add a subtle shadow */
 }
-header{
+header {
   height: 13vh;
 }

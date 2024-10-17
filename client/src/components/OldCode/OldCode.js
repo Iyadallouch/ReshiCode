@@ -63,7 +63,7 @@ export default function OldCode({ date, code, room, language }) {
         />
       </div>
 
-      <hr className="oldcode-hr" />
+      <hr />
       <div className="oldcode-info-container">
         <div className="oldcode-date">{formatDate(date)}</div>
         <div className="oldcode-date">{room}</div>

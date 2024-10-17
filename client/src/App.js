@@ -12,11 +12,52 @@ import "./global.css";
 import All from "./Pages/MainPage/All";
 import NavigationBar from "./Pages/MainPage/navigationBar/NavigationBar";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { logout } from "./loginSlice";
+import { persistor } from "./index";
 
 function App() {
   const location = useLocation();
   const token = useSelector((state) => state.login.token);
   const userType = useSelector((state) => state.login.userType);
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
+    dispatch(logout());
+
+    // Optionally, clear any other client-side storage, e.g., localStorage
+    localStorage.removeItem("token"); // If you are using localStorage
+    await persistor.purge(); // This will remove all persisted data
+    window.location.reload();
+    window.location.href = "/login"; // Redirect to login page
+  };
+  useEffect(() => {
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        const currentTime = Date.now() / 1000; // Current time in seconds
+        const remainingTime = (decodedToken.exp - currentTime) * 1000; // Time in milliseconds
+
+        if (remainingTime > 0) {
+          const timer = setTimeout(() => {
+            handleLogout(); // Call logout when the token is expired
+          }, remainingTime);
+
+          // Clear the timeout if the token changes or on unmount
+          return () => clearTimeout(timer);
+        } else {
+          // Token is already expired, log out immediately
+          handleLogout();
+        }
+      } catch (error) {
+        console.error("Invalid token:", error);
+        handleLogout();
+      }
+    }
+  }, [token]); // Depend on token, so it rechecks if token changes
+
   return (
     <div>
       {location.pathname !== "/collaarea" && (

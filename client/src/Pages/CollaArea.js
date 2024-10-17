@@ -66,12 +66,9 @@ export default function CollaArea() {
         setUserList(users);
         console.log(users);
         // Make API call to fetch images for the user list as a GET request with query parameters
-        const response = await axios.post(
-          `${apiUrl}/api/auth/getUserImages`,
-          {
-            users,
-          }
-        );
+        const response = await axios.post(`${apiUrl}/api/auth/getUserImages`, {
+          users,
+        });
 
         // Assuming the API response contains an array of { username, image } objects
         setUserImages(response.data);
@@ -111,12 +108,9 @@ export default function CollaArea() {
       console.log("Pending users", pending);
 
       try {
-        const response = await axios.post(
-          `${apiUrl}/api/auth/proInfoPending`,
-          {
-            usernames: pending,
-          }
-        );
+        const response = await axios.post(`${apiUrl}/api/auth/proInfoPending`, {
+          usernames: pending,
+        });
         const programmersData = response.data;
         setPendingProgrammer(programmersData);
         // You can set this data to state or use it as needed

@@ -62,7 +62,7 @@
   text-align: start;
   overflow: auto; /* Allow scrolling */
   border-radius: 10px;
-  box-shadow: 0 4px 50px rgba(0, 0, 0, 1); /* Add a subtle shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 1); /* Add a subtle shadow */
   background-color: #1e1e1e;
 }
 /* Media query to stack cards vertically on smaller screens */

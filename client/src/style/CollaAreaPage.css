@@ -376,11 +376,17 @@
     overflow: visible; /* Allow scrolling on small screens */
   }
 
-  .colla-left-side,
+  .colla-left-side {
+    width: 100%;
+    height: auto; /* Adjust height on smaller screens */
+    padding: 10px 0;
+    order: 1;
+  }
   .colla-right-side {
     width: 100%;
     height: auto; /* Adjust height on smaller screens */
     padding: 10px 0;
+    order: 0;
   }
 
   .colla-top-button-container {
@@ -397,7 +403,7 @@
     overflow: auto; /* Allow scrolling */
     margin-bottom: 15px;
   }
-  
+
   .colla-output-card {
     min-height: 100px;
     max-height: 100px;
@@ -408,5 +414,4 @@
     min-height: 250px;
     max-height: 250px;
   }
-
 }
