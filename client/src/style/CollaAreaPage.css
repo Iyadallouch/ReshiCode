@@ -370,14 +370,43 @@
 @media (max-width: 768px) {
   .colla-area-container {
     flex-direction: column;
+    align-items: center;
+    height: auto; /* Let content control height on small screens */
+    padding: 20px 10px;
+    overflow: visible; /* Allow scrolling on small screens */
   }
 
   .colla-left-side,
   .colla-right-side {
     width: 100%;
+    height: auto; /* Adjust height on smaller screens */
+    padding: 10px 0;
   }
 
   .colla-top-button-container {
-    justify-content: center; /* Center the button on smaller screens */
+    justify-content: center;
   }
+
+  .colla-buttons-text {
+    font-size: 24px;
+  }
+
+  .code-mirror {
+    min-height: 200px;
+    max-height: 200px;
+    overflow: auto; /* Allow scrolling */
+    margin-bottom: 15px;
+  }
+  
+  .colla-output-card {
+    min-height: 100px;
+    max-height: 100px;
+    margin-bottom: 20px;
+  }
+
+  .colla-empty-card {
+    min-height: 250px;
+    max-height: 250px;
+  }
+
 }
