@@ -24,11 +24,15 @@ const loginSlice = createSlice({
       state.token = null;
       state.userImage = null;
     },
+    updateImage: (state, action) => {
+      // Update only the image URL
+      state.userImage = action.payload.userImage;
+    },
   },
 });
 
 // Export actions
-export const { login, logout } = loginSlice.actions;
+export const { login, logout, updateImage } = loginSlice.actions;
 
 // Export the reducer
 export default loginSlice.reducer;

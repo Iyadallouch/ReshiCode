@@ -231,24 +231,28 @@ body {
 .userpro-save-button {
   background-color: #28a745;
   color: white;
+  transition: all 0.3s;
 }
 
 /* Specific styling for Cancel button */
 .userpro-cancel-button {
   background-color: #dc3545;
   color: white;
+  transition: all 0.3s;
 }
 
 /* Specific styling for Edit button */
 .userpro-edit-button {
   background-color: #007bff;
   color: white;
+  transition: all 0.3s;
 }
 
 /* Specific styling for Delete button */
 .userpro-delete-button {
   background-color: #dc3545;
   color: white;
+  transition: all 0.3s;
 }
 
 /* Hover effects for buttons */
