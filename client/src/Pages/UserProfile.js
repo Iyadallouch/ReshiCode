@@ -6,7 +6,8 @@ import OldCode from "../components/OldCode/OldCode";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import PhoneInput from "react-phone-input-2";
-import { login, updateImage } from "../loginSlice";
+import { logout, updateImage } from "../loginSlice";
+import { persistor } from "../index"
 
 export default function UserProfile() {
   const [userInfo, setUserInfo] = useState(null);
@@ -68,7 +69,27 @@ export default function UserProfile() {
     });
 
   const handleEdit = () => setIsEditing(true);
-  const handleCancel = () => setIsEditing(false);
+  const handleDelete = async () => {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/api/auth/deleteUser`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if(response){
+        dispatch(logout());
+        localStorage.removeItem("token");
+        await persistor.purge();
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "An error occurred");
+    }
+  };
+  const handleCancel = () => {
+    window.location.reload();
+  };
 
   const handleSave = async () => {
     try {
@@ -249,7 +270,10 @@ export default function UserProfile() {
               >
                 Edit Account
               </button>
-              <button className="userpro-button userpro-delete-button">
+              <button
+                className="userpro-button userpro-delete-button"
+                onClick={handleDelete}
+              >
                 Delete Account
               </button>
             </>
