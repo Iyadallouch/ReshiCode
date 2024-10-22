@@ -6,8 +6,9 @@ import OldCode from "../components/OldCode/OldCode";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import PhoneInput from "react-phone-input-2";
-import { logout, updateImage } from "../loginSlice";
-import { persistor } from "../index"
+import { logout, update } from "../loginSlice";
+import { persistor } from "../index";
+import DeleteAccountAlert from "./DeleteAccountAlert";
 
 export default function UserProfile() {
   const [userInfo, setUserInfo] = useState(null);
@@ -26,6 +27,7 @@ export default function UserProfile() {
   const [profileImage, setProfileImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false); // State for modal visibility
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,7 +80,7 @@ export default function UserProfile() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      if(response){
+      if (response) {
         dispatch(logout());
         localStorage.removeItem("token");
         await persistor.purge();
@@ -114,18 +116,19 @@ export default function UserProfile() {
       console.log(response.data);
       // Handle successful response
       if (response) {
-        if (profileImage) {
-          try {
-            // Wait for the dispatch to complete if `updateImage` is asynchronous
-            await dispatch(
-              updateImage({
-                userImage: response.data.Image,
-              })
-            );
-          } catch (error) {
-            console.error("Failed to update image in Redux", error);
-          }
+        try {
+          // Wait for the dispatch to complete if `updateImage` is asynchronous
+          await dispatch(
+            update({
+              username: response.data.username,
+              token: response.data.token,
+              userImage: response.data.Image,
+            })
+          );
+        } catch (error) {
+          console.error("Failed to update user Info in Redux", error);
         }
+
         window.location.reload(); // Refresh the page after successful update
       }
     } catch (error) {
@@ -146,7 +149,9 @@ export default function UserProfile() {
       setPreview(URL.createObjectURL(file));
     }
   };
-
+  const handleDeleteClick = () => {
+    setShowModal(true); // Show the confirmation modal
+  };
   return (
     <div className="userpro-container">
       <div className="userpro-card">
@@ -272,7 +277,7 @@ export default function UserProfile() {
               </button>
               <button
                 className="userpro-button userpro-delete-button"
-                onClick={handleDelete}
+                onClick={handleDeleteClick}
               >
                 Delete Account
               </button>
@@ -334,6 +339,11 @@ export default function UserProfile() {
           ))
         )}
       </div>
+      <DeleteAccountAlert
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleDelete}
+      />
     </div>
   );
 }
