@@ -5,6 +5,7 @@ import "../style/UserHomepage.css";
 import socket from "../components/socket";
 import { v4 as uuidv4 } from "uuid"; // Import the uuid function
 import { useSelector } from "react-redux";
+import ChatBot from "../components/ChatBot/ChatBot";
 
 // Initialize the socket connection
 
@@ -131,23 +132,22 @@ export default function UserHomepage() {
           </form>
         </div>
         <div className="userhome-right-side">
-      {!isChatOpen ? (
-        <>
-          <p className="userhome-right-side-text">
-            Ask for help from our chatbot AI
-          </p>
-          <button className="userhome-right-side-button" onClick={handleChatToggle}>
-            chatbot
-          </button>
-        </>
-      ) : (
-        <div className="userhome-chat-card">
-          <button className="userhome-chat-close-button" onClick={handleChatToggle}>X</button>
-          {/* Chatbot content goes here */}
-          <p>Chatbot content...</p>
+          {!isChatOpen ? (
+            <>
+              <p className="userhome-right-side-text">
+                Ask for help from our chatbot AI
+              </p>
+              <button
+                className="userhome-right-side-button"
+                onClick={handleChatToggle}
+              >
+                chatbot
+              </button>
+            </>
+          ) : (
+            <ChatBot />
+          )}
         </div>
-      )}
-    </div>
       </div>
     </div>
   );

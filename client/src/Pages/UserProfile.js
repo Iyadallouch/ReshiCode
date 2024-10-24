@@ -176,12 +176,22 @@ export default function UserProfile() {
         <hr />
         {isEditing && (
           <>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleProfileImageChange}
-              className="userpro-file-input"
-            />
+            <div className="custom-file-upload">
+              <button
+                type="button"
+                className="signup-upload-button"
+                onClick={() => document.getElementById("fileInput").click()}
+              >
+                Upload photo
+              </button>
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                onChange={handleProfileImageChange}
+                style={{ display: "none" }}
+              />
+            </div>{" "}
           </>
         )}
 

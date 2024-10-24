@@ -210,10 +210,12 @@
   background-color: rgb(255, 255, 255);
   padding: 20px;
   border-radius: 10px;
-  position: relative; /* Allows positioning of the close button */
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Aligns content to the left */
+  align-items: flex-start;
+  max-height: 400px; /* Set a max height */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .userhome-chat-close-button {
